@@ -1,0 +1,6 @@
+lib/my/bin
+lib/my/libmy.a
+bin
+libmy.a
+minesweeper
+.vscode
