@@ -23,6 +23,11 @@ typedef struct window_s {
     sfVector2u background_size;
 } window_t;
 
+typedef struct sounds_s {
+    sfSoundBuffer *mining_buffer;
+    sfSound *mining_sound;
+} sounds_t;
+
 typedef enum dig_state_s {
     DEFAULT,
     DIG,
@@ -59,6 +64,7 @@ typedef struct game_s {
     window_t *window;
     box_t **boxes;
     cursor_t *cursor;
+    sounds_t *mining;
 } game_t;
 
 int randint(int a, int b);
@@ -80,5 +86,7 @@ void change_cursor_event(game_t *game, sfEvent *event);
 void dig_animation_event(game_t *game, sfEvent *event);
 void dig_animation(game_t *game);
 void debug(void);
+void init_sounds(game_t *game);
+void destroy_sounds(game_t *game);
 
-#endif /* !MINESWEEPER_H_ */
+#endif

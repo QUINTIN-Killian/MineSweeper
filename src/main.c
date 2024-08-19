@@ -11,13 +11,15 @@ static void init(game_t *game)
     set_map_values(game);
     init_window(game);
     init_cursor(game);
+    init_sounds(game);
 }
 
 static void destroy(game_t *game)
 {
+    destroy_sounds(game);
+    destroy_cursor(game);
     destroy_window(game);
     destroy_map(game);
-    destroy_cursor(game);
 }
 
 void debug(void)

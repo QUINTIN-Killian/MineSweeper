@@ -24,6 +24,7 @@ void dig_animation_event(game_t *game, sfEvent *event)
     if (game->cursor->pickaxe_cursor && event->type == sfEvtMouseButtonPressed
     && sfMouse_isButtonPressed(sfMouseLeft)) {
         game->cursor->state = DIG;
+        sfSound_play(game->mining->mining_sound);
         return;
     }
 }

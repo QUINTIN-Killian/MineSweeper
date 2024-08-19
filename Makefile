@@ -9,6 +9,7 @@ SRC	=	src/main.c				\
 		src/start_screen.c		\
 		src/cursor.c			\
 		src/animations.c		\
+		src/sounds.c			\
 
 OBJ	=	$(SRC:src/%.c=bin/%.o)
 
