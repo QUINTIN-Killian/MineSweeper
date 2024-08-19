@@ -2,16 +2,16 @@
 
 void init_sounds(game_t *game)
 {
-    game->mining = malloc(sizeof(sounds_t));
-    game->mining->mining_sound = sfSound_create();
-    game->mining->mining_buffer =
+    game->sounds = malloc(sizeof(sounds_t));
+    game->sounds->mining_sound = sfSound_create();
+    game->sounds->mining_buffer =
     sfSoundBuffer_createFromFile("sounds/MiningSoundEffect.wav");
-    sfSound_setBuffer(game->mining->mining_sound, game->mining->mining_buffer);
+    sfSound_setBuffer(game->sounds->mining_sound, game->sounds->mining_buffer);
 }
 
 void destroy_sounds(game_t *game)
 {
-    sfSoundBuffer_destroy(game->mining->mining_buffer);
-    sfSound_destroy(game->mining->mining_sound);
-    free(game->mining);
+    sfSoundBuffer_destroy(game->sounds->mining_buffer);
+    sfSound_destroy(game->sounds->mining_sound);
+    free(game->sounds);
 }

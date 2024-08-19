@@ -28,6 +28,10 @@ typedef struct sounds_s {
     sfSound *mining_sound;
 } sounds_t;
 
+typedef struct musics_s {
+    sfMusic *main_music;
+} musics_t;
+
 typedef enum dig_state_s {
     DEFAULT,
     DIG,
@@ -64,7 +68,8 @@ typedef struct game_s {
     window_t *window;
     box_t **boxes;
     cursor_t *cursor;
-    sounds_t *mining;
+    sounds_t *sounds;
+    musics_t *musics;
 } game_t;
 
 int randint(int a, int b);
@@ -88,5 +93,7 @@ void dig_animation(game_t *game);
 void debug(void);
 void init_sounds(game_t *game);
 void destroy_sounds(game_t *game);
+void init_musics(game_t *game);
+void destroy_musics(game_t *game);
 
 #endif

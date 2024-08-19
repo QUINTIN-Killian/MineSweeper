@@ -12,6 +12,7 @@ static void init(game_t *game)
     init_window(game);
     init_cursor(game);
     init_sounds(game);
+    init_musics(game);
 }
 
 static void destroy(game_t *game)
@@ -20,6 +21,7 @@ static void destroy(game_t *game)
     destroy_cursor(game);
     destroy_window(game);
     destroy_map(game);
+    destroy_musics(game);
 }
 
 void debug(void)
