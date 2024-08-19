@@ -29,6 +29,18 @@ void dig_animation_event(game_t *game, sfEvent *event)
     }
 }
 
+void mute_musics_event(game_t *game, sfEvent *event)
+{
+    if (event->type == sfEvtKeyPressed &&
+    sfKeyboard_isKeyPressed(sfKeySpace)) {
+        if (sfMusic_getStatus(game->musics->main_music) == sfPlaying)
+            sfMusic_pause(game->musics->main_music);
+        else
+            sfMusic_play(game->musics->main_music);
+        return;
+    }
+}
+
 void get_event(game_t *game, int nb_events, ...)
 {
     sfEvent event;
