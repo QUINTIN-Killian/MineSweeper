@@ -5,7 +5,6 @@ void close_window_event(game_t *game, sfEvent *event)
     if (event->type == sfEvtClosed ||
     sfKeyboard_isKeyPressed(sfKeyEscape)) {
         sfRenderWindow_close(game->window->infos);
-        return;
     }
 }
 
@@ -15,7 +14,6 @@ void change_cursor_event(game_t *game, sfEvent *event)
         game->cursor->pickaxe_cursor = !game->cursor->pickaxe_cursor;
         sfRenderWindow_setMouseCursorVisible(game->window->infos,
         !game->cursor->pickaxe_cursor);
-        return;
     }
 }
 
@@ -25,7 +23,6 @@ void dig_animation_event(game_t *game, sfEvent *event)
     && sfMouse_isButtonPressed(sfMouseLeft)) {
         game->cursor->state = DIG;
         sfSound_play(game->sounds->mining_sound);
-        return;
     }
 }
 
@@ -37,7 +34,20 @@ void mute_musics_event(game_t *game, sfEvent *event)
             sfMusic_pause(game->musics->main_music);
         else
             sfMusic_play(game->musics->main_music);
-        return;
+    }
+}
+
+void manage_musics_event(game_t *game, sfEvent *event)
+{
+    if (event->type == sfEvtKeyPressed &&
+    sfKeyboard_isKeyPressed(sfKeyUp)) {
+        sfMusic_setVolume(game->musics->main_music,
+        sfMusic_getVolume(game->musics->main_music) + 5.0);
+    }
+    if (event->type == sfEvtKeyPressed &&
+    sfKeyboard_isKeyPressed(sfKeyDown)) {
+        sfMusic_setVolume(game->musics->main_music,
+        sfMusic_getVolume(game->musics->main_music) - 5.0);
     }
 }
 

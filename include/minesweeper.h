@@ -96,5 +96,6 @@ void destroy_sounds(game_t *game);
 void init_musics(game_t *game);
 void destroy_musics(game_t *game);
 void mute_musics_event(game_t *game, sfEvent *event);
+void manage_musics_event(game_t *game, sfEvent *event);
 
 #endif
