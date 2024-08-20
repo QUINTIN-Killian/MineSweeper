@@ -11,6 +11,7 @@ SRC	=	src/main.c				\
 		src/animations.c		\
 		src/sounds.c			\
 		src/musics.c			\
+		src/credits.c			\
 
 OBJ	=	$(SRC:src/%.c=bin/%.o)
 

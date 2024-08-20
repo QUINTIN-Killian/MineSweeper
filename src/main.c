@@ -36,7 +36,7 @@ int main(void)
     srand(time(NULL));
     init(&game);
     print_map(&game);
-    start_screen(&game);
+    credits(&game);
     destroy(&game);
     return 0;
 }

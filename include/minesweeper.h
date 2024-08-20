@@ -23,6 +23,10 @@ typedef struct window_s {
     sfVector2u background_size;
 } window_t;
 
+typedef struct credits_s {
+    sfText *credits_text;
+} credits_t;
+
 typedef struct sounds_s {
     sfSoundBuffer *mining_buffer;
     sfSound *mining_sound;
@@ -70,6 +74,7 @@ typedef struct game_s {
     cursor_t *cursor;
     sounds_t *sounds;
     musics_t *musics;
+    credits_t *credits;
 } game_t;
 
 int randint(int a, int b);
@@ -97,5 +102,6 @@ void init_musics(game_t *game);
 void destroy_musics(game_t *game);
 void mute_musics_event(game_t *game, sfEvent *event);
 void manage_musics_event(game_t *game, sfEvent *event);
+void credits(game_t *game);
 
 #endif
