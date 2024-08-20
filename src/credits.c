@@ -8,7 +8,7 @@ void init_credits(game_t *game)
     game->credits->credits_text = sfText_create();
     sfText_setFont(game->credits->credits_text, game->window->main_font);
     sfText_setString(game->credits->credits_text,
-    "Game created by Killian QUINTIN\n(all rights reserved)");
+    "Game created by Killian QUINTIN (all rights reserved)");
     bounds = sfText_getGlobalBounds(game->credits->credits_text);
     sfText_setOrigin(game->credits->credits_text,
     (sfVector2f){bounds.width / 2, bounds.height / 2});
