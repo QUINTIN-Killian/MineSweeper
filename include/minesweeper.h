@@ -36,6 +36,16 @@ typedef struct musics_s {
     sfMusic *main_music;
 } musics_t;
 
+typedef struct start_screen_s {
+    sfText *game_name;
+    sfTexture *start_button_texture;
+    sfSprite *start_button_sprite;
+    sfText *start;
+    sfTexture *leave_button_texture;
+    sfSprite *leave_button_sprite;
+    sfText *leave;
+} start_screen_t;
+
 typedef enum dig_state_s {
     DEFAULT,
     DIG,
@@ -75,6 +85,7 @@ typedef struct game_s {
     sounds_t *sounds;
     musics_t *musics;
     credits_t *credits;
+    start_screen_t *start_screen;
 } game_t;
 
 int randint(int a, int b);
