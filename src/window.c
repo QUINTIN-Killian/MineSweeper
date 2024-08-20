@@ -10,7 +10,7 @@ void init_window(game_t *game)
     game->window->window_size = sfRenderWindow_getSize(game->window->infos);
     sfRenderWindow_setFramerateLimit(game->window->infos, 60);
     game->window->main_font =
-    sfFont_createFromFile("fonts/BlackerShield-V4VRZ.ttf");
+    sfFont_createFromFile("fonts/CartoonComicItalic-mLLAx.ttf");
     game->window->background_sprite = sfSprite_create();
     game->window->background_texture =
     sfTexture_createFromFile("backgrounds/cartoon_soil_891x480.png", NULL);
