@@ -40,6 +40,7 @@ static int help(void)
     mini_printf("\t- Press MOUSE LEFT to dig a rock\n");
     mini_printf("\t- Press MOUSE RIGHT to flag a rock\n");
     mini_printf("\t- Press H to show help\n");
+    mini_printf("\t- Press C to switch cursor\n");
     mini_printf("\t- Press SPACE BAR to turn off/on the musics\n");
     mini_printf("\t- Press UP/DOWN to manage the musics volume\n");
     mini_printf("\n(Game created by Killian QUINTIN)\n");
