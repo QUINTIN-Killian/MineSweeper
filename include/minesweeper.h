@@ -30,6 +30,8 @@ typedef struct credits_s {
 typedef struct sounds_s {
     sfSoundBuffer *mining_buffer;
     sfSound *mining_sound;
+    sfSoundBuffer *breaking_buffer;
+    sfSound *breaking_sound;
 } sounds_t;
 
 typedef struct musics_s {
@@ -41,9 +43,11 @@ typedef struct start_screen_s {
     sfTexture *start_button_texture;
     sfSprite *start_button_sprite;
     sfText *start;
+    sfFloatRect start_button_bounds;
     sfTexture *leave_button_texture;
     sfSprite *leave_button_sprite;
     sfText *leave;
+    sfFloatRect leave_button_bounds;
 } start_screen_t;
 
 typedef enum dig_state_s {
@@ -70,6 +74,7 @@ typedef struct box_s {
     sfSprite *box_sprite;
     sfTexture *box_texture;
     sfVector2f coords;
+    sfFloatRect box_bounds;
     struct box_s *next;
 } box_t;
 
@@ -114,5 +119,7 @@ void destroy_musics(game_t *game);
 void mute_musics_event(game_t *game, sfEvent *event);
 void manage_musics_event(game_t *game, sfEvent *event);
 void credits(game_t *game);
+void start_menu_start_game_event(game_t *game, sfEvent *event);
+void start_menu_leave_game_event(game_t *game, sfEvent *event);
 
 #endif

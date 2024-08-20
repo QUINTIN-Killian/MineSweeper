@@ -51,6 +51,36 @@ void manage_musics_event(game_t *game, sfEvent *event)
     }
 }
 
+void start_menu_start_game_event(game_t *game, sfEvent *event)
+{
+    sfVector2i mouse_pos;
+
+    if (event->type == sfEvtMouseButtonPressed
+    && sfMouse_isButtonPressed(sfMouseLeft)) {
+        mouse_pos = sfMouse_getPositionRenderWindow(game->window->infos);
+        if (sfFloatRect_contains(&game->start_screen->start_button_bounds,
+        mouse_pos.x, mouse_pos.y)) {
+            sfSound_play(game->sounds->breaking_sound);
+            sfRenderWindow_close(game->window->infos);
+        }
+    }
+}
+
+void start_menu_leave_game_event(game_t *game, sfEvent *event)
+{
+    sfVector2i mouse_pos;
+
+    if (event->type == sfEvtMouseButtonPressed
+    && sfMouse_isButtonPressed(sfMouseLeft)) {
+        mouse_pos = sfMouse_getPositionRenderWindow(game->window->infos);
+        if (sfFloatRect_contains(&game->start_screen->leave_button_bounds,
+        mouse_pos.x, mouse_pos.y)) {
+            sfSound_play(game->sounds->breaking_sound);
+            sfRenderWindow_close(game->window->infos);
+        }
+    }
+}
+
 void get_event(game_t *game, int nb_events, ...)
 {
     sfEvent event;

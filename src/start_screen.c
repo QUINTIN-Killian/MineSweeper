@@ -36,6 +36,8 @@ void init_start_screen(game_t *game)
     sfText_setPosition(game->start_screen->start, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 2});
     sfText_setColor(game->start_screen->start, sfWhite);
+    game->start_screen->start_button_bounds =
+    sfSprite_getGlobalBounds(game->start_screen->start_button_sprite);
     game->start_screen->leave_button_sprite = sfSprite_create();
     game->start_screen->leave_button_texture =
     sfTexture_createFromFile("images/rock3.png", NULL);
@@ -57,6 +59,8 @@ void init_start_screen(game_t *game)
     sfText_setPosition(game->start_screen->leave, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 1.5});
     sfText_setColor(game->start_screen->leave, sfWhite);
+    game->start_screen->leave_button_bounds =
+    sfSprite_getGlobalBounds(game->start_screen->leave_button_sprite);
 }
 
 void draw_start_screen(game_t *game)
@@ -93,8 +97,9 @@ void start_screen(game_t *game)
         draw_background(game);
         draw_start_screen(game);
         draw_cursor(game);
-        get_event(game, 5, &change_cursor_event, &close_window_event,
-        &dig_animation_event, &mute_musics_event, &manage_musics_event);
+        get_event(game, 7, &change_cursor_event, &close_window_event,
+        &dig_animation_event, &mute_musics_event, &manage_musics_event,
+        &start_menu_start_game_event, &start_menu_leave_game_event);
         dig_animation(game);
         sfRenderWindow_display(game->window->infos);
     }
