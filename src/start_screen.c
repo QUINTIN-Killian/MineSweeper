@@ -61,6 +61,7 @@ void init_start_screen(game_t *game)
     sfText_setColor(game->start_screen->leave, sfWhite);
     game->start_screen->leave_button_bounds =
     sfSprite_getGlobalBounds(game->start_screen->leave_button_sprite);
+    game->start_screen->start_game = false;
 }
 
 void draw_start_screen(game_t *game)
@@ -92,7 +93,8 @@ void destroy_start_screen(game_t *game)
 void start_screen(game_t *game)
 {
     init_start_screen(game);
-    while (sfRenderWindow_isOpen(game->window->infos)) {
+    while (sfRenderWindow_isOpen(game->window->infos) &&
+    !game->start_screen->start_game) {
         sfRenderWindow_clear(game->window->infos, sfCyan);
         draw_background(game);
         draw_start_screen(game);
@@ -104,4 +106,5 @@ void start_screen(game_t *game)
         sfRenderWindow_display(game->window->infos);
     }
     destroy_start_screen(game);
+    game_screen(game);
 }

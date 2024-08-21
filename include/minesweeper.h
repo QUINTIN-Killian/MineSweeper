@@ -48,6 +48,7 @@ typedef struct start_screen_s {
     sfSprite *leave_button_sprite;
     sfText *leave;
     sfFloatRect leave_button_bounds;
+    bool start_game;
 } start_screen_t;
 
 typedef enum dig_state_s {
@@ -121,5 +122,6 @@ void manage_musics_event(game_t *game, sfEvent *event);
 void credits(game_t *game);
 void start_menu_start_game_event(game_t *game, sfEvent *event);
 void start_menu_leave_game_event(game_t *game, sfEvent *event);
+void game_screen(game_t *game);
 
 #endif

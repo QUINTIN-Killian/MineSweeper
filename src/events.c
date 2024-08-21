@@ -61,7 +61,7 @@ void start_menu_start_game_event(game_t *game, sfEvent *event)
         if (sfFloatRect_contains(&game->start_screen->start_button_bounds,
         mouse_pos.x, mouse_pos.y)) {
             sfSound_play(game->sounds->breaking_sound);
-            sfRenderWindow_close(game->window->infos);
+            game->start_screen->start_game = true;
         }
     }
 }

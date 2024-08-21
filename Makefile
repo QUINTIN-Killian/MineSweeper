@@ -12,6 +12,7 @@ SRC	=	src/main.c				\
 		src/sounds.c			\
 		src/musics.c			\
 		src/credits.c			\
+		src/game.c				\
 
 OBJ	=	$(SRC:src/%.c=bin/%.o)
 
