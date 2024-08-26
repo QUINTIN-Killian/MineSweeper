@@ -25,3 +25,8 @@ textObj *__init_textObj__(const sfFont *font, const char *string,
         sfText_setScale(text->text, (sfVector2f){1.5, 1.5});
     return text;
 }
+
+void __dest_textObj__(textObj *text)
+{
+    sfText_destroy(text->text);
+}

@@ -20,3 +20,9 @@ spriteObj *__init_spriteObj__(const char *texturepath, sfVector2f *origin,
     if (scale != NULL)
         sfSprite_setScale(sprite->sprite, *scale);
 }
+
+void __dest_spriteObj__(spriteObj *sprite)
+{
+    sfTexture_destroy(sprite->texture);
+    sfSprite_destroy(sprite->sprite);
+}

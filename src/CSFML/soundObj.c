@@ -9,3 +9,9 @@ soundObj *__init_sfSound__(const char *filepath)
     sfSound_setBuffer(sound->sound, sound->buffer);
     return sound;
 }
+
+void __dest_sfSound__(soundObj *sound)
+{
+    sfSoundBuffer_destroy(sound->buffer);
+    sfSound_destroy(sound->sound);
+}

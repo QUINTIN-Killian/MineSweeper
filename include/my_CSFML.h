@@ -1,7 +1,6 @@
 #ifndef MY_CSFML_H_
     #define MY_CSFML_H_
     #define SFNULL ((void*)-1)
-    #define sfMusic musicObj
     #include <SFML/Graphics.h>
     #include <SFML/Window.h>
     #include <SFML/System.h>
