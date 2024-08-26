@@ -8,40 +8,13 @@
 
 CC	=	gcc
 
-SRC	=	concat_2_str.c	\
-		concat_str.c	\
-		convert_int_to_str.c	\
-		convert_str_in_int.c	\
-		free_word_array.c	\
-		mini_fdprintf.c	\
-		mini_printf.c	\
-		my_compute_power_rec.c	\
-		my_fdputchar.c	\
-		my_fdput_nbr.c	\
-		my_fdputstr.c	\
-		my_intlen.c	\
-		my_putchar.c	\
-		my_put_nbr.c	\
-		my_putstr.c	\
-		my_strcmp.c	\
-		my_strdup.c	\
-		my_str_isnum.c	\
-		my_strlen_array.c	\
-		my_strlen.c	\
-		my_strncmp.c	\
-		my_strndup.c	\
-		my_tabdup.c	\
-		parse_str.c	\
-		print_word_array.c	\
-		sep_str.c	\
-		my_abs.c	\
-		my_strncpy.c
+SRC	=	$(shell find . -name '*.c')
 
 OBJ	=	$(SRC:%.c=bin/%.o)
 
 CFLAGS	=	-g3 -W -Wall
 
-H_NAME	=	my.h
+H_NAME	=	$(shell find . -name '*.h')
 
 LIB_NAME	=	libmy.a
 
@@ -58,7 +31,7 @@ bin/%.o:	%.c $(H_NAME)
 
 clean:
 	rm -f $(OBJ)
-	@rm -rf bin
+	rm -rf bin
 
 fclean:	clean
 	rm -f $(LIB_NAME) ../../$(LIB_NAME)

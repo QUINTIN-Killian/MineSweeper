@@ -1,20 +1,8 @@
 CC	=	gcc
 
-SRC	=	src/main.c				\
-		src/functions.c			\
-		src/map_manager.c		\
-		src/map_setter.c		\
-		src/window.c			\
-		src/events.c			\
-		src/start_screen.c		\
-		src/cursor.c			\
-		src/animations.c		\
-		src/sounds.c			\
-		src/musics.c			\
-		src/credits.c			\
-		src/game.c				\
+SRC	=	$(shell find src -name '*.c')
 
-OBJ	=	$(SRC:src/%.c=bin/%.o)
+OBJ	=	$(patsubst src/%.c,bin/%.o,$(SRC))
 
 CFLAGS	=	-g3					\
 			-W					\
@@ -30,8 +18,7 @@ LDFLAGS	=	-L.					\
 
 EXEC	=	minesweeper
 
-H_NAME	=	include/my.h		\
-			include/minesweeper.h	\
+H_NAME	=	$(shell find include -name '*.h')
 
 LIB_NAME	=	libmy.a
 
@@ -44,12 +31,12 @@ $(EXEC):	$(H_NAME) $(LIB_NAME) $(OBJ)
 	$(CC) -o $(EXEC) $(OBJ) $(LDFLAGS)
 
 bin/%.o:	src/%.c $(H_NAME) $(LIB_NAME)
-	@mkdir -p bin
+	@mkdir -p $(dir $@)
 	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
 	rm -f $(OBJ)
-	@rm -rf bin
+	rm -rf bin
 	make clean -C lib/my
 
 fclean:	clean
