@@ -1,16 +1,9 @@
 #ifndef MINESWEEPER_H_
     #define MINESWEEPER_H_
     #include "my.h"
+    #include "my_CSFML.h"
     #include <stdbool.h>
     #include <time.h>
-    #include <SFML/Graphics.h>
-    #include <SFML/Window.h>
-    #include <SFML/System.h>
-    #include <SFML/Audio.h>
-    #include <SFML/System/Clock.h>
-    #include <SFML/System/Export.h>
-    #include <SFML/System/Time.h>
-    #include <SFML/System/Types.h>
 
 typedef struct window_s {
     sfFont *main_font;

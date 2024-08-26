@@ -6,7 +6,7 @@ void init_musics(game_t *game)
     game->musics->main_music =
     sfMusic_createFromFile("musics/main_music_theme.wav");
     sfMusic_setLoop(game->musics->main_music, sfTrue);
-    sfMusic_play(game->musics->main_music);
+    //sfMusic_play(game->musics->main_music);
 }
 
 void destroy_musics(game_t *game)
