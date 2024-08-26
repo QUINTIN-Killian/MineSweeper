@@ -17,8 +17,11 @@ spriteObj *__init_spriteObj__(const char *texturepath, sfVector2f *origin,
         sfSprite_setOrigin(sprite->sprite, *origin);
     if (position != NULL)
         sfSprite_setPosition(sprite->sprite, *position);
+    if (rotation != 0.0)
+        sfSprite_setRotation(sprite->sprite, rotation);
     if (scale != NULL)
         sfSprite_setScale(sprite->sprite, *scale);
+    return sprite;
 }
 
 void __dest_spriteObj__(spriteObj *sprite)

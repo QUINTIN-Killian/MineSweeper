@@ -1,6 +1,7 @@
 #ifndef MY_CSFML_H_
     #define MY_CSFML_H_
     #define SFNULL ((void*)-1)
+    #include <stdlib.h>
     #include <SFML/Graphics.h>
     #include <SFML/Window.h>
     #include <SFML/System.h>
