@@ -1,8 +1,7 @@
 #include "../../include/my_CSFML.h"
 
-textObj *__init_textObj__(const sfFont *font, const char *string,
-    sfVector2f *origin, sfVector2f *position, sfColor *color,
-    sfVector2f *scale)
+textObj *__init_textObj__(const sfFont *font, const char *string, sfVector2f *
+    origin, sfVector2f *position, sfColor *color, sfVector2f *scale)
 {
     textObj *text = malloc(sizeof(textObj));
 

@@ -26,8 +26,19 @@ typedef struct {
     sfFloatRect bounds;
 } textObj;
 
+sfColor __init_colorObj__(sfUint8 r, sfUint8 g, sfUint8 b, sfUint8 a);
 sfVector2f __init_vector2fObj__(float x, float y);
 sfVector2i __init_vector2iObj__(int x, int y);
 sfVector2u __init_vector2uObj__(unsigned int x, unsigned int y);
+sfMusic *__init_musicObj__(const char *filepath, sfBool loop, sfBool play);
+void __dest_musicObj__(sfMusic *music);
+soundObj *__init_sfSound__(const char *filepath);
+void __dest_sfSound__(soundObj *sound);
+spriteObj *__init_spriteObj__(const char *texturepath, sfVector2f *origin,
+    sfVector2f *position, float rotation, sfVector2f *scale);
+void __dest_spriteObj__(spriteObj *sprite);
+textObj *__init_textObj__(const sfFont *font, const char *string, sfVector2f *
+    origin, sfVector2f *position, sfColor *color, sfVector2f *scale);
+void __dest_textObj__(textObj *text);
 
 #endif
