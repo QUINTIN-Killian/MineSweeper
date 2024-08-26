@@ -1,15 +1,17 @@
 #include "../../include/my_CSFML.h"
 
-sfMusic *__init_musicObj__(const char *filepath, sfBool loop, sfBool play)
+sfMusic *mySfMusicCreate(const char *musicpath, sfBool loop, sfBool play)
 {
-    sfMusic *music = sfMusic_createFromFile(filepath);
-    sfMusic_setLoop(music, loop);
+    sfMusic *obj = sfMusic_createFromFile(musicpath);
+
+    sfMusic_setLoop(obj, loop);
     if (play)
-        sfMusic_play(music);
-    return music;
+        sfMusic_play(obj);
+    return obj;
 }
 
-void __dest_musicObj__(sfMusic *music)
+void mySfMusicDestroy(sfMusic *obj)
 {
-    sfMusic_destroy(music);
+    sfMusic_stop(obj);
+    sfMusic_destroy(obj);
 }
