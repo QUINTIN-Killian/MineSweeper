@@ -9,6 +9,7 @@
 
 typedef struct window_s {
     sfFont *main_font;
+    sfVideoMode mode;
     sfRenderWindow *infos;
     sfVector2u window_size;
     char *window_name;

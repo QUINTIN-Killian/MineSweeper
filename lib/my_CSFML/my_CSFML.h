@@ -34,17 +34,17 @@ sfText *mySfTextCreate(const sfFont *font, const char *string, sfColor color);
 void mySfTextDestroy(sfText *obj);
 sfMusic *mySfMusicCreate(const char *musicpath, sfBool loop, sfBool play);
 void mySfMusicDestroy(sfMusic *obj);
-void mySfButtonSpriteNormal(renderWindowObj *render_window, spriteObj *sprite,
+sfBool mySfButtonSpriteNormal(renderWindowObj *render_window,
+    spriteObj *sprite, void (*callback)(spriteObj *));
+sfBool mySfButtonSpriteHoover(renderWindowObj *render_window,
+    spriteObj *sprite, void (*callback)(spriteObj *));
+sfBool mySfButtonSpriteClick(renderWindowObj *render_window, spriteObj *sprite,
     sfEvent *event, void (*callback)(spriteObj *));
-void mySfButtonSpriteHoover(renderWindowObj *render_window, spriteObj *sprite,
-    sfEvent *event, void (*callback)(spriteObj *));
-void mySfButtonSpriteClick(renderWindowObj *render_window, spriteObj *sprite,
-    sfEvent *event, void (*callback)(spriteObj *));
-void mySfButtonTextNormal(renderWindowObj *render_window, sfText *text,
-    sfEvent *event, void (*callback)(sfText *));
-void mySfButtonTextHoover(renderWindowObj *render_window, sfText *text,
-    sfEvent *event, void (*callback)(sfText *));
-void mySfButtonTextClick(renderWindowObj *render_window, sfText *text,
+sfBool mySfButtonTextNormal(renderWindowObj *render_window, sfText *text,
+    void (*callback)(sfText *));
+sfBool mySfButtonTextHoover(renderWindowObj *render_window, sfText *text,
+    void (*callback)(sfText *));
+sfBool mySfButtonTextClick(renderWindowObj *render_window, sfText *text,
     sfEvent *event, void (*callback)(sfText *));
 
 #endif

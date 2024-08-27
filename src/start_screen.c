@@ -55,6 +55,68 @@ void destroy_start_screen(game_t *game)
     free(game->start_screen);
 }
 
+static void start__normal(sfText *start)
+{
+    sfText_setFillColor(start, sfWhite);
+    sfText_setCharacterSize(start, 30);
+}
+
+static void start__hoover(sfText *start)
+{
+    sfText_setFillColor(start, (sfColor){128, 128, 128, 255});
+    sfText_setCharacterSize(start, 50);
+}
+
+static void start__click(sfText *start)
+{
+    sfText_setFillColor(start, (sfColor){110, 110, 110, 255});
+    sfText_setCharacterSize(start, 45);
+}
+
+void start_screen_event(game_t *game, sfEvent *event)
+{
+    renderWindowObj obj = {game->window->infos, game->window->mode};
+
+    mySfButtonTextNormal(&obj, game->start_screen->start, &start__normal);
+    mySfButtonTextHoover(&obj, game->start_screen->start, &start__hoover);
+    if (mySfButtonTextClick(&obj, game->start_screen->start, event,
+    &start__click)) {
+        sfSound_play(game->sounds->breaking_sound->sound);
+        game->start_screen->start_game = true;
+    }
+}
+
+static void leave__normal(sfText *leave)
+{
+    sfText_setFillColor(leave, sfWhite);
+    sfText_setCharacterSize(leave, 30);
+}
+
+static void leave__hoover(sfText *leave)
+{
+    sfText_setFillColor(leave, (sfColor){128, 128, 128, 255});
+    sfText_setCharacterSize(leave, 50);
+}
+
+static void leave__click(sfText *leave)
+{
+    sfText_setFillColor(leave, (sfColor){110, 110, 110, 255});
+    sfText_setCharacterSize(leave, 45);
+}
+
+void leave_screen_event(game_t *game, sfEvent *event)
+{
+    renderWindowObj obj = {game->window->infos, game->window->mode};
+
+    mySfButtonTextNormal(&obj, game->start_screen->leave, &leave__normal);
+    mySfButtonTextHoover(&obj, game->start_screen->leave, &leave__hoover);
+    if (mySfButtonTextClick(&obj, game->start_screen->leave, event,
+    &leave__click)) {
+        sfSound_play(game->sounds->breaking_sound->sound);
+        sfRenderWindow_close(game->window->infos);
+    }
+}
+
 void start_screen(game_t *game)
 {
     init_start_screen(game);
@@ -66,7 +128,7 @@ void start_screen(game_t *game)
         draw_cursor(game);
         get_event(game, 7, &change_cursor_event, &close_window_event,
         &dig_animation_event, &mute_musics_event, &manage_musics_event,
-        &start_menu_start_game_event, &start_menu_leave_game_event);
+        &start_screen_event, &leave_screen_event);
         dig_animation(game);
         sfRenderWindow_display(game->window->infos);
     }

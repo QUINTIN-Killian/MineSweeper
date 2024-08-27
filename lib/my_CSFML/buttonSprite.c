@@ -1,13 +1,13 @@
 #include "my_CSFML.h"
 
-void mySfButtonSpriteNormal(renderWindowObj *render_window, spriteObj *sprite,
-    sfEvent *event, void (*callback)(spriteObj *))
+sfBool mySfButtonSpriteNormal(renderWindowObj *render_window,
+    spriteObj *sprite, void (*callback)(spriteObj *))
 {
     sfVector2i mousePos =
     sfMouse_getPositionRenderWindow(render_window->render_window);
     sfVector2u windowSize =
     sfRenderWindow_getSize(render_window->render_window);
-    sfFloatRect bounds = sfSprite_getGlobalBounds(sprite);
+    sfFloatRect bounds = sfSprite_getGlobalBounds(sprite->sprite);
     float scaleX = (float)windowSize.x / render_window->infos.width;
     float scaleY = (float)windowSize.y / render_window->infos.height;
 
@@ -16,16 +16,22 @@ void mySfButtonSpriteNormal(renderWindowObj *render_window, spriteObj *sprite,
     bounds.width *= scaleX;
     bounds.height *= scaleY;
     if (!(mousePos.x >= bounds.left && mousePos.x <= bounds.left + bounds.width
-    && mousePos.y >= bounds.top && mousePos.y <= bounds.top + bounds.height))
-        callback(sprite);
+    && mousePos.y >= bounds.top && mousePos.y <= bounds.top + bounds.height)) {
+        if (callback != NULL)
+            callback(sprite);
+        return sfTrue;
+    }
+    return sfFalse;
 }
 
-void mySfButtonSpriteHoover(renderWindowObj *render_window, spriteObj *sprite,
-    sfEvent *event, void (*callback)(spriteObj *))
+sfBool mySfButtonSpriteHoover(renderWindowObj *render_window,
+    spriteObj *sprite, void (*callback)(spriteObj *))
 {
-    sfVector2i mousePos = sfMouse_getPositionRenderWindow(render_window->render_window);
-    sfVector2u windowSize = sfRenderWindow_getSize(render_window->render_window);
-    sfFloatRect bounds = sfSprite_getGlobalBounds(sprite);
+    sfVector2i mousePos =
+    sfMouse_getPositionRenderWindow(render_window->render_window);
+    sfVector2u windowSize =
+    sfRenderWindow_getSize(render_window->render_window);
+    sfFloatRect bounds = sfSprite_getGlobalBounds(sprite->sprite);
     float scaleX = (float)windowSize.x / render_window->infos.width;
     float scaleY = (float)windowSize.y / render_window->infos.height;
 
@@ -34,11 +40,15 @@ void mySfButtonSpriteHoover(renderWindowObj *render_window, spriteObj *sprite,
     bounds.width *= scaleX;
     bounds.height *= scaleY;
     if (mousePos.x >= bounds.left && mousePos.x <= bounds.left + bounds.width
-    && mousePos.y >= bounds.top && mousePos.y <= bounds.top + bounds.height)
-        callback(sprite);
+    && mousePos.y >= bounds.top && mousePos.y <= bounds.top + bounds.height) {
+        if (callback != NULL)
+            callback(sprite);
+        return sfTrue;
+    }
+    return sfFalse;
 }
 
-void mySfButtonSpriteClick(renderWindowObj *render_window, spriteObj *sprite,
+sfBool mySfButtonSpriteClick(renderWindowObj *render_window, spriteObj *sprite,
     sfEvent *event, void (*callback)(spriteObj *))
 {
     sfVector2i mousePos;
@@ -49,10 +59,10 @@ void mySfButtonSpriteClick(renderWindowObj *render_window, spriteObj *sprite,
 
     if (!(event->type == sfEvtMouseButtonPressed &&
     sfMouse_isButtonPressed(sfMouseLeft)))
-        return;
+        return sfFalse;
     mousePos = sfMouse_getPositionRenderWindow(render_window->render_window);
     windowSize = sfRenderWindow_getSize(render_window->render_window);
-    bounds = sfText_getGlobalBounds(sprite);
+    bounds = sfSprite_getGlobalBounds(sprite->sprite);
     scaleX = (float)windowSize.x / render_window->infos.width;
     scaleY = (float)windowSize.y / render_window->infos.height;
     bounds.left *= scaleX;
@@ -60,6 +70,10 @@ void mySfButtonSpriteClick(renderWindowObj *render_window, spriteObj *sprite,
     bounds.width *= scaleX;
     bounds.height *= scaleY;
     if (mousePos.x >= bounds.left && mousePos.x <= bounds.left + bounds.width
-    && mousePos.y >= bounds.top && mousePos.y <= bounds.top + bounds.height)
-        callback(sprite);
+    && mousePos.y >= bounds.top && mousePos.y <= bounds.top + bounds.height) {
+        if (callback != NULL)
+            callback(sprite);
+        return sfTrue;
+    }
+    return sfFalse;
 }

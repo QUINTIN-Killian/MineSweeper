@@ -4,7 +4,8 @@ void init_window(game_t *game)
 {
     game->window = malloc(sizeof(window_t));
     game->window->window_name = "MineSweeper (created by Killian QUINTIN)";
-    game->window->infos = sfRenderWindow_create((sfVideoMode){800, 600, 64},
+    game->window->mode = (sfVideoMode){800, 600, 64};
+    game->window->infos = sfRenderWindow_create(game->window->mode,
     game->window->window_name, sfResize | sfClose, NULL);
     game->window->window_size = sfRenderWindow_getSize(game->window->infos);
     sfRenderWindow_setFramerateLimit(game->window->infos, 60);
