@@ -1,6 +1,5 @@
-lib/my/bin
-lib/my/libmy.a
-bin
-libmy.a
+*.a
+*.o
+*/bin
 minesweeper
 .vscode
