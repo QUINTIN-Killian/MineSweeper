@@ -22,7 +22,7 @@ void dig_animation_event(game_t *game, sfEvent *event)
     if (game->cursor->pickaxe_cursor && event->type == sfEvtMouseButtonPressed
     && sfMouse_isButtonPressed(sfMouseLeft)) {
         game->cursor->state = DIG;
-        sfSound_play(game->sounds->mining_sound);
+        sfSound_play(game->sounds->mining_sound->sound);
     }
 }
 
@@ -54,13 +54,14 @@ void manage_musics_event(game_t *game, sfEvent *event)
 void start_menu_start_game_event(game_t *game, sfEvent *event)
 {
     sfVector2i mouse_pos;
+    sfFloatRect bounds =
+    sfSprite_getGlobalBounds(game->start_screen->start_button->sprite);
 
     if (event->type == sfEvtMouseButtonPressed
     && sfMouse_isButtonPressed(sfMouseLeft)) {
         mouse_pos = sfMouse_getPositionRenderWindow(game->window->infos);
-        if (sfFloatRect_contains(&game->start_screen->start_button_bounds,
-        mouse_pos.x, mouse_pos.y)) {
-            sfSound_play(game->sounds->breaking_sound);
+        if (sfFloatRect_contains(&bounds, mouse_pos.x, mouse_pos.y)) {
+            sfSound_play(game->sounds->breaking_sound->sound);
             game->start_screen->start_game = true;
         }
     }
@@ -69,13 +70,14 @@ void start_menu_start_game_event(game_t *game, sfEvent *event)
 void start_menu_leave_game_event(game_t *game, sfEvent *event)
 {
     sfVector2i mouse_pos;
+    sfFloatRect bounds =
+    sfSprite_getGlobalBounds(game->start_screen->leave_button->sprite);
 
     if (event->type == sfEvtMouseButtonPressed
     && sfMouse_isButtonPressed(sfMouseLeft)) {
         mouse_pos = sfMouse_getPositionRenderWindow(game->window->infos);
-        if (sfFloatRect_contains(&game->start_screen->leave_button_bounds,
-        mouse_pos.x, mouse_pos.y)) {
-            sfSound_play(game->sounds->breaking_sound);
+        if (sfFloatRect_contains(&bounds, mouse_pos.x, mouse_pos.y)) {
+            sfSound_play(game->sounds->breaking_sound->sound);
             sfRenderWindow_close(game->window->infos);
         }
     }

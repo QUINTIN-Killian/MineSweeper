@@ -2,65 +2,30 @@
 
 void init_start_screen(game_t *game)
 {
-    sfFloatRect bounds;
-
     game->start_screen = malloc(sizeof(start_screen_t));
-    game->start_screen->game_name = sfText_create();
-    sfText_setFont(game->start_screen->game_name, game->window->main_font);
-    sfText_setString(game->start_screen->game_name, "MineSweeper");
-    bounds = sfText_getGlobalBounds(game->start_screen->game_name);
-    sfText_setOrigin(game->start_screen->game_name,
-    (sfVector2f){bounds.width / 2, bounds.height / 2});
+    game->start_screen->game_name = mySfTextCreate(game->window->main_font,
+    "MineSweeper", sfWhite);
     sfText_setPosition(game->start_screen->game_name, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 4});
-    sfText_setColor(game->start_screen->game_name, sfWhite);
     sfText_setScale(game->start_screen->game_name, (sfVector2f){1.5, 1.5});
-    game->start_screen->start_button_sprite = sfSprite_create();
-    game->start_screen->start_button_texture =
-    sfTexture_createFromFile("images/rock3.png", NULL);
-    sfSprite_setTexture(game->start_screen->start_button_sprite,
-    game->start_screen->start_button_texture, sfFalse);
-    sfSprite_setOrigin(game->start_screen->start_button_sprite, (sfVector2f)
-    {sfTexture_getSize(game->start_screen->start_button_texture).x / 2,
-    sfTexture_getSize(game->start_screen->start_button_texture).y / 2});
-    sfSprite_setPosition(game->start_screen->start_button_sprite, (sfVector2f)
+    game->start_screen->start_button = mySfSpriteCreate("images/rock3.png");
+    sfSprite_setPosition(game->start_screen->start_button->sprite, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 2});
-    sfSprite_setScale(game->start_screen->start_button_sprite,
+    sfSprite_setScale(game->start_screen->start_button->sprite,
     (sfVector2f){0.3, 0.3});
-    game->start_screen->start = sfText_create();
-    sfText_setFont(game->start_screen->start, game->window->main_font);
-    sfText_setString(game->start_screen->start, "Start");
-    bounds = sfText_getGlobalBounds(game->start_screen->start);
-    sfText_setOrigin(game->start_screen->start,
-    (sfVector2f){bounds.width / 2, bounds.height / 2});
+    game->start_screen->start = mySfTextCreate(game->window->main_font,
+    "Start", sfWhite);
     sfText_setPosition(game->start_screen->start, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 2});
-    sfText_setColor(game->start_screen->start, sfWhite);
-    game->start_screen->start_button_bounds =
-    sfSprite_getGlobalBounds(game->start_screen->start_button_sprite);
-    game->start_screen->leave_button_sprite = sfSprite_create();
-    game->start_screen->leave_button_texture =
-    sfTexture_createFromFile("images/rock3.png", NULL);
-    sfSprite_setTexture(game->start_screen->leave_button_sprite,
-    game->start_screen->leave_button_texture, sfFalse);
-    sfSprite_setOrigin(game->start_screen->leave_button_sprite, (sfVector2f)
-    {sfTexture_getSize(game->start_screen->leave_button_texture).x / 2,
-    sfTexture_getSize(game->start_screen->leave_button_texture).y / 2});
-    sfSprite_setPosition(game->start_screen->leave_button_sprite, (sfVector2f)
+    game->start_screen->leave_button = mySfSpriteCreate("images/rock3.png");
+    sfSprite_setPosition(game->start_screen->leave_button->sprite, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 1.5});
-    sfSprite_setScale(game->start_screen->leave_button_sprite,
+    sfSprite_setScale(game->start_screen->leave_button->sprite,
     (sfVector2f){0.3, 0.3});
-    game->start_screen->leave = sfText_create();
-    sfText_setFont(game->start_screen->leave, game->window->main_font);
-    sfText_setString(game->start_screen->leave, "Leave");
-    bounds = sfText_getGlobalBounds(game->start_screen->leave);
-    sfText_setOrigin(game->start_screen->leave,
-    (sfVector2f){bounds.width / 2, bounds.height / 2});
+    game->start_screen->leave = mySfTextCreate(game->window->main_font,
+    "Leave", sfWhite);
     sfText_setPosition(game->start_screen->leave, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 1.5});
-    sfText_setColor(game->start_screen->leave, sfWhite);
-    game->start_screen->leave_button_bounds =
-    sfSprite_getGlobalBounds(game->start_screen->leave_button_sprite);
     game->start_screen->start_game = false;
 }
 
@@ -69,24 +34,22 @@ void draw_start_screen(game_t *game)
     sfRenderWindow_drawText(game->window->infos,
     game->start_screen->game_name, NULL);
     sfRenderWindow_drawSprite(game->window->infos,
-    game->start_screen->start_button_sprite, NULL);
+    game->start_screen->start_button->sprite, NULL);
     sfRenderWindow_drawText(game->window->infos,
     game->start_screen->start, NULL);
     sfRenderWindow_drawSprite(game->window->infos,
-    game->start_screen->leave_button_sprite, NULL);
+    game->start_screen->leave_button->sprite, NULL);
     sfRenderWindow_drawText(game->window->infos,
     game->start_screen->leave, NULL);
 }
 
 void destroy_start_screen(game_t *game)
 {
-    sfText_destroy(game->start_screen->game_name);
-    sfSprite_destroy(game->start_screen->start_button_sprite);
-    sfTexture_destroy(game->start_screen->start_button_texture);
-    sfText_destroy(game->start_screen->start);
-    sfSprite_destroy(game->start_screen->leave_button_sprite);
-    sfTexture_destroy(game->start_screen->leave_button_texture);
-    sfText_destroy(game->start_screen->leave);
+    mySfTextDestroy(game->start_screen->game_name);
+    mySfSpriteDestroy(game->start_screen->start_button);
+    mySfTextDestroy(game->start_screen->start);
+    mySfSpriteDestroy(game->start_screen->leave_button);
+    mySfTextDestroy(game->start_screen->leave);
     free(game->start_screen);
 }
 

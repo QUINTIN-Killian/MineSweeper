@@ -2,24 +2,17 @@
 
 void init_credits(game_t *game)
 {
-    sfFloatRect bounds;
-
     game->credits = malloc(sizeof(credits_t));
-    game->credits->credits_text = sfText_create();
-    sfText_setFont(game->credits->credits_text, game->window->main_font);
-    sfText_setString(game->credits->credits_text,
-    "Game created by Killian QUINTIN (all rights reserved)");
-    bounds = sfText_getGlobalBounds(game->credits->credits_text);
-    sfText_setOrigin(game->credits->credits_text,
-    (sfVector2f){bounds.width / 2, bounds.height / 2});
+    game->credits->credits_text = mySfTextCreate(game->window->main_font,
+    "Game created by Killian QUINTIN (all rights reserved)",
+    (sfColor){255, 255, 255, 0});
     sfText_setPosition(game->credits->credits_text, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 2});
-    sfText_setColor(game->credits->credits_text, (sfColor){255, 255, 255, 0});
 }
 
 void destroy_credits(game_t *game)
 {
-    sfText_destroy(game->credits->credits_text);
+    mySfTextDestroy(game->credits->credits_text);
     free(game->credits);
 }
 

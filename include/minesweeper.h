@@ -11,9 +11,7 @@ typedef struct window_s {
     sfVideoMode desktop_mode;
     sfVector2u window_size;
     char *window_name;
-    sfSprite *background_sprite;
-    sfTexture *background_texture;
-    sfVector2u background_size;
+    spriteObj *background;
 } window_t;
 
 typedef struct credits_s {
@@ -21,10 +19,8 @@ typedef struct credits_s {
 } credits_t;
 
 typedef struct sounds_s {
-    sfSoundBuffer *mining_buffer;
-    sfSound *mining_sound;
-    sfSoundBuffer *breaking_buffer;
-    sfSound *breaking_sound;
+    soundObj *mining_sound;
+    soundObj *breaking_sound;
 } sounds_t;
 
 typedef struct musics_s {
@@ -33,14 +29,10 @@ typedef struct musics_s {
 
 typedef struct start_screen_s {
     sfText *game_name;
-    sfTexture *start_button_texture;
-    sfSprite *start_button_sprite;
+    spriteObj *start_button;
     sfText *start;
-    sfFloatRect start_button_bounds;
-    sfTexture *leave_button_texture;
-    sfSprite *leave_button_sprite;
+    spriteObj *leave_button;
     sfText *leave;
-    sfFloatRect leave_button_bounds;
     bool start_game;
 } start_screen_t;
 

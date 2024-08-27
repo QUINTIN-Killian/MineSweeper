@@ -14,4 +14,5 @@ void mySfSoundDestroy(soundObj *obj)
 {
     sfSoundBuffer_destroy(obj->buffer);
     sfSound_destroy(obj->sound);
+    free(obj);
 }
