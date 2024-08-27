@@ -10,6 +10,7 @@ CFLAGS	=	-g3					\
 
 LDFLAGS	=	-L.					\
 			-lmy				\
+			-lmyCSFML			\
 			-lm					\
 			-lcsfml-graphics	\
 			-lcsfml-system		\
@@ -20,12 +21,13 @@ EXEC	=	minesweeper
 
 H_NAME	=	$(shell find include -name '*.h')
 
-LIB_NAME	=	libmy.a
+LIB_NAME	=	$(shell find . -maxdepth 1 -name '*.a')
 
 all:	compile_lib $(EXEC)
 
 compile_lib:
 	make -C lib/my
+	make -C lib/my_CSFML
 
 $(EXEC):	$(H_NAME) $(LIB_NAME) $(OBJ)
 	$(CC) -o $(EXEC) $(OBJ) $(LDFLAGS)
@@ -38,10 +40,12 @@ clean:
 	rm -f $(OBJ)
 	rm -rf bin
 	make clean -C lib/my
+	make clean -C lib/my_CSFML
 
 fclean:	clean
 	rm -f $(EXEC)
 	make fclean -C lib/my
+	make fclean -C lib/my_CSFML
 
 re:	fclean all
 

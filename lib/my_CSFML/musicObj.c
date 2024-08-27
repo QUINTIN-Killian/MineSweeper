@@ -1,4 +1,4 @@
-#include "../../include/my_CSFML.h"
+#include "my_CSFML.h"
 
 sfMusic *mySfMusicCreate(const char *musicpath, sfBool loop, sfBool play)
 {

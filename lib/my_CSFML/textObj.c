@@ -1,4 +1,4 @@
-#include "../../include/my_CSFML.h"
+#include "my_CSFML.h"
 
 sfText *mySfTextCreate(const sfFont *font, const char *string, sfColor color)
 {

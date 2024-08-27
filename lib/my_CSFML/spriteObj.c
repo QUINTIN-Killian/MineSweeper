@@ -1,4 +1,4 @@
-#include "../../include/my_CSFML.h"
+#include "my_CSFML.h"
 
 spriteObj *mySfSpriteCreate(const char *texturepath)
 {
