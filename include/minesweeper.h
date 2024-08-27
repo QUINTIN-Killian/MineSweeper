@@ -46,8 +46,7 @@ typedef enum dig_state_s {
 typedef struct cursor_s {
     bool pickaxe_cursor;
     dig_state_t state;
-    sfSprite *cursor_sprite;
-    sfTexture *cursor_texture;
+    spriteObj *cursor;
 } cursor_t;
 
 typedef enum box_state_s {

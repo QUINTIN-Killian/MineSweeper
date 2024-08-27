@@ -11,7 +11,7 @@ void init_window(game_t *game)
     game->window->main_font =
     sfFont_createFromFile("fonts/CartoonComicItalic-mLLAx.ttf");
     game->window->background =
-    mySfSpriteCreate("backgrounds/background5.png");
+    mySfSpriteCreate("backgrounds/background5.png", sfTrue);
     sfSprite_setPosition(game->window->background->sprite, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 2});
 }

@@ -8,7 +8,8 @@ void init_start_screen(game_t *game)
     sfText_setPosition(game->start_screen->game_name, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 4});
     sfText_setScale(game->start_screen->game_name, (sfVector2f){1.5, 1.5});
-    game->start_screen->start_button = mySfSpriteCreate("images/rock3.png");
+    game->start_screen->start_button = mySfSpriteCreate("images/rock3.png",
+    sfTrue);
     sfSprite_setPosition(game->start_screen->start_button->sprite, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 2});
     sfSprite_setScale(game->start_screen->start_button->sprite,
@@ -17,7 +18,8 @@ void init_start_screen(game_t *game)
     "Start", sfWhite);
     sfText_setPosition(game->start_screen->start, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 2});
-    game->start_screen->leave_button = mySfSpriteCreate("images/rock3.png");
+    game->start_screen->leave_button = mySfSpriteCreate("images/rock3.png",
+    sfTrue);
     sfSprite_setPosition(game->start_screen->leave_button->sprite, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 1.5});
     sfSprite_setScale(game->start_screen->leave_button->sprite,

@@ -21,7 +21,7 @@ typedef struct {
     sfSound *sound;
 } soundObj;
 
-spriteObj *mySfSpriteCreate(const char *texturepath);
+spriteObj *mySfSpriteCreate(const char *texturepath, sfBool origin_centered);
 void mySfSpriteDestroy(spriteObj *obj);
 soundObj *mySfSoundCreate(const char *soundpath);
 void mySfSoundDestroy(soundObj *obj);
