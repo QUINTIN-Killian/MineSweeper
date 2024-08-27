@@ -42,6 +42,5 @@ void credits(game_t *game)
         sfText_getColor(game->credits->credits_text).a - 1});
     }
     destroy_credits(game);
-    start_screen(game);
 }
 

@@ -1,5 +1,7 @@
 #ifndef MINESWEEPER_H_
     #define MINESWEEPER_H_
+    #define __windowSize__ game->window->window_size
+    #define __renderWindow__ game->window->infos
     #include "my.h"
     #include "my_CSFML.h"
     #include <stdbool.h>
@@ -8,7 +10,6 @@
 typedef struct window_s {
     sfFont *main_font;
     sfRenderWindow *infos;
-    sfVideoMode desktop_mode;
     sfVector2u window_size;
     char *window_name;
     spriteObj *background;

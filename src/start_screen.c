@@ -69,5 +69,4 @@ void start_screen(game_t *game)
         sfRenderWindow_display(game->window->infos);
     }
     destroy_start_screen(game);
-    game_screen(game);
 }

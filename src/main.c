@@ -56,7 +56,9 @@ int main(int ac, char **av)
     srand(time(NULL));
     init(&game);
     print_map(&game);
-    credits(&game);
+    //credits(&game);
+    start_screen(&game);
+    game_screen(&game);
     destroy(&game);
     return 0;
 }
