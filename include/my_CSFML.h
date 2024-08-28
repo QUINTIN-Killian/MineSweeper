@@ -25,15 +25,13 @@
     #define sfLime (sfColor){0, 255, 0, 255}
     #define sfTeal (sfColor){0, 128, 128, 255}
     #define sfNavy (sfColor){0, 0, 128, 255}
-
-typedef enum {
-    NONE = 0,
-    VERY_BIG = 50,
-    BIG = 40,
-    MEDIUM = 30,
-    SMALL = 20,
-    VERY_SMALL = 10
-} SfSize;
+    #define NONE 0.0f
+    #define VERY_BIG 50.0f
+    #define BIG 40.0f
+    #define MEDIUM 30.0f
+    #define SMALL 20.0f
+    #define VERY_SMALL 10.0f
+    #define sfSize float
 
 typedef enum {
     TOP_LEFT,
@@ -67,7 +65,7 @@ void mySfSprite_destroy(spriteObj *obj);
 soundObj *mySfSound_create(const char *soundpath);
 void mySfSound_destroy(soundObj *obj);
 sfText *mySfText_create(const sfFont *font, const char *string, sfColor color,
-    SfSize type);
+    sfSize type);
 void mySfText_destroy(sfText *obj);
 sfMusic *mySfMusic_create(const char *musicpath, sfBool loop, sfBool play);
 void mySfMusic_destroy(sfMusic *obj);

@@ -1,7 +1,7 @@
 #include "my_CSFML.h"
 
 sfText *mySfText_create(const sfFont *font, const char *string, sfColor color,
-    SfSize size)
+    sfSize size)
 {
     sfText *obj = sfText_create();
     sfFloatRect bounds;

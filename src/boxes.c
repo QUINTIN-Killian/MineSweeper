@@ -44,20 +44,22 @@ box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type)
     return box;
 }
 
-void set_box(box_t *box, sfVector2f position, SfSize size)
+void set_box(box_t *box, sfVector2f position, sfSize size)
 {
     sfSprite_setScale(box->rockSprite->sprite, (sfVector2f){size / 30, size / 30});
     sfSprite_setPosition(box->rockSprite->sprite, position);
     sfSprite_setScale(box->flagSprite->sprite, (sfVector2f){size / 30, size / 30});
     sfSprite_setPosition(box->flagSprite->sprite, position);
-    sfText_setScale(box->textValue, (sfVector2f){size / 30, size / 30});
-    sfText_setPosition(box->textValue, position);
+    if (box->textValue != NULL) {
+        //sfText_setScale(box->textValue, (sfVector2f){size / 30, size / 30});
+        sfText_setPosition(box->textValue, position);
+    }
 }
 
 void draw_box(minesweeper_t *minesweeper, box_t *box)
 {
     sfRenderWindow_drawSprite(__renderWindow__, box->rockSprite->sprite, NULL);
-    if (box->state == REVEALED) {
+    if (box->state == REVEALED && box->textValue != NULL) {
         sfRenderWindow_drawText(__renderWindow__, box->textValue, NULL);
         return;
     }

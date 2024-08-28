@@ -55,7 +55,8 @@ typedef enum boxType_s {
     NUM6,
     NUM7,
     NUM8,
-    BOMB
+    BOMB,
+    FLAG
 } boxType_t;
 
 typedef struct box_s {
@@ -70,7 +71,6 @@ typedef struct start_s {
     sfText *minesweeper_name;
     sfText *start;
     sfText *leave;
-    box_t *tab;
     bool start_minesweeper;
 } start_t;
 
@@ -117,7 +117,7 @@ void credits(minesweeper_t *minesweeper);
 void game(minesweeper_t *minesweeper);
 void draw(minesweeper_t *minesweeper, int nb_draw, ...);
 box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type);
-void set_box(box_t *box, sfVector2f position, SfSize size);
+void set_box(box_t *box, sfVector2f position, sfSize size);
 void draw_box(minesweeper_t *minesweeper, box_t *box);
 void destroy_box(box_t *box);
 
