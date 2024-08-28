@@ -28,38 +28,51 @@ typedef struct musics_s {
     sfMusic *main_music;
 } musics_t;
 
+typedef enum digState_s {
+    DEFAULT,
+    DIG,
+    END
+} digState_t;
+
+typedef struct cursor_s {
+    digState_t state;
+    spriteObj *cursor;
+} cursor_t;
+
+typedef enum boxState_s {
+    HIDDEN,
+    REVEALED,
+    FLAGED
+} boxState_t;
+
+typedef enum boxType_s {
+    VOID,
+    NUM1,
+    NUM2,
+    NUM3,
+    NUM4,
+    NUM5,
+    NUM6,
+    NUM7,
+    NUM8,
+    BOMB
+} boxType_t;
+
+typedef struct box_s {
+    boxState_t state;
+    boxType_t type;
+    spriteObj *rockSprite;
+    spriteObj *flagSprite;
+    sfText *textValue;
+} box_t;
+
 typedef struct start_s {
     sfText *minesweeper_name;
     sfText *start;
     sfText *leave;
+    box_t *tab;
     bool start_minesweeper;
 } start_t;
-
-typedef enum dig_state_s {
-    DEFAULT,
-    DIG,
-    END
-} dig_state_t;
-
-typedef struct cursor_s {
-    dig_state_t state;
-    spriteObj *cursor;
-} cursor_t;
-
-typedef enum box_state_s {
-    HIDDEN,
-    REVEALED,
-    FLAGED
-} box_state_t;
-
-typedef struct box_s {
-    box_state_t state;
-    sfSprite *box_sprite;
-    sfTexture *box_texture;
-    sfVector2f coords;
-    sfFloatRect box_bounds;
-    struct box_s *next;
-} box_t;
 
 typedef struct minesweeper_s {
     int **map;
@@ -68,7 +81,6 @@ typedef struct minesweeper_s {
     int total_bombs;
     int bombs_left;
     window_t *window;
-    box_t **boxes;
     cursor_t *cursor;
     sounds_t *sounds;
     musics_t *musics;
@@ -104,5 +116,9 @@ void manage_musics_event(minesweeper_t *minesweeper, sfEvent *event);
 void credits(minesweeper_t *minesweeper);
 void game(minesweeper_t *minesweeper);
 void draw(minesweeper_t *minesweeper, int nb_draw, ...);
+box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type);
+void set_box(box_t *box, sfVector2f position, SfSize size);
+void draw_box(minesweeper_t *minesweeper, box_t *box);
+void destroy_box(box_t *box);
 
 #endif

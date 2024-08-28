@@ -3,7 +3,7 @@
 void init_credits(minesweeper_t *minesweeper)
 {
     minesweeper->credits = malloc(sizeof(credits_t));
-    minesweeper->credits->credits_text = mySfTextCreate(minesweeper->window->main_font,
+    minesweeper->credits->credits_text = mySfText_create(minesweeper->window->main_font,
     "minesweeper created by Killian QUINTIN",
     (sfColor){255, 255, 255, 0}, NONE);
     sfText_setPosition(minesweeper->credits->credits_text, (sfVector2f)
@@ -12,7 +12,7 @@ void init_credits(minesweeper_t *minesweeper)
 
 void destroy_credits(minesweeper_t *minesweeper)
 {
-    mySfTextDestroy(minesweeper->credits->credits_text);
+    mySfText_destroy(minesweeper->credits->credits_text);
     free(minesweeper->credits);
 }
 

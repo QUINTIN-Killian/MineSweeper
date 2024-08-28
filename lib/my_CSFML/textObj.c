@@ -1,7 +1,7 @@
 #include "my_CSFML.h"
 
-sfText *mySfTextCreate(const sfFont *font, const char *string, sfColor color,
-    textType type)
+sfText *mySfText_create(const sfFont *font, const char *string, sfColor color,
+    SfSize size)
 {
     sfText *obj = sfText_create();
     sfFloatRect bounds;
@@ -9,17 +9,17 @@ sfText *mySfTextCreate(const sfFont *font, const char *string, sfColor color,
     sfText_setFont(obj, font);
     sfText_setString(obj, string);
     sfText_setFillColor(obj, color);
-    if (type != NONE) {
+    if (size != NONE) {
         sfText_setOutlineColor(obj, sfBlack);
-        sfText_setOutlineThickness(obj, type / 10);
-        sfText_setCharacterSize(obj, type);
+        sfText_setOutlineThickness(obj, size / 10);
+        sfText_setCharacterSize(obj, size);
     }
     bounds = sfText_getGlobalBounds(obj);
     sfText_setOrigin(obj, (sfVector2f){bounds.width / 2, bounds.height / 2});
     return obj;
 }
 
-void mySfTextSetOrigin(sfText *obj, originPos pos)
+void mySfText_setOrigin(sfText *obj, originPos pos)
 {
     sfFloatRect bounds = sfText_getLocalBounds(obj);
 
@@ -56,7 +56,7 @@ void mySfTextSetOrigin(sfText *obj, originPos pos)
     }
 }
 
-void mySfTextDestroy(sfText *obj)
+void mySfText_destroy(sfText *obj)
 {
     sfText_destroy(obj);
 }

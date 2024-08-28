@@ -1,6 +1,6 @@
 #include "my_CSFML.h"
 
-spriteObj *mySfSpriteCreate(const char *texturepath, sfBool origin_centered)
+spriteObj *mySfSprite_create(const char *texturepath, sfBool origin_centered)
 {
     spriteObj *obj = malloc(sizeof(spriteObj));
 
@@ -14,7 +14,7 @@ spriteObj *mySfSpriteCreate(const char *texturepath, sfBool origin_centered)
     return obj;
 }
 
-void mySfSpriteDestroy(spriteObj *obj)
+void mySfSprite_destroy(spriteObj *obj)
 {
     sfTexture_destroy(obj->texture);
     sfSprite_destroy(obj->sprite);

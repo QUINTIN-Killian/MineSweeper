@@ -1,6 +1,6 @@
 #include "my_CSFML.h"
 
-soundObj *mySfSoundCreate(const char *soundpath)
+soundObj *mySfSound_create(const char *soundpath)
 {
     soundObj *sound = malloc(sizeof(soundObj));
 
@@ -10,7 +10,7 @@ soundObj *mySfSoundCreate(const char *soundpath)
     return sound;
 }
 
-void mySfSoundDestroy(soundObj *obj)
+void mySfSound_destroy(soundObj *obj)
 {
     sfSoundBuffer_destroy(obj->buffer);
     sfSound_destroy(obj->sound);

@@ -1,6 +1,6 @@
 #include "my_CSFML.h"
 
-sfBool mySfButtonSpriteNormal(renderWindowObj *render_window,
+sfBool mySfButtonSprite_normal(renderWindowObj *render_window,
     spriteObj *sprite, void (*callback)(spriteObj *))
 {
     sfVector2i mousePos =
@@ -24,7 +24,7 @@ sfBool mySfButtonSpriteNormal(renderWindowObj *render_window,
     return sfFalse;
 }
 
-sfBool mySfButtonSpriteHoover(renderWindowObj *render_window,
+sfBool mySfButtonSprite_hoover(renderWindowObj *render_window,
     spriteObj *sprite, void (*callback)(spriteObj *))
 {
     sfVector2i mousePos =
@@ -48,7 +48,7 @@ sfBool mySfButtonSpriteHoover(renderWindowObj *render_window,
     return sfFalse;
 }
 
-sfBool mySfButtonSpriteClick(renderWindowObj *render_window, spriteObj *sprite,
+sfBool mySfButtonSprite_click(renderWindowObj *render_window, spriteObj *sprite,
     sfEvent *event, void (*callback)(spriteObj *))
 {
     sfVector2i mousePos;
