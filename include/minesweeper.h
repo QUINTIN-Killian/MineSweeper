@@ -31,9 +31,7 @@ typedef struct musics_s {
 
 typedef struct start_screen_s {
     sfText *game_name;
-    spriteObj *start_button;
     sfText *start;
-    spriteObj *leave_button;
     sfText *leave;
     bool start_game;
 } start_screen_t;

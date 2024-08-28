@@ -2,6 +2,7 @@
     #define MY_CSFML_H_
     #define SFNULL ((void*)-1)
     #include <stdlib.h>
+    #include <stdio.h>
     #include <SFML/Graphics.h>
     #include <SFML/Window.h>
     #include <SFML/System.h>
@@ -10,6 +11,15 @@
     #include <SFML/System/Export.h>
     #include <SFML/System/Time.h>
     #include <SFML/System/Types.h>
+
+typedef enum {
+    NONE = 0,
+    VERY_BIG = 50,
+    BIG = 40,
+    MEDIUM = 30,
+    SMALL = 20,
+    VERY_SMALL = 10
+} textType;
 
 typedef struct {
     sfSprite *sprite;
@@ -30,7 +40,8 @@ spriteObj *mySfSpriteCreate(const char *texturepath, sfBool origin_centered);
 void mySfSpriteDestroy(spriteObj *obj);
 soundObj *mySfSoundCreate(const char *soundpath);
 void mySfSoundDestroy(soundObj *obj);
-sfText *mySfTextCreate(const sfFont *font, const char *string, sfColor color);
+sfText *mySfTextCreate(const sfFont *font, const char *string, sfColor color,
+    textType type);
 void mySfTextDestroy(sfText *obj);
 sfMusic *mySfMusicCreate(const char *musicpath, sfBool loop, sfBool play);
 void mySfMusicDestroy(sfMusic *obj);

@@ -4,28 +4,15 @@ void init_start_screen(game_t *game)
 {
     game->start_screen = malloc(sizeof(start_screen_t));
     game->start_screen->game_name = mySfTextCreate(game->window->main_font,
-    "MineSweeper", sfWhite);
+    "MineSweeper", sfWhite, VERY_BIG);
     sfText_setPosition(game->start_screen->game_name, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 4});
-    sfText_setScale(game->start_screen->game_name, (sfVector2f){1.5, 1.5});
-    game->start_screen->start_button = mySfSpriteCreate("images/rock3.png",
-    sfTrue);
-    sfSprite_setPosition(game->start_screen->start_button->sprite, (sfVector2f)
-    {game->window->window_size.x / 2, game->window->window_size.y / 2});
-    sfSprite_setScale(game->start_screen->start_button->sprite,
-    (sfVector2f){0.3, 0.3});
     game->start_screen->start = mySfTextCreate(game->window->main_font,
-    "Start", sfWhite);
+    "Start", sfWhite, MEDIUM);
     sfText_setPosition(game->start_screen->start, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 2});
-    game->start_screen->leave_button = mySfSpriteCreate("images/rock3.png",
-    sfTrue);
-    sfSprite_setPosition(game->start_screen->leave_button->sprite, (sfVector2f)
-    {game->window->window_size.x / 2, game->window->window_size.y / 1.5});
-    sfSprite_setScale(game->start_screen->leave_button->sprite,
-    (sfVector2f){0.3, 0.3});
     game->start_screen->leave = mySfTextCreate(game->window->main_font,
-    "Leave", sfWhite);
+    "Leave", sfWhite, MEDIUM);
     sfText_setPosition(game->start_screen->leave, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 1.5});
     game->start_screen->start_game = false;
@@ -35,12 +22,8 @@ void draw_start_screen(game_t *game)
 {
     sfRenderWindow_drawText(game->window->infos,
     game->start_screen->game_name, NULL);
-    sfRenderWindow_drawSprite(game->window->infos,
-    game->start_screen->start_button->sprite, NULL);
     sfRenderWindow_drawText(game->window->infos,
     game->start_screen->start, NULL);
-    sfRenderWindow_drawSprite(game->window->infos,
-    game->start_screen->leave_button->sprite, NULL);
     sfRenderWindow_drawText(game->window->infos,
     game->start_screen->leave, NULL);
 }
@@ -48,9 +31,7 @@ void draw_start_screen(game_t *game)
 void destroy_start_screen(game_t *game)
 {
     mySfTextDestroy(game->start_screen->game_name);
-    mySfSpriteDestroy(game->start_screen->start_button);
     mySfTextDestroy(game->start_screen->start);
-    mySfSpriteDestroy(game->start_screen->leave_button);
     mySfTextDestroy(game->start_screen->leave);
     free(game->start_screen);
 }
@@ -58,7 +39,7 @@ void destroy_start_screen(game_t *game)
 static void start__normal(sfText *start)
 {
     sfText_setFillColor(start, sfWhite);
-    sfText_setCharacterSize(start, 30);
+    sfText_setCharacterSize(start, MEDIUM);
 }
 
 static void start__hoover(sfText *start)
@@ -89,7 +70,7 @@ void start_screen_event(game_t *game, sfEvent *event)
 static void leave__normal(sfText *leave)
 {
     sfText_setFillColor(leave, sfWhite);
-    sfText_setCharacterSize(leave, 30);
+    sfText_setCharacterSize(leave, MEDIUM);
 }
 
 static void leave__hoover(sfText *leave)

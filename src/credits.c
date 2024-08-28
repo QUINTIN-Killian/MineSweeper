@@ -5,7 +5,7 @@ void init_credits(game_t *game)
     game->credits = malloc(sizeof(credits_t));
     game->credits->credits_text = mySfTextCreate(game->window->main_font,
     "Game created by Killian QUINTIN",
-    (sfColor){255, 255, 255, 0});
+    (sfColor){255, 255, 255, 0}, NONE);
     sfText_setPosition(game->credits->credits_text, (sfVector2f)
     {game->window->window_size.x / 2, game->window->window_size.y / 2});
 }
