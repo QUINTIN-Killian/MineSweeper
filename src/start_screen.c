@@ -6,27 +6,27 @@ void init_start_screen(game_t *game)
     game->start_screen->game_name = mySfTextCreate(game->window->main_font,
     "MineSweeper", sfWhite, VERY_BIG);
     sfText_setPosition(game->start_screen->game_name, (sfVector2f)
-    {game->window->window_size.x / 2, game->window->window_size.y / 4});
+    {__windowSize__.x / 2, game->window->window_size.y / 4});
     game->start_screen->start = mySfTextCreate(game->window->main_font,
     "Start", sfWhite, MEDIUM);
     mySfTextSetOrigin(game->start_screen->start, CENTER_LEFT);
     sfText_setPosition(game->start_screen->start, (sfVector2f)
-    {game->window->window_size.x / 20, game->window->window_size.y / 2});
+    {__windowSize__.x / 20, game->window->window_size.y / 2});
     game->start_screen->leave = mySfTextCreate(game->window->main_font,
     "Leave", sfWhite, MEDIUM);
     mySfTextSetOrigin(game->start_screen->leave, CENTER_LEFT);
     sfText_setPosition(game->start_screen->leave, (sfVector2f)
-    {game->window->window_size.x / 20, game->window->window_size.y / 1.5});
+    {__windowSize__.x / 20, game->window->window_size.y / 1.5});
     game->start_screen->start_game = false;
 }
 
 void draw_start_screen(game_t *game)
 {
-    sfRenderWindow_drawText(game->window->infos,
+    sfRenderWindow_drawText(__renderWindow__,
     game->start_screen->game_name, NULL);
-    sfRenderWindow_drawText(game->window->infos,
+    sfRenderWindow_drawText(__renderWindow__,
     game->start_screen->start, NULL);
-    sfRenderWindow_drawText(game->window->infos,
+    sfRenderWindow_drawText(__renderWindow__,
     game->start_screen->leave, NULL);
 }
 
@@ -58,7 +58,7 @@ static void start__click(sfText *start)
 
 void start_screen_event(game_t *game, sfEvent *event)
 {
-    renderWindowObj obj = {game->window->infos, game->window->mode};
+    renderWindowObj obj = {__renderWindow__, game->window->mode};
 
     mySfButtonTextNormal(&obj, game->start_screen->start, &start__normal);
     mySfButtonTextHoover(&obj, game->start_screen->start, &start__hoover);
@@ -89,23 +89,23 @@ static void leave__click(sfText *leave)
 
 void leave_screen_event(game_t *game, sfEvent *event)
 {
-    renderWindowObj obj = {game->window->infos, game->window->mode};
+    renderWindowObj obj = {__renderWindow__, game->window->mode};
 
     mySfButtonTextNormal(&obj, game->start_screen->leave, &leave__normal);
     mySfButtonTextHoover(&obj, game->start_screen->leave, &leave__hoover);
     if (mySfButtonTextClick(&obj, game->start_screen->leave, event,
     &leave__click)) {
         sfSound_play(game->sounds->breaking_sound->sound);
-        sfRenderWindow_close(game->window->infos);
+        sfRenderWindow_close(__renderWindow__);
     }
 }
 
 void start_screen(game_t *game)
 {
     init_start_screen(game);
-    while (sfRenderWindow_isOpen(game->window->infos) &&
+    while (sfRenderWindow_isOpen(__renderWindow__) &&
     !game->start_screen->start_game) {
-        sfRenderWindow_clear(game->window->infos, sfCyan);
+        sfRenderWindow_clear(__renderWindow__, sfCyan);
         draw_background(game);
         draw_start_screen(game);
         draw_cursor(game);
@@ -113,7 +113,7 @@ void start_screen(game_t *game)
         &dig_animation_event, &mute_musics_event, &manage_musics_event,
         &start_screen_event, &leave_screen_event);
         dig_animation(game);
-        sfRenderWindow_display(game->window->infos);
+        sfRenderWindow_display(__renderWindow__);
     }
     destroy_start_screen(game);
 }

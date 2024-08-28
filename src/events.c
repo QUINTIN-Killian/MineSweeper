@@ -4,7 +4,7 @@ void close_window_event(game_t *game, sfEvent *event)
 {
     if (event->type == sfEvtClosed ||
     sfKeyboard_isKeyPressed(sfKeyEscape)) {
-        sfRenderWindow_close(game->window->infos);
+        sfRenderWindow_close(__renderWindow__);
     }
 }
 
@@ -12,7 +12,7 @@ void change_cursor_event(game_t *game, sfEvent *event)
 {
     if (event->type == sfEvtKeyPressed && sfKeyboard_isKeyPressed(sfKeyC)) {
         game->cursor->pickaxe_cursor = !game->cursor->pickaxe_cursor;
-        sfRenderWindow_setMouseCursorVisible(game->window->infos,
+        sfRenderWindow_setMouseCursorVisible(__renderWindow__,
         !game->cursor->pickaxe_cursor);
     }
 }
@@ -59,7 +59,7 @@ void get_event(game_t *game, int nb_events, ...)
     void (*event_func)(game_t *, sfEvent *) = NULL;
 
     va_start(args, nb_events);
-    while (sfRenderWindow_pollEvent(game->window->infos, &event)) {
+    while (sfRenderWindow_pollEvent(__renderWindow__, &event)) {
         va_copy(args_cpy, args);
         for (int i = 0; i < nb_events; i++) {
             event_func = va_arg(args_cpy, void (*)(game_t *, sfEvent *));
