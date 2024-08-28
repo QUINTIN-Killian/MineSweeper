@@ -88,6 +88,7 @@ void destroy_window(minesweeper_t *minesweeper);
 void start(minesweeper_t *minesweeper);
 void init_cursor(minesweeper_t *minesweeper);
 void draw_cursor(minesweeper_t *minesweeper);
+void draw_start(minesweeper_t *minesweeper);
 void destroy_cursor(minesweeper_t *minesweeper);
 void get_event(minesweeper_t *minesweeper, int nb_events, ...);
 void close_window_event(minesweeper_t *minesweeper, sfEvent *event);
@@ -102,5 +103,6 @@ void mute_musics_event(minesweeper_t *minesweeper, sfEvent *event);
 void manage_musics_event(minesweeper_t *minesweeper, sfEvent *event);
 void credits(minesweeper_t *minesweeper);
 void game(minesweeper_t *minesweeper);
+void draw(minesweeper_t *minesweeper, int nb_draw, ...);
 
 #endif

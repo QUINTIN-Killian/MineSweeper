@@ -16,12 +16,6 @@ void init_window(minesweeper_t *minesweeper)
     {__windowSize__.x / 2, __windowSize__.y / 2});
 }
 
-void draw_background(minesweeper_t *minesweeper)
-{
-    sfRenderWindow_drawSprite(__renderWindow__,
-    minesweeper->window->background->sprite, NULL);
-}
-
 void destroy_window(minesweeper_t *minesweeper)
 {
     sfFont_destroy(minesweeper->window->main_font);
