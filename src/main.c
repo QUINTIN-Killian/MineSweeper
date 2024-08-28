@@ -1,27 +1,27 @@
 #include "../include/minesweeper.h"
 
-static void init(game_t *game)
+static void init(minesweeper_t *minesweeper)
 {
-    game->width = 19; //default : 19
-    game->height = 26; //default : 26
-    game->total_bombs = 99;
-    game->bombs_left = 0;
-    create_map(game);
-    place_bombs(game);
-    set_map_values(game);
-    init_window(game);
-    init_cursor(game);
-    init_sounds(game);
-    init_musics(game);
+    minesweeper->width = 19; //default : 19
+    minesweeper->height = 26; //default : 26
+    minesweeper->total_bombs = 99;
+    minesweeper->bombs_left = 0;
+    create_map(minesweeper);
+    place_bombs(minesweeper);
+    set_map_values(minesweeper);
+    init_window(minesweeper);
+    init_cursor(minesweeper);
+    init_sounds(minesweeper);
+    init_musics(minesweeper);
 }
 
-static void destroy(game_t *game)
+static void destroy(minesweeper_t *minesweeper)
 {
-    destroy_sounds(game);
-    destroy_cursor(game);
-    destroy_window(game);
-    destroy_map(game);
-    destroy_musics(game);
+    destroy_sounds(minesweeper);
+    destroy_cursor(minesweeper);
+    destroy_window(minesweeper);
+    destroy_map(minesweeper);
+    destroy_musics(minesweeper);
 }
 
 void debug(void)
@@ -43,22 +43,22 @@ static int help(void)
     mini_printf("\t- Press C to switch cursor\n");
     mini_printf("\t- Press SPACE BAR to turn off/on the musics\n");
     mini_printf("\t- Press UP/DOWN to manage the musics volume\n");
-    mini_printf("\n(Game created by Killian QUINTIN)\n");
+    mini_printf("\n(minesweeper created by Killian QUINTIN)\n");
     return 0;
 }
 
 int main(int ac, char **av)
 {
-    game_t game;
+    minesweeper_t minesweeper;
 
     if (ac == 2 && my_strcmp(av[1], "-h") == 0)
         return help();
     srand(time(NULL));
-    init(&game);
-    print_map(&game);
-    //credits(&game);
-    start_screen(&game);
-    game_screen(&game);
-    destroy(&game);
+    init(&minesweeper);
+    print_map(&minesweeper);
+    //credits(&minesweeper);
+    start(&minesweeper);
+    game(&minesweeper);
+    destroy(&minesweeper);
     return 0;
 }

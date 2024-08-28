@@ -1,22 +1,22 @@
 #include "../include/minesweeper.h"
 
-void dig_animation(game_t *game)
+void dig_animation(minesweeper_t *minesweeper)
 {
-    if (game->cursor->state == END &&
-    sfSprite_getRotation(game->cursor->cursor->sprite) == 0.0) {
-        game->cursor->state = DEFAULT;
+    if (minesweeper->cursor->state == END &&
+    sfSprite_getRotation(minesweeper->cursor->cursor->sprite) == 0.0) {
+        minesweeper->cursor->state = DEFAULT;
         sfRenderWindow_setMouseCursorVisible(__renderWindow__, sfTrue);
         return;
     }
-    if (game->cursor->state == DIG &&
-    sfSprite_getRotation(game->cursor->cursor->sprite) == 300.0)
-        game->cursor->state = END;
-    if (game->cursor->state == END) {
-        sfSprite_setRotation(game->cursor->cursor->sprite,
-        sfSprite_getRotation(game->cursor->cursor->sprite) + 5.0);
+    if (minesweeper->cursor->state == DIG &&
+    sfSprite_getRotation(minesweeper->cursor->cursor->sprite) == 300.0)
+        minesweeper->cursor->state = END;
+    if (minesweeper->cursor->state == END) {
+        sfSprite_setRotation(minesweeper->cursor->cursor->sprite,
+        sfSprite_getRotation(minesweeper->cursor->cursor->sprite) + 5.0);
         return;
     }
-    if (game->cursor->state == DIG)
-        sfSprite_setRotation(game->cursor->cursor->sprite,
-        sfSprite_getRotation(game->cursor->cursor->sprite) - 5.0);
+    if (minesweeper->cursor->state == DIG)
+        sfSprite_setRotation(minesweeper->cursor->cursor->sprite,
+        sfSprite_getRotation(minesweeper->cursor->cursor->sprite) - 5.0);
 }

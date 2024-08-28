@@ -1,14 +1,14 @@
 #include "../include/minesweeper.h"
 
-void init_musics(game_t *game)
+void init_musics(minesweeper_t *minesweeper)
 {
-    game->musics = malloc(sizeof(musics_t));
-    game->musics->main_music =
+    minesweeper->musics = malloc(sizeof(musics_t));
+    minesweeper->musics->main_music =
     mySfMusicCreate("musics/main_music_theme.wav", sfTrue, sfFalse /*remettre sfTrue !!!*/);
 }
 
-void destroy_musics(game_t *game)
+void destroy_musics(minesweeper_t *minesweeper)
 {
-    mySfMusicDestroy(game->musics->main_music);
-    free(game->musics);
+    mySfMusicDestroy(minesweeper->musics->main_music);
+    free(minesweeper->musics);
 }

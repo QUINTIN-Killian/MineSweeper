@@ -1,16 +1,16 @@
 #include "../include/minesweeper.h"
 
-void init_sounds(game_t *game)
+void init_sounds(minesweeper_t *minesweeper)
 {
-    game->sounds = malloc(sizeof(sounds_t));
-    game->sounds->mining_sound =
+    minesweeper->sounds = malloc(sizeof(sounds_t));
+    minesweeper->sounds->mining_sound =
     mySfSoundCreate("sounds/MiningSoundEffect.wav");
-    game->sounds->breaking_sound = mySfSoundCreate("sounds/RockDestroyed.wav");
+    minesweeper->sounds->breaking_sound = mySfSoundCreate("sounds/RockDestroyed.wav");
 }
 
-void destroy_sounds(game_t *game)
+void destroy_sounds(minesweeper_t *minesweeper)
 {
-    mySfSoundDestroy(game->sounds->mining_sound);
-    mySfSoundDestroy(game->sounds->breaking_sound);
-    free(game->sounds);
+    mySfSoundDestroy(minesweeper->sounds->mining_sound);
+    mySfSoundDestroy(minesweeper->sounds->breaking_sound);
+    free(minesweeper->sounds);
 }

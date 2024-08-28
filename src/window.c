@@ -1,31 +1,31 @@
 #include "../include/minesweeper.h"
 
-void init_window(game_t *game)
+void init_window(minesweeper_t *minesweeper)
 {
-    game->window = malloc(sizeof(window_t));
-    game->window->mode = (sfVideoMode){800, 600, 64};
-    __renderWindow__ = sfRenderWindow_create(game->window->mode,
+    minesweeper->window = malloc(sizeof(window_t));
+    minesweeper->window->mode = (sfVideoMode){800, 600, 64};
+    __renderWindow__ = sfRenderWindow_create(minesweeper->window->mode,
     "MineSweeper (created by Killian QUINTIN)", sfResize | sfClose, NULL);
     __windowSize__ = sfRenderWindow_getSize(__renderWindow__);
     sfRenderWindow_setFramerateLimit(__renderWindow__, 60);
-    game->window->main_font =
+    minesweeper->window->main_font =
     sfFont_createFromFile("fonts/CartoonComicItalic-mLLAx.ttf");
-    game->window->background =
+    minesweeper->window->background =
     mySfSpriteCreate("backgrounds/background5.png", sfTrue);
-    sfSprite_setPosition(game->window->background->sprite, (sfVector2f)
+    sfSprite_setPosition(minesweeper->window->background->sprite, (sfVector2f)
     {__windowSize__.x / 2, __windowSize__.y / 2});
 }
 
-void draw_background(game_t *game)
+void draw_background(minesweeper_t *minesweeper)
 {
     sfRenderWindow_drawSprite(__renderWindow__,
-    game->window->background->sprite, NULL);
+    minesweeper->window->background->sprite, NULL);
 }
 
-void destroy_window(game_t *game)
+void destroy_window(minesweeper_t *minesweeper)
 {
-    sfFont_destroy(game->window->main_font);
-    mySfSpriteDestroy(game->window->background);
+    sfFont_destroy(minesweeper->window->main_font);
+    mySfSpriteDestroy(minesweeper->window->background);
     sfRenderWindow_destroy(__renderWindow__);
-    free(game->window);
+    free(minesweeper->window);
 }

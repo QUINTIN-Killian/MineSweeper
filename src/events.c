@@ -1,6 +1,6 @@
 #include "../include/minesweeper.h"
 
-void close_window_event(game_t *game, sfEvent *event)
+void close_window_event(minesweeper_t *minesweeper, sfEvent *event)
 {
     if (event->type == sfEvtClosed ||
     sfKeyboard_isKeyPressed(sfKeyEscape)) {
@@ -8,55 +8,55 @@ void close_window_event(game_t *game, sfEvent *event)
     }
 }
 
-void dig_animation_event(game_t *game, sfEvent *event)
+void dig_animation_event(minesweeper_t *minesweeper, sfEvent *event)
 {
     if (event->type == sfEvtMouseButtonPressed &&
     sfMouse_isButtonPressed(sfMouseLeft)) {
         sfRenderWindow_setMouseCursorVisible(__renderWindow__, sfFalse);
-        game->cursor->state = DIG;
-        sfSound_play(game->sounds->mining_sound->sound);
+        minesweeper->cursor->state = DIG;
+        sfSound_play(minesweeper->sounds->mining_sound->sound);
     }
 }
 
-void mute_musics_event(game_t *game, sfEvent *event)
+void mute_musics_event(minesweeper_t *minesweeper, sfEvent *event)
 {
     if (event->type == sfEvtKeyPressed &&
     sfKeyboard_isKeyPressed(sfKeySpace)) {
-        if (sfMusic_getStatus(game->musics->main_music) == sfPlaying)
-            sfMusic_pause(game->musics->main_music);
+        if (sfMusic_getStatus(minesweeper->musics->main_music) == sfPlaying)
+            sfMusic_pause(minesweeper->musics->main_music);
         else
-            sfMusic_play(game->musics->main_music);
+            sfMusic_play(minesweeper->musics->main_music);
     }
 }
 
-void manage_musics_event(game_t *game, sfEvent *event)
+void manage_musics_event(minesweeper_t *minesweeper, sfEvent *event)
 {
     if (event->type == sfEvtKeyPressed &&
     sfKeyboard_isKeyPressed(sfKeyUp)) {
-        sfMusic_setVolume(game->musics->main_music,
-        sfMusic_getVolume(game->musics->main_music) + 5.0);
+        sfMusic_setVolume(minesweeper->musics->main_music,
+        sfMusic_getVolume(minesweeper->musics->main_music) + 5.0);
     }
     if (event->type == sfEvtKeyPressed &&
     sfKeyboard_isKeyPressed(sfKeyDown)) {
-        sfMusic_setVolume(game->musics->main_music,
-        sfMusic_getVolume(game->musics->main_music) - 5.0);
+        sfMusic_setVolume(minesweeper->musics->main_music,
+        sfMusic_getVolume(minesweeper->musics->main_music) - 5.0);
     }
 }
 
-void get_event(game_t *game, int nb_events, ...)
+void get_event(minesweeper_t *minesweeper, int nb_events, ...)
 {
     sfEvent event;
     va_list args;
     va_list args_cpy;
-    void (*event_func)(game_t *, sfEvent *) = NULL;
+    void (*event_func)(minesweeper_t *, sfEvent *) = NULL;
 
     va_start(args, nb_events);
     while (sfRenderWindow_pollEvent(__renderWindow__, &event)) {
         va_copy(args_cpy, args);
         for (int i = 0; i < nb_events; i++) {
-            event_func = va_arg(args_cpy, void (*)(game_t *, sfEvent *));
+            event_func = va_arg(args_cpy, void (*)(minesweeper_t *, sfEvent *));
             if (event_func)
-                event_func(game, &event);
+                event_func(minesweeper, &event);
         }
         va_end(args_cpy);
     }

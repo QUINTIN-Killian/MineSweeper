@@ -1,7 +1,7 @@
 #ifndef MINESWEEPER_H_
     #define MINESWEEPER_H_
-    #define __windowSize__ game->window->window_size
-    #define __renderWindow__ game->window->infos
+    #define __windowSize__ minesweeper->window->window_size
+    #define __renderWindow__ minesweeper->window->infos
     #include "my.h"
     #include "my_CSFML.h"
     #include <stdbool.h>
@@ -28,12 +28,12 @@ typedef struct musics_s {
     sfMusic *main_music;
 } musics_t;
 
-typedef struct start_screen_s {
-    sfText *game_name;
+typedef struct start_s {
+    sfText *minesweeper_name;
     sfText *start;
     sfText *leave;
-    bool start_game;
-} start_screen_t;
+    bool start_minesweeper;
+} start_t;
 
 typedef enum dig_state_s {
     DEFAULT,
@@ -61,7 +61,7 @@ typedef struct box_s {
     struct box_s *next;
 } box_t;
 
-typedef struct game_s {
+typedef struct minesweeper_s {
     int **map;
     int width;
     int height;
@@ -73,36 +73,34 @@ typedef struct game_s {
     sounds_t *sounds;
     musics_t *musics;
     credits_t *credits;
-    start_screen_t *start_screen;
-} game_t;
+    start_t *start;
+} minesweeper_t;
 
 int randint(int a, int b);
-void create_map(game_t *game);
-void print_map(game_t *game);
-void destroy_map(game_t *game);
-void place_bombs(game_t *game);
-void set_map_values(game_t *game);
-void init_window(game_t *game);
-void draw_background(game_t *game);
-void destroy_window(game_t *game);
-void start_screen(game_t *game);
-void init_cursor(game_t *game);
-void draw_cursor(game_t *game);
-void destroy_cursor(game_t *game);
-void get_event(game_t *game, int nb_events, ...);
-void close_window_event(game_t *game, sfEvent *event);
-void dig_animation_event(game_t *game, sfEvent *event);
-void dig_animation(game_t *game);
+void create_map(minesweeper_t *minesweeper);
+void print_map(minesweeper_t *minesweeper);
+void destroy_map(minesweeper_t *minesweeper);
+void place_bombs(minesweeper_t *minesweeper);
+void set_map_values(minesweeper_t *minesweeper);
+void init_window(minesweeper_t *minesweeper);
+void draw_background(minesweeper_t *minesweeper);
+void destroy_window(minesweeper_t *minesweeper);
+void start(minesweeper_t *minesweeper);
+void init_cursor(minesweeper_t *minesweeper);
+void draw_cursor(minesweeper_t *minesweeper);
+void destroy_cursor(minesweeper_t *minesweeper);
+void get_event(minesweeper_t *minesweeper, int nb_events, ...);
+void close_window_event(minesweeper_t *minesweeper, sfEvent *event);
+void dig_animation_event(minesweeper_t *minesweeper, sfEvent *event);
+void dig_animation(minesweeper_t *minesweeper);
 void debug(void);
-void init_sounds(game_t *game);
-void destroy_sounds(game_t *game);
-void init_musics(game_t *game);
-void destroy_musics(game_t *game);
-void mute_musics_event(game_t *game, sfEvent *event);
-void manage_musics_event(game_t *game, sfEvent *event);
-void credits(game_t *game);
-void start_menu_start_game_event(game_t *game, sfEvent *event);
-void start_menu_leave_game_event(game_t *game, sfEvent *event);
-void game_screen(game_t *game);
+void init_sounds(minesweeper_t *minesweeper);
+void destroy_sounds(minesweeper_t *minesweeper);
+void init_musics(minesweeper_t *minesweeper);
+void destroy_musics(minesweeper_t *minesweeper);
+void mute_musics_event(minesweeper_t *minesweeper, sfEvent *event);
+void manage_musics_event(minesweeper_t *minesweeper, sfEvent *event);
+void credits(minesweeper_t *minesweeper);
+void game(minesweeper_t *minesweeper);
 
 #endif

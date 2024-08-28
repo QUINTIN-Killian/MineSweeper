@@ -1,46 +1,46 @@
 #include "../include/minesweeper.h"
 
-void init_credits(game_t *game)
+void init_credits(minesweeper_t *minesweeper)
 {
-    game->credits = malloc(sizeof(credits_t));
-    game->credits->credits_text = mySfTextCreate(game->window->main_font,
-    "Game created by Killian QUINTIN",
+    minesweeper->credits = malloc(sizeof(credits_t));
+    minesweeper->credits->credits_text = mySfTextCreate(minesweeper->window->main_font,
+    "minesweeper created by Killian QUINTIN",
     (sfColor){255, 255, 255, 0}, NONE);
-    sfText_setPosition(game->credits->credits_text, (sfVector2f)
-    {__windowSize__.x / 2, game->window->window_size.y / 2});
+    sfText_setPosition(minesweeper->credits->credits_text, (sfVector2f)
+    {__windowSize__.x / 2, minesweeper->window->window_size.y / 2});
 }
 
-void destroy_credits(game_t *game)
+void destroy_credits(minesweeper_t *minesweeper)
 {
-    mySfTextDestroy(game->credits->credits_text);
-    free(game->credits);
+    mySfTextDestroy(minesweeper->credits->credits_text);
+    free(minesweeper->credits);
 }
 
-void credits(game_t *game)
+void credits(minesweeper_t *minesweeper)
 {
-    init_credits(game);
+    init_credits(minesweeper);
     while (sfRenderWindow_isOpen(__renderWindow__) &&
-    sfText_getColor(game->credits->credits_text).a < 255) {
+    sfText_getColor(minesweeper->credits->credits_text).a < 255) {
         sfRenderWindow_clear(__renderWindow__, sfBlack);
-        get_event(game, 3, &close_window_event,
+        get_event(minesweeper, 3, &close_window_event,
         &mute_musics_event, &manage_musics_event);
         sfRenderWindow_drawText(__renderWindow__,
-        game->credits->credits_text, NULL);
+        minesweeper->credits->credits_text, NULL);
         sfRenderWindow_display(__renderWindow__);
-        sfText_setColor(game->credits->credits_text,(sfColor){255, 255, 255,
-        sfText_getColor(game->credits->credits_text).a + 1});
+        sfText_setColor(minesweeper->credits->credits_text,(sfColor){255, 255, 255,
+        sfText_getColor(minesweeper->credits->credits_text).a + 1});
     }
     while (sfRenderWindow_isOpen(__renderWindow__) &&
-    sfText_getColor(game->credits->credits_text).a > 0) {
+    sfText_getColor(minesweeper->credits->credits_text).a > 0) {
         sfRenderWindow_clear(__renderWindow__, sfBlack);
-        get_event(game, 3, &close_window_event,
+        get_event(minesweeper, 3, &close_window_event,
         &mute_musics_event, &manage_musics_event);
         sfRenderWindow_drawText(__renderWindow__,
-        game->credits->credits_text, NULL);
+        minesweeper->credits->credits_text, NULL);
         sfRenderWindow_display(__renderWindow__);
-        sfText_setColor(game->credits->credits_text,(sfColor){255, 255, 255,
-        sfText_getColor(game->credits->credits_text).a - 1});
+        sfText_setColor(minesweeper->credits->credits_text,(sfColor){255, 255, 255,
+        sfText_getColor(minesweeper->credits->credits_text).a - 1});
     }
-    destroy_credits(game);
+    destroy_credits(minesweeper);
 }
 
