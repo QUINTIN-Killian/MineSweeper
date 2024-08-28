@@ -46,7 +46,7 @@ static void start__click(sfText *start)
     sfText_setCharacterSize(start, 45);
 }
 
-void start_event(minesweeper_t *minesweeper, sfEvent *event)
+void start_startEvent(minesweeper_t *minesweeper, sfEvent *event)
 {
     renderWindowObj obj = {__renderWindow__, minesweeper->window->mode};
 
@@ -77,7 +77,7 @@ static void leave__click(sfText *leave)
     sfText_setCharacterSize(leave, 45);
 }
 
-void leave_event(minesweeper_t *minesweeper, sfEvent *event)
+void start_leaveEvent(minesweeper_t *minesweeper, sfEvent *event)
 {
     renderWindowObj obj = {__renderWindow__, minesweeper->window->mode};
 
@@ -99,7 +99,7 @@ void start(minesweeper_t *minesweeper)
         draw(minesweeper, 3, &draw_background, &draw_start, &draw_cursor);
         get_event(minesweeper, 6, &close_window_event,
         &dig_animation_event, &mute_musics_event, &manage_musics_event,
-        &start_event, &leave_event);
+        &start_startEvent, &start_leaveEvent);
         dig_animation(minesweeper);
         sfRenderWindow_display(__renderWindow__);
     }
