@@ -36,7 +36,7 @@ static void start__normal(sfText *start)
 
 static void start__hoover(sfText *start)
 {
-    sfText_setFillColor(start, sfGrey);
+    sfText_setFillColor(start, sfLightGrey);
     sfText_setCharacterSize(start, 50);
 }
 
@@ -67,7 +67,7 @@ static void leave__normal(sfText *leave)
 
 static void leave__hoover(sfText *leave)
 {
-    sfText_setFillColor(leave, sfGrey);
+    sfText_setFillColor(leave, sfLightGrey);
     sfText_setCharacterSize(leave, 50);
 }
 
