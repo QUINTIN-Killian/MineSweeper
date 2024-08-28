@@ -9,12 +9,14 @@ void init_start_screen(game_t *game)
     {game->window->window_size.x / 2, game->window->window_size.y / 4});
     game->start_screen->start = mySfTextCreate(game->window->main_font,
     "Start", sfWhite, MEDIUM);
+    mySfTextSetOrigin(game->start_screen->start, CENTER_LEFT);
     sfText_setPosition(game->start_screen->start, (sfVector2f)
-    {game->window->window_size.x / 2, game->window->window_size.y / 2});
+    {game->window->window_size.x / 20, game->window->window_size.y / 2});
     game->start_screen->leave = mySfTextCreate(game->window->main_font,
     "Leave", sfWhite, MEDIUM);
+    mySfTextSetOrigin(game->start_screen->leave, CENTER_LEFT);
     sfText_setPosition(game->start_screen->leave, (sfVector2f)
-    {game->window->window_size.x / 2, game->window->window_size.y / 1.5});
+    {game->window->window_size.x / 20, game->window->window_size.y / 1.5});
     game->start_screen->start_game = false;
 }
 

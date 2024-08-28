@@ -3,6 +3,8 @@
     #define SFNULL ((void*)-1)
     #include <stdlib.h>
     #include <stdio.h>
+    #include <unistd.h>
+    #include <string.h>
     #include <SFML/Graphics.h>
     #include <SFML/Window.h>
     #include <SFML/System.h>
@@ -20,6 +22,18 @@ typedef enum {
     SMALL = 20,
     VERY_SMALL = 10
 } textType;
+
+typedef enum {
+    TOP_LEFT,
+    TOP_RIGHT,
+    BOTTOM_LEFT,
+    BOTTOM_RIGHT,
+    CENTER_TOP,
+    CENTER_BOTTOM,
+    CENTER_LEFT,
+    CENTER_RIGHT,
+    CENTER
+} originPos;
 
 typedef struct {
     sfSprite *sprite;
@@ -57,5 +71,6 @@ sfBool mySfButtonTextHoover(renderWindowObj *render_window, sfText *text,
     void (*callback)(sfText *));
 sfBool mySfButtonTextClick(renderWindowObj *render_window, sfText *text,
     sfEvent *event, void (*callback)(sfText *));
+void mySfTextSetOrigin(sfText *obj, originPos pos);
 
 #endif
