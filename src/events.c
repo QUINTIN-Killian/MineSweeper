@@ -8,19 +8,11 @@ void close_window_event(game_t *game, sfEvent *event)
     }
 }
 
-void change_cursor_event(game_t *game, sfEvent *event)
-{
-    if (event->type == sfEvtKeyPressed && sfKeyboard_isKeyPressed(sfKeyC)) {
-        game->cursor->pickaxe_cursor = !game->cursor->pickaxe_cursor;
-        sfRenderWindow_setMouseCursorVisible(__renderWindow__,
-        !game->cursor->pickaxe_cursor);
-    }
-}
-
 void dig_animation_event(game_t *game, sfEvent *event)
 {
-    if (game->cursor->pickaxe_cursor && event->type == sfEvtMouseButtonPressed
-    && sfMouse_isButtonPressed(sfMouseLeft)) {
+    if (event->type == sfEvtMouseButtonPressed &&
+    sfMouse_isButtonPressed(sfMouseLeft)) {
+        sfRenderWindow_setMouseCursorVisible(__renderWindow__, sfFalse);
         game->cursor->state = DIG;
         sfSound_play(game->sounds->mining_sound->sound);
     }

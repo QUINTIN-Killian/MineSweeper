@@ -109,7 +109,7 @@ void start_screen(game_t *game)
         draw_background(game);
         draw_start_screen(game);
         draw_cursor(game);
-        get_event(game, 7, &change_cursor_event, &close_window_event,
+        get_event(game, 6, &close_window_event,
         &dig_animation_event, &mute_musics_event, &manage_musics_event,
         &start_screen_event, &leave_screen_event);
         dig_animation(game);

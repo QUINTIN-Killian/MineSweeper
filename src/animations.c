@@ -5,6 +5,7 @@ void dig_animation(game_t *game)
     if (game->cursor->state == END &&
     sfSprite_getRotation(game->cursor->cursor->sprite) == 0.0) {
         game->cursor->state = DEFAULT;
+        sfRenderWindow_setMouseCursorVisible(__renderWindow__, sfTrue);
         return;
     }
     if (game->cursor->state == DIG &&

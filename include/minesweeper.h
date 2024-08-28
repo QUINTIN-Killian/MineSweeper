@@ -42,7 +42,6 @@ typedef enum dig_state_s {
 } dig_state_t;
 
 typedef struct cursor_s {
-    bool pickaxe_cursor;
     dig_state_t state;
     spriteObj *cursor;
 } cursor_t;
@@ -92,7 +91,6 @@ void draw_cursor(game_t *game);
 void destroy_cursor(game_t *game);
 void get_event(game_t *game, int nb_events, ...);
 void close_window_event(game_t *game, sfEvent *event);
-void change_cursor_event(game_t *game, sfEvent *event);
 void dig_animation_event(game_t *game, sfEvent *event);
 void dig_animation(game_t *game);
 void debug(void);
