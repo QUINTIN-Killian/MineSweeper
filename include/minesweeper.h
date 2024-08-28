@@ -12,7 +12,6 @@ typedef struct window_s {
     sfVideoMode mode;
     sfRenderWindow *infos;
     sfVector2u window_size;
-    char *window_name;
     spriteObj *background;
 } window_t;
 

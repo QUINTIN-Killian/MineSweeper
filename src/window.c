@@ -3,10 +3,9 @@
 void init_window(game_t *game)
 {
     game->window = malloc(sizeof(window_t));
-    game->window->window_name = "MineSweeper (created by Killian QUINTIN)";
     game->window->mode = (sfVideoMode){800, 600, 64};
     __renderWindow__ = sfRenderWindow_create(game->window->mode,
-    game->window->window_name, sfResize | sfClose, NULL);
+    "MineSweeper (created by Killian QUINTIN)", sfResize | sfClose, NULL);
     __windowSize__ = sfRenderWindow_getSize(__renderWindow__);
     sfRenderWindow_setFramerateLimit(__renderWindow__, 60);
     game->window->main_font =
