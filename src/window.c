@@ -11,7 +11,7 @@ void init_window(minesweeper_t *minesweeper)
     minesweeper->window->main_font =
     sfFont_createFromFile("fonts/CartoonComicItalic-mLLAx.ttf");
     minesweeper->window->background =
-    mySfSpriteCreate("backgrounds/background5.png", sfTrue);
+    mySfSpriteCreate("backgrounds/MineSweeperBackground.png", sfTrue);
     sfSprite_setPosition(minesweeper->window->background->sprite, (sfVector2f)
     {__windowSize__.x / 2, __windowSize__.y / 2});
 }
