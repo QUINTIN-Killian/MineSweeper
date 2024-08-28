@@ -46,7 +46,7 @@ static void start__normal(sfText *start)
 
 static void start__hoover(sfText *start)
 {
-    sfText_setFillColor(start, (sfColor){128, 128, 128, 255});
+    sfText_setFillColor(start, (sfColor){170, 170, 170, 255});
     sfText_setCharacterSize(start, 50);
 }
 
@@ -83,7 +83,7 @@ static void leave__hoover(sfText *leave)
 
 static void leave__click(sfText *leave)
 {
-    sfText_setFillColor(leave, (sfColor){110, 110, 110, 255});
+    sfText_setFillColor(leave, (sfColor){170, 170, 170, 255});
     sfText_setCharacterSize(leave, 45);
 }
 
