@@ -74,6 +74,10 @@ typedef struct start_s {
     bool start_minesweeper;
 } start_t;
 
+typedef struct game_s {
+    box_t **grid;
+} game_t;
+
 typedef struct minesweeper_s {
     int **map;
     int width;
@@ -86,6 +90,7 @@ typedef struct minesweeper_s {
     musics_t *musics;
     credits_t *credits;
     start_t *start;
+    game_t *game;
 } minesweeper_t;
 
 int randint(int a, int b);
@@ -120,5 +125,9 @@ box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type);
 void set_box(box_t *box, sfVector2f position, sfSize size);
 void draw_box(minesweeper_t *minesweeper, box_t *box);
 void destroy_box(box_t *box);
+box_t **generate_grid(minesweeper_t *minesweeper);
+void draw_grid(minesweeper_t *minesweeper);
+void destroy_grid(minesweeper_t *minesweeper);
+void set_grid(minesweeper_t *minesweeper);
 
 #endif

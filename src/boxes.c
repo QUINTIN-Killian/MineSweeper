@@ -75,5 +75,4 @@ void destroy_box(box_t *box)
         mySfText_destroy(box->textValue);
     mySfSprite_destroy(box->rockSprite);
     mySfSprite_destroy(box->flagSprite);
-    free(box);
 }
