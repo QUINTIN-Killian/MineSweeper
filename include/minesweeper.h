@@ -24,6 +24,7 @@ typedef struct credits_s {
 typedef struct sounds_s {
     soundObj *mining_sound;
     soundObj *breaking_sound;
+    soundObj *flag_sound;
 } sounds_t;
 
 typedef struct musics_s {
