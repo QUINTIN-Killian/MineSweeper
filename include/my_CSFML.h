@@ -52,18 +52,18 @@ sfText *mySfText_create(const sfFont *font, const char *string, sfColor color,
 void mySfText_destroy(sfText *obj);
 sfMusic *mySfMusic_create(const char *musicpath, sfBool loop, sfBool play);
 void mySfMusic_destroy(sfMusic *obj);
-sfBool mySfButtonSprite_normal(renderWindowObj *render_window,
-    spriteObj *sprite, void (*callback)(spriteObj *));
-sfBool mySfButtonSprite_hoover(renderWindowObj *render_window,
-    spriteObj *sprite, void (*callback)(spriteObj *));
-sfBool mySfButtonSprite_click(renderWindowObj *render_window, spriteObj *sprite,
-    sfEvent *event, void (*callback)(spriteObj *));
-sfBool mySfButtonText_normal(renderWindowObj *render_window, sfText *text,
-    void (*callback)(sfText *));
-sfBool mySfButtonText_hoover(renderWindowObj *render_window, sfText *text,
-    void (*callback)(sfText *));
-sfBool mySfButtonText_click(renderWindowObj *render_window, sfText *text,
-    sfEvent *event, void (*callback)(sfText *));
+sfBool mySfButtonSprite_isNormal(renderWindowObj *render_window,
+    spriteObj *sprite);
+sfBool mySfButtonSprite_isHoover(renderWindowObj *render_window,
+    spriteObj *sprite);
+sfBool mySfButtonSprite_isLeftClick(renderWindowObj *render_window, spriteObj *sprite,
+    sfEvent *event);
+sfBool mySfButtonSprite_isRightClick(renderWindowObj *render_window,
+    spriteObj *sprite, sfEvent *event);
+sfBool mySfButtonText_isNormal(renderWindowObj *render_window, sfText *text);
+sfBool mySfButtonText_isHoover(renderWindowObj *render_window, sfText *text);
+sfBool mySfButtonText_isLeftClick(renderWindowObj *render_window, sfText *text,
+    sfEvent *event);
 void mySfText_setOrigin(sfText *obj, originPos pos);
 
 #endif

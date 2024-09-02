@@ -43,9 +43,11 @@ box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type)
     {bounds.width, bounds.height});
     if (type >= 1 && type <= 8) {
         value = convert_int_to_str(type);
-        box->textValue = mySfText_create(minesweeper->window->main_font, value,
-        getColorNb(type), MEDIUM);
+        box->textValue = mySfText_create(__mainFont__, value,
+        getColorNb(type), 15.0);
         free(value);
+        mySfText_setOrigin(box->textValue, TOP_LEFT);
+        sfText_setOrigin(box->textValue, (sfVector2f){-3.0, -3.0});
         return box;
     }
     box->textValue = NULL;
@@ -69,11 +71,11 @@ void set_box(box_t *box, sfVector2f position, sfSize size)
 void draw_box(minesweeper_t *minesweeper, box_t *box)
 {
     sfRenderWindow_drawRectangleShape(__renderWindow__, box->outline, NULL);
-    sfRenderWindow_drawSprite(__renderWindow__, box->rockSprite->sprite, NULL);
     if (box->state == REVEALED && box->textValue != NULL) {
         sfRenderWindow_drawText(__renderWindow__, box->textValue, NULL);
         return;
     }
+    sfRenderWindow_drawSprite(__renderWindow__, box->rockSprite->sprite, NULL);
     if (box->state == FLAGED) {
         sfRenderWindow_drawSprite(__renderWindow__, box->flagSprite->sprite, NULL);
         return;

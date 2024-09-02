@@ -1,7 +1,6 @@
 #include "my_CSFML.h"
 
-sfBool mySfButtonText_normal(renderWindowObj *render_window, sfText *text,
-    void (*callback)(sfText *))
+sfBool mySfButtonText_isNormal(renderWindowObj *render_window, sfText *text)
 {
     sfVector2i mousePos =
     sfMouse_getPositionRenderWindow(render_window->render_window);
@@ -16,16 +15,12 @@ sfBool mySfButtonText_normal(renderWindowObj *render_window, sfText *text,
     bounds.width *= scaleX;
     bounds.height *= scaleY;
     if (!(mousePos.x >= bounds.left && mousePos.x <= bounds.left + bounds.width
-    && mousePos.y >= bounds.top && mousePos.y <= bounds.top + bounds.height)) {
-        if (callback != NULL)
-            callback(text);
+    && mousePos.y >= bounds.top && mousePos.y <= bounds.top + bounds.height))
         return sfTrue;
-    }
     return sfFalse;
 }
 
-sfBool mySfButtonText_hoover(renderWindowObj *render_window, sfText *text,
-    void (*callback)(sfText *))
+sfBool mySfButtonText_isHoover(renderWindowObj *render_window, sfText *text)
 {
     sfVector2i mousePos =
     sfMouse_getPositionRenderWindow(render_window->render_window);
@@ -40,16 +35,13 @@ sfBool mySfButtonText_hoover(renderWindowObj *render_window, sfText *text,
     bounds.width *= scaleX;
     bounds.height *= scaleY;
     if (mousePos.x >= bounds.left && mousePos.x <= bounds.left + bounds.width
-    && mousePos.y >= bounds.top && mousePos.y <= bounds.top + bounds.height) {
-        if (callback != NULL)
-            callback(text);
+    && mousePos.y >= bounds.top && mousePos.y <= bounds.top + bounds.height)
         return sfTrue;
-    }
     return sfFalse;
 }
 
-sfBool mySfButtonText_click(renderWindowObj *render_window, sfText *text,
-    sfEvent *event, void (*callback)(sfText *))
+sfBool mySfButtonText_isLeftClick(renderWindowObj *render_window, sfText *text,
+    sfEvent *event)
 {
     sfVector2i mousePos;
     sfVector2u windowSize;
@@ -70,10 +62,7 @@ sfBool mySfButtonText_click(renderWindowObj *render_window, sfText *text,
     bounds.width *= scaleX;
     bounds.height *= scaleY;
     if (mousePos.x >= bounds.left && mousePos.x <= bounds.left + bounds.width
-    && mousePos.y >= bounds.top && mousePos.y <= bounds.top + bounds.height) {
-        if (callback != NULL)
-            callback(text);
+    && mousePos.y >= bounds.top && mousePos.y <= bounds.top + bounds.height)
         return sfTrue;
-    }
     return sfFalse;
 }

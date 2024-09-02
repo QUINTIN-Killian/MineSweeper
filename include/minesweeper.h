@@ -2,6 +2,8 @@
     #define MINESWEEPER_H_
     #define __windowSize__ minesweeper->window->window_size
     #define __renderWindow__ minesweeper->window->infos
+    #define __videoMode__ minesweeper->window->mode
+    #define __mainFont__ minesweeper->window->main_font
     #include "my.h"
     #include "my_CSFML.h"
     #include <stdbool.h>
@@ -33,11 +35,6 @@ typedef enum digState_s {
     DIG,
     END
 } digState_t;
-
-typedef struct cursor_s {
-    digState_t state;
-    spriteObj *cursor;
-} cursor_t;
 
 typedef enum boxState_s {
     HIDDEN,
@@ -88,7 +85,6 @@ typedef struct minesweeper_s {
     int total_bombs;
     int bombs_left;
     window_t *window;
-    cursor_t *cursor;
     sounds_t *sounds;
     musics_t *musics;
     credits_t *credits;
@@ -106,14 +102,9 @@ void init_window(minesweeper_t *minesweeper);
 void draw_background(minesweeper_t *minesweeper);
 void destroy_window(minesweeper_t *minesweeper);
 void start(minesweeper_t *minesweeper);
-void init_cursor(minesweeper_t *minesweeper);
-void draw_cursor(minesweeper_t *minesweeper);
 void draw_start(minesweeper_t *minesweeper);
-void destroy_cursor(minesweeper_t *minesweeper);
 void get_event(minesweeper_t *minesweeper, int nb_events, ...);
 void close_window_event(minesweeper_t *minesweeper, sfEvent *event);
-void dig_animation_event(minesweeper_t *minesweeper, sfEvent *event);
-void dig_animation(minesweeper_t *minesweeper);
 void debug(void);
 void init_sounds(minesweeper_t *minesweeper);
 void destroy_sounds(minesweeper_t *minesweeper);
@@ -132,5 +123,6 @@ box_t **generate_grid(minesweeper_t *minesweeper);
 void draw_grid(minesweeper_t *minesweeper);
 void destroy_grid(minesweeper_t *minesweeper);
 void set_grid(minesweeper_t *minesweeper);
+void dig_event(minesweeper_t *minesweeper, sfEvent *event);
 
 #endif

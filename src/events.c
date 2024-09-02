@@ -8,16 +8,6 @@ void close_window_event(minesweeper_t *minesweeper, sfEvent *event)
     }
 }
 
-void dig_animation_event(minesweeper_t *minesweeper, sfEvent *event)
-{
-    if (event->type == sfEvtMouseButtonPressed &&
-    sfMouse_isButtonPressed(sfMouseLeft)) {
-        sfRenderWindow_setMouseCursorVisible(__renderWindow__, sfFalse);
-        minesweeper->cursor->state = DIG;
-        sfSound_play(minesweeper->sounds->mining_sound->sound);
-    }
-}
-
 void mute_musics_event(minesweeper_t *minesweeper, sfEvent *event)
 {
     if (event->type == sfEvtKeyPressed &&
@@ -31,15 +21,21 @@ void mute_musics_event(minesweeper_t *minesweeper, sfEvent *event)
 
 void manage_musics_event(minesweeper_t *minesweeper, sfEvent *event)
 {
-    if (event->type == sfEvtKeyPressed &&
-    sfKeyboard_isKeyPressed(sfKeyUp)) {
+    if (event->type == sfEvtKeyPressed && sfKeyboard_isKeyPressed(sfKeyUp)) {
         sfMusic_setVolume(minesweeper->musics->main_music,
         sfMusic_getVolume(minesweeper->musics->main_music) + 5.0);
     }
-    if (event->type == sfEvtKeyPressed &&
-    sfKeyboard_isKeyPressed(sfKeyDown)) {
+    if (event->type == sfEvtKeyPressed && sfKeyboard_isKeyPressed(sfKeyDown)) {
         sfMusic_setVolume(minesweeper->musics->main_music,
         sfMusic_getVolume(minesweeper->musics->main_music) - 5.0);
+    }
+}
+
+void dig_event(minesweeper_t *minesweeper, sfEvent *event)
+{
+    if (event->type == sfEvtMouseButtonPressed &&
+    sfMouse_isButtonPressed(sfMouseLeft)) {
+        sfSound_play(minesweeper->sounds->mining_sound->sound);
     }
 }
 

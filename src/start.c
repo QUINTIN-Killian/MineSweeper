@@ -3,20 +3,20 @@
 void init_start(minesweeper_t *minesweeper)
 {
     minesweeper->start = malloc(sizeof(start_t));
-    minesweeper->start->minesweeper_name = mySfText_create(minesweeper->window->main_font,
+    minesweeper->start->minesweeper_name = mySfText_create(__mainFont__,
     "MineSweeper", sfWhite, VERY_BIG);
     sfText_setPosition(minesweeper->start->minesweeper_name, (sfVector2f)
-    {__windowSize__.x / 2, minesweeper->window->window_size.y / 4});
-    minesweeper->start->start = mySfText_create(minesweeper->window->main_font,
+    {__windowSize__.x / 2, __windowSize__.y / 4});
+    minesweeper->start->start = mySfText_create(__mainFont__,
     "Start", sfWhite, MEDIUM);
     mySfText_setOrigin(minesweeper->start->start, CENTER_LEFT);
     sfText_setPosition(minesweeper->start->start, (sfVector2f)
-    {__windowSize__.x / 20, minesweeper->window->window_size.y / 2});
-    minesweeper->start->leave = mySfText_create(minesweeper->window->main_font,
+    {__windowSize__.x / 20, __windowSize__.y / 2});
+    minesweeper->start->leave = mySfText_create(__mainFont__,
     "Leave", sfWhite, MEDIUM);
     mySfText_setOrigin(minesweeper->start->leave, CENTER_LEFT);
     sfText_setPosition(minesweeper->start->leave, (sfVector2f)
-    {__windowSize__.x / 20, minesweeper->window->window_size.y / 1.5});
+    {__windowSize__.x / 20, __windowSize__.y / 1.5});
     minesweeper->start->start_minesweeper = false;
 }
 
@@ -28,63 +28,41 @@ void destroy_start(minesweeper_t *minesweeper)
     free(minesweeper->start);
 }
 
-static void start__normal(sfText *start)
-{
-    sfText_setFillColor(start, sfWhite);
-    sfText_setCharacterSize(start, MEDIUM);
-}
-
-static void start__hoover(sfText *start)
-{
-    sfText_setFillColor(start, sfLightGrey);
-    sfText_setCharacterSize(start, 50);
-}
-
-static void start__click(sfText *start)
-{
-    sfText_setFillColor(start, sfDarkGrey);
-    sfText_setCharacterSize(start, 45);
-}
-
 void start_startEvent(minesweeper_t *minesweeper, sfEvent *event)
 {
-    renderWindowObj obj = {__renderWindow__, minesweeper->window->mode};
+    renderWindowObj obj = {__renderWindow__, __videoMode__};
 
-    mySfButtonText_normal(&obj, minesweeper->start->start, &start__normal);
-    mySfButtonText_hoover(&obj, minesweeper->start->start, &start__hoover);
-    if (mySfButtonText_click(&obj, minesweeper->start->start, event,
-    &start__click)) {
+    if (mySfButtonText_isNormal(&obj, minesweeper->start->start)) {
+        sfText_setFillColor(minesweeper->start->start, sfWhite);
+        sfText_setCharacterSize(minesweeper->start->start, MEDIUM);
+    }
+    if (mySfButtonText_isHoover(&obj, minesweeper->start->start)) {
+        sfText_setFillColor(minesweeper->start->start, sfLightGrey);
+        sfText_setCharacterSize(minesweeper->start->start, 50);
+    }
+    if (mySfButtonText_isLeftClick(&obj, minesweeper->start->start, event)) {
+        sfText_setFillColor(minesweeper->start->start, sfDarkGrey);
+        sfText_setCharacterSize(minesweeper->start->start, 45);
         sfSound_play(minesweeper->sounds->breaking_sound->sound);
         minesweeper->start->start_minesweeper = true;
     }
 }
 
-static void leave__normal(sfText *leave)
-{
-    sfText_setFillColor(leave, sfWhite);
-    sfText_setCharacterSize(leave, MEDIUM);
-}
-
-static void leave__hoover(sfText *leave)
-{
-    sfText_setFillColor(leave, sfLightGrey);
-    sfText_setCharacterSize(leave, 50);
-}
-
-static void leave__click(sfText *leave)
-{
-    sfText_setFillColor(leave, sfDarkGrey);
-    sfText_setCharacterSize(leave, 45);
-}
-
 void start_leaveEvent(minesweeper_t *minesweeper, sfEvent *event)
 {
-    renderWindowObj obj = {__renderWindow__, minesweeper->window->mode};
+    renderWindowObj obj = {__renderWindow__, __videoMode__};
 
-    mySfButtonText_normal(&obj, minesweeper->start->leave, &leave__normal);
-    mySfButtonText_hoover(&obj, minesweeper->start->leave, &leave__hoover);
-    if (mySfButtonText_click(&obj, minesweeper->start->leave, event,
-    &leave__click)) {
+    if (mySfButtonText_isNormal(&obj, minesweeper->start->leave)) {
+        sfText_setFillColor(minesweeper->start->leave, sfWhite);
+        sfText_setCharacterSize(minesweeper->start->leave, MEDIUM);
+    }
+    if (mySfButtonText_isHoover(&obj, minesweeper->start->leave)) {
+        sfText_setFillColor(minesweeper->start->leave, sfLightGrey);
+        sfText_setCharacterSize(minesweeper->start->leave, 50);
+    }
+    if (mySfButtonText_isLeftClick(&obj, minesweeper->start->leave, event)) {
+        sfText_setFillColor(minesweeper->start->leave, sfDarkGrey);
+        sfText_setCharacterSize(minesweeper->start->leave, 45);
         sfSound_play(minesweeper->sounds->breaking_sound->sound);
         sfRenderWindow_close(__renderWindow__);
     }
@@ -96,11 +74,10 @@ void start(minesweeper_t *minesweeper)
     while (sfRenderWindow_isOpen(__renderWindow__) &&
     !minesweeper->start->start_minesweeper) {
         sfRenderWindow_clear(__renderWindow__, sfGrey);
-        draw(minesweeper, 3, &draw_background, &draw_start, &draw_cursor);
-        get_event(minesweeper, 6, &close_window_event,
-        &dig_animation_event, &mute_musics_event, &manage_musics_event,
-        &start_startEvent, &start_leaveEvent);
-        dig_animation(minesweeper);
+        draw(minesweeper, 2, &draw_background, &draw_start);
+        get_event(minesweeper, 6, &close_window_event, &dig_event,
+        &mute_musics_event, &manage_musics_event, &start_startEvent,
+        &start_leaveEvent);
         sfRenderWindow_display(__renderWindow__);
     }
     destroy_start(minesweeper);

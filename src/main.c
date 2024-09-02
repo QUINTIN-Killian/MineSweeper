@@ -10,7 +10,6 @@ static void init(minesweeper_t *minesweeper)
     place_bombs(minesweeper);
     set_map_values(minesweeper);
     init_window(minesweeper);
-    init_cursor(minesweeper);
     init_sounds(minesweeper);
     init_musics(minesweeper);
 }
@@ -18,7 +17,6 @@ static void init(minesweeper_t *minesweeper)
 static void destroy(minesweeper_t *minesweeper)
 {
     destroy_sounds(minesweeper);
-    destroy_cursor(minesweeper);
     destroy_window(minesweeper);
     destroy_map(minesweeper);
     destroy_musics(minesweeper);
@@ -40,7 +38,6 @@ static int help(void)
     mini_printf("\t- Press MOUSE LEFT to dig a rock\n");
     mini_printf("\t- Press MOUSE RIGHT to flag a rock\n");
     mini_printf("\t- Press H to show help\n");
-    mini_printf("\t- Press C to switch cursor\n");
     mini_printf("\t- Press SPACE BAR to turn off/on the musics\n");
     mini_printf("\t- Press UP/DOWN to manage the musics volume\n");
     mini_printf("\n(minesweeper created by Killian QUINTIN)\n");

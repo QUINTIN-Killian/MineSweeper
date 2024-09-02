@@ -5,7 +5,7 @@ static void init_game(minesweeper_t *minesweeper)
     minesweeper->game = malloc(sizeof(game_t));
     minesweeper->game->grid = generate_grid(minesweeper);
     set_grid(minesweeper);
-    minesweeper->game->timer = mySfText_create(minesweeper->window->main_font,
+    minesweeper->game->timer = mySfText_create(__mainFont__,
     NULL, sfLightGrey, SMALL);
     sfText_setPosition(minesweeper->game->timer, (sfVector2f)
     {__windowSize__.x / 100, __windowSize__.y / 100});
@@ -30,16 +30,33 @@ static void draw_timer(minesweeper_t *minesweeper)
     free(tmp);
 }
 
+void game_boxEvent(minesweeper_t *minesweeper, sfEvent *event)
+{
+    renderWindowObj obj = {__renderWindow__, __videoMode__};
+
+    for (int i = 0; i < minesweeper->height; i++) {
+        for (int j = 0; j < minesweeper->width; j++) {
+            if (mySfButtonSprite_isLeftClick(&obj,
+            minesweeper->game->grid[i][j].rockSprite, event)) {
+                sfSound_play(minesweeper->sounds->breaking_sound->sound);
+                minesweeper->game->grid[i][j].state = REVEALED;
+            } else if (mySfButtonSprite_isRightClick(&obj,
+            minesweeper->game->grid[i][j].rockSprite, event)) {
+                // sfSound_play(minesweeper->sounds->breaking_sound->sound);
+                minesweeper->game->grid[i][j].state = FLAGED;
+            }
+        }
+    }
+}
+
 void game(minesweeper_t *minesweeper)
 {
     init_game(minesweeper);
     while (sfRenderWindow_isOpen(__renderWindow__)) {
         sfRenderWindow_clear(__renderWindow__, sfGrey);
-        draw(minesweeper, 4, &draw_background, &draw_grid, &draw_cursor,
-        &draw_timer);
-        get_event(minesweeper, 4, &close_window_event, &dig_animation_event,
-        &mute_musics_event, &manage_musics_event);
-        dig_animation(minesweeper);
+        draw(minesweeper, 3, &draw_background, &draw_grid, &draw_timer);
+        get_event(minesweeper, 5, &close_window_event, &dig_event,
+        &mute_musics_event, &manage_musics_event, &game_boxEvent);
         sfRenderWindow_display(__renderWindow__);
     }
     destroy_game(minesweeper);
