@@ -17,20 +17,23 @@ box_t **generate_grid(minesweeper_t *minesweeper)
 
 void set_grid(minesweeper_t *minesweeper)
 {
-    box_t **grid = minesweeper->game->grid;
     float scale = 1.2;
-    float box_size = sfSprite_getGlobalBounds(minesweeper->game->grid[0][0].
-    rockSprite->sprite).width * (scale / 30.0);
-    unsigned int x = minesweeper->width;
-    unsigned int y = minesweeper->height;
-    sfVector2f default_pos = {box_size / 2.0, box_size / 2.0};
+    sfFloatRect bounds =
+    sfSprite_getGlobalBounds(minesweeper->game->grid[0][0].rockSprite->sprite);
+    sfVector2f box_size =
+    {bounds.width * (scale / 30.0), bounds.height * (scale / 30.0)};
+    sfVector2f grid_size =
+    {box_size.x * minesweeper->width + 3 * (minesweeper->width - 1),
+    box_size.y * minesweeper->height + 3 * (minesweeper->height - 1)};
     sfVector2f pos;
 
-    for (unsigned int i = 0; i < y; i++) {
-        for (unsigned int j = 0; j < x; j++) {
-            pos.x = default_pos.x + (box_size + 3) * j;
-            pos.y = default_pos.y + (box_size + 3) * i;
-            set_box(&grid[i][j], pos, scale);
+    for (int i = 0; i < minesweeper->height; i++) {
+        for (int j = 0; j < minesweeper->width; j++) {
+            pos.x = __windowSize__.x / 2 + (box_size.x + 3) * j -
+            grid_size.x / 2.0;
+            pos.y = __windowSize__.y / 2 + (box_size.y + 3) * i -
+            grid_size.y / 2.0 + box_size.y;
+            set_box(&minesweeper->game->grid[i][j], pos, scale);
         }
     }
 }

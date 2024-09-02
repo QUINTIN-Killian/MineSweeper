@@ -32,17 +32,15 @@ box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type)
 
     box->state = state;
     box->type = type;
-    box->rockSprite = mySfSprite_create("images/RockBox.png", sfTrue);
+    box->rockSprite = mySfSprite_create("images/RockBox.png", sfFalse);
     bounds = sfSprite_getGlobalBounds(box->rockSprite->sprite);
-    box->flagSprite = mySfSprite_create("images/Flag.png", sfTrue);
+    box->flagSprite = mySfSprite_create("images/Flag.png", sfFalse);
     box->outline = sfRectangleShape_create();
     sfRectangleShape_setOutlineColor(box->outline, sfBlack);
     sfRectangleShape_setOutlineThickness(box->outline, 25.0);
     sfRectangleShape_setFillColor(box->outline, sfLightGrey);
     sfRectangleShape_setSize(box->outline, (sfVector2f)
     {bounds.width, bounds.height});
-    sfRectangleShape_setOrigin(box->outline, (sfVector2f)
-    {bounds.width / 2, bounds.height / 2});
     if (type >= 1 && type <= 8) {
         value = convert_int_to_str(type);
         box->textValue = mySfText_create(minesweeper->window->main_font, value,
