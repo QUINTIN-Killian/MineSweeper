@@ -48,7 +48,7 @@ void mySfSprite_destroy(spriteObj *obj);
 soundObj *mySfSound_create(const char *soundpath);
 void mySfSound_destroy(soundObj *obj);
 sfText *mySfText_create(const sfFont *font, const char *string, sfColor color,
-    sfSize type);
+    sfSize size);
 void mySfText_destroy(sfText *obj);
 sfMusic *mySfMusic_create(const char *musicpath, sfBool loop, sfBool play);
 void mySfMusic_destroy(sfMusic *obj);

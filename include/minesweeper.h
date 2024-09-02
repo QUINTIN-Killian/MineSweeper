@@ -77,6 +77,8 @@ typedef struct start_s {
 
 typedef struct game_s {
     box_t **grid;
+    sfText *timer;
+    sfClock *clock;
 } game_t;
 
 typedef struct minesweeper_s {
