@@ -18,7 +18,7 @@ box_t **generate_grid(minesweeper_t *minesweeper)
 void set_grid(minesweeper_t *minesweeper)
 {
     box_t **grid = minesweeper->game->grid;
-    float scale = 2.0;
+    float scale = 1.2;
     float box_size = sfSprite_getGlobalBounds(minesweeper->game->grid[0][0].
     rockSprite->sprite).width * (scale / 30.0);
     unsigned int x = minesweeper->width;

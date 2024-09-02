@@ -95,7 +95,7 @@ void start(minesweeper_t *minesweeper)
     init_start(minesweeper);
     while (sfRenderWindow_isOpen(__renderWindow__) &&
     !minesweeper->start->start_minesweeper) {
-        sfRenderWindow_clear(__renderWindow__, sfCyan);
+        sfRenderWindow_clear(__renderWindow__, sfGrey);
         draw(minesweeper, 3, &draw_background, &draw_start, &draw_cursor);
         get_event(minesweeper, 6, &close_window_event,
         &dig_animation_event, &mute_musics_event, &manage_musics_event,

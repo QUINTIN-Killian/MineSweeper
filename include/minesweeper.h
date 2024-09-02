@@ -65,6 +65,7 @@ typedef struct box_s {
     spriteObj *rockSprite;
     spriteObj *flagSprite;
     sfText *textValue;
+    sfRectangleShape *outline;
 } box_t;
 
 typedef struct start_s {
