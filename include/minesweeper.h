@@ -124,5 +124,6 @@ void draw_grid(minesweeper_t *minesweeper);
 void destroy_grid(minesweeper_t *minesweeper);
 void set_grid(minesweeper_t *minesweeper);
 void dig_event(minesweeper_t *minesweeper, sfEvent *event);
+void reveal_boxes(minesweeper_t *minesweeper, int x, int y);
 
 #endif

@@ -39,11 +39,22 @@ void game_boxEvent(minesweeper_t *minesweeper, sfEvent *event)
             if (mySfButtonSprite_isLeftClick(&obj,
             minesweeper->game->grid[i][j].rockSprite, event)) {
                 sfSound_play(minesweeper->sounds->breaking_sound->sound);
-                minesweeper->game->grid[i][j].state = REVEALED;
-            } else if (mySfButtonSprite_isRightClick(&obj,
-            minesweeper->game->grid[i][j].rockSprite, event)) {
+                reveal_boxes(minesweeper, j, i);
+                return;
+            } 
+            if (mySfButtonSprite_isRightClick(&obj,
+            minesweeper->game->grid[i][j].rockSprite, event) &&
+            minesweeper->game->grid[i][j].state == FLAGED) {
+                // sfSound_play(minesweeper->sounds->breaking_sound->sound);
+                minesweeper->game->grid[i][j].state = HIDDEN;
+                return;
+            }
+            if (mySfButtonSprite_isRightClick(&obj,
+            minesweeper->game->grid[i][j].rockSprite, event) &&
+            minesweeper->game->grid[i][j].state == HIDDEN) {
                 // sfSound_play(minesweeper->sounds->breaking_sound->sound);
                 minesweeper->game->grid[i][j].state = FLAGED;
+                return;
             }
         }
     }

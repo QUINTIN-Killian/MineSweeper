@@ -71,8 +71,9 @@ void set_box(box_t *box, sfVector2f position, sfSize size)
 void draw_box(minesweeper_t *minesweeper, box_t *box)
 {
     sfRenderWindow_drawRectangleShape(__renderWindow__, box->outline, NULL);
-    if (box->state == REVEALED && box->textValue != NULL) {
-        sfRenderWindow_drawText(__renderWindow__, box->textValue, NULL);
+    if (box->state == REVEALED) {
+        if (box->textValue != NULL)
+            sfRenderWindow_drawText(__renderWindow__, box->textValue, NULL);
         return;
     }
     sfRenderWindow_drawSprite(__renderWindow__, box->rockSprite->sprite, NULL);
@@ -80,6 +81,42 @@ void draw_box(minesweeper_t *minesweeper, box_t *box)
         sfRenderWindow_drawSprite(__renderWindow__, box->flagSprite->sprite, NULL);
         return;
     }
+}
+
+static bool is_in_range_grid(int width, int height, int x, int y)
+{
+    return y >= 0 && y < height && x >= 0 && x < width;
+
+}
+
+static void reveal_around_boxes(minesweeper_t *minesweeper, int x, int y)
+{
+    for (int i = y - 1; i <= y + 1; i++) {
+        for (int j = x - 1; j <= x + 1; j++) {
+            if (!is_in_range_grid(minesweeper->width,
+            minesweeper->height, j, i))
+                continue;
+            if (minesweeper->game->grid[i][j].state != REVEALED)
+                minesweeper->game->grid[i][j].state = REVEALED;
+        }
+    }
+}
+
+void reveal_boxes(minesweeper_t *minesweeper, int x, int y)
+{
+    minesweeper->game->grid[y][x].state = REVEALED;
+    for (int i = y - 1; i <= y + 1; i++) {
+        for (int j = x - 1; j <= x + 1; j++) {
+            if (!is_in_range_grid(minesweeper->width,
+            minesweeper->height, j, i))
+                continue;
+            if (minesweeper->game->grid[i][j].type == VOID &&
+            minesweeper->game->grid[i][j].state != REVEALED)
+                reveal_boxes(minesweeper, j, i);
+        }
+    }
+    if (minesweeper->game->grid[y][x].type == VOID)
+        reveal_around_boxes(minesweeper, x, y);
 }
 
 void destroy_box(box_t *box)
