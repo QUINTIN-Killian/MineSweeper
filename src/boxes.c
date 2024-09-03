@@ -31,13 +31,16 @@ box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type)
 
     box->state = state;
     box->type = type;
+    box->mine = NULL;
+    if (type == BOMB)
+        box->mine = mySfSprite_create("images/Mine.png", sfFalse);
     box->flag = mySfSprite_create("images/Flag.png", sfFalse);
     box->rock = sfRectangleShape_create();
     sfRectangleShape_setOutlineColor(box->rock, sfBlack);
     sfRectangleShape_setOutlineThickness(box->rock, 25.0);
     sfRectangleShape_setFillColor(box->rock, sfGrey);
     sfRectangleShape_setSize(box->rock, minesweeper->game->default_box_size);
-    if (type >= 1 && type <= 8) {
+    if (type >= NUM1 && type <= NUM8) {
         value = convert_int_to_str(type);
         box->textValue = mySfText_create(__mainFont__, value,
         getColorNb(type), 15.0);
@@ -58,8 +61,12 @@ void set_box(box_t *box, sfVector2f position, sfSize size)
     sfSprite_setScale(box->flag->sprite,
     (sfVector2f){size / 30, size / 30});
     sfSprite_setPosition(box->flag->sprite, position);
-    if (box->textValue != NULL) {
+    if (box->textValue != NULL)
         sfText_setPosition(box->textValue, position);
+    if (box->mine != NULL) {
+        sfSprite_setScale(box->mine->sprite,
+        (sfVector2f){size / 10, size / 10});
+        sfSprite_setPosition(box->mine->sprite, position);
     }
 }
 
@@ -69,6 +76,8 @@ void draw_box(minesweeper_t *minesweeper, box_t *box)
     if (box->state == REVEALED) {
         if (box->textValue != NULL)
             sfRenderWindow_drawText(__renderWindow__, box->textValue, NULL);
+        if (box->mine != NULL)
+            sfRenderWindow_drawSprite(__renderWindow__, box->mine->sprite, NULL);
         return;
     }
     if (box->state == FLAGED) {
@@ -122,6 +131,8 @@ void destroy_box(box_t *box)
 {
     if (box->textValue != NULL)
         mySfText_destroy(box->textValue);
+    if (box->mine != NULL)
+        mySfSprite_destroy(box->mine);
     sfRectangleShape_destroy(box->rock);
     mySfSprite_destroy(box->flag);
 }
