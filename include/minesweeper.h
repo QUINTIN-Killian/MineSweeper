@@ -62,7 +62,7 @@ typedef enum boxType_s {
 typedef struct box_s {
     boxState_t state;
     boxType_t type;
-    spriteObj *flagSprite;
+    spriteObj *flag;
     sfText *textValue;
     sfRectangleShape *rock;
 } box_t;

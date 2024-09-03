@@ -31,7 +31,7 @@ box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type)
 
     box->state = state;
     box->type = type;
-    box->flagSprite = mySfSprite_create("images/Flag.png", sfFalse);
+    box->flag = mySfSprite_create("images/Flag.png", sfFalse);
     box->rock = sfRectangleShape_create();
     sfRectangleShape_setOutlineColor(box->rock, sfBlack);
     sfRectangleShape_setOutlineThickness(box->rock, 25.0);
@@ -55,9 +55,9 @@ void set_box(box_t *box, sfVector2f position, sfSize size)
     sfRectangleShape_setScale(box->rock, (sfVector2f){size / 30, size / 30});
     sfRectangleShape_setPosition(box->rock,
     (sfVector2f){position.x, position.y});
-    sfSprite_setScale(box->flagSprite->sprite,
+    sfSprite_setScale(box->flag->sprite,
     (sfVector2f){size / 30, size / 30});
-    sfSprite_setPosition(box->flagSprite->sprite, position);
+    sfSprite_setPosition(box->flag->sprite, position);
     if (box->textValue != NULL) {
         sfText_setPosition(box->textValue, position);
     }
@@ -72,7 +72,7 @@ void draw_box(minesweeper_t *minesweeper, box_t *box)
         return;
     }
     if (box->state == FLAGED) {
-        sfRenderWindow_drawSprite(__renderWindow__, box->flagSprite->sprite,
+        sfRenderWindow_drawSprite(__renderWindow__, box->flag->sprite,
         NULL);
         return;
     }
@@ -123,5 +123,5 @@ void destroy_box(box_t *box)
     if (box->textValue != NULL)
         mySfText_destroy(box->textValue);
     sfRectangleShape_destroy(box->rock);
-    mySfSprite_destroy(box->flagSprite);
+    mySfSprite_destroy(box->flag);
 }
