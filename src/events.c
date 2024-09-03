@@ -1,44 +1,5 @@
 #include "../include/minesweeper.h"
 
-void close_window_event(minesweeper_t *minesweeper, sfEvent *event)
-{
-    if (event->type == sfEvtClosed ||
-    sfKeyboard_isKeyPressed(sfKeyEscape)) {
-        sfRenderWindow_close(__renderWindow__);
-    }
-}
-
-void mute_musics_event(minesweeper_t *minesweeper, sfEvent *event)
-{
-    if (event->type == sfEvtKeyPressed &&
-    sfKeyboard_isKeyPressed(sfKeySpace)) {
-        if (sfMusic_getStatus(minesweeper->musics->main_music) == sfPlaying)
-            sfMusic_pause(minesweeper->musics->main_music);
-        else
-            sfMusic_play(minesweeper->musics->main_music);
-    }
-}
-
-void manage_musics_event(minesweeper_t *minesweeper, sfEvent *event)
-{
-    if (event->type == sfEvtKeyPressed && sfKeyboard_isKeyPressed(sfKeyUp)) {
-        sfMusic_setVolume(minesweeper->musics->main_music,
-        sfMusic_getVolume(minesweeper->musics->main_music) + 5.0);
-    }
-    if (event->type == sfEvtKeyPressed && sfKeyboard_isKeyPressed(sfKeyDown)) {
-        sfMusic_setVolume(minesweeper->musics->main_music,
-        sfMusic_getVolume(minesweeper->musics->main_music) - 5.0);
-    }
-}
-
-void dig_event(minesweeper_t *minesweeper, sfEvent *event)
-{
-    if (event->type == sfEvtMouseButtonPressed &&
-    sfMouse_isButtonPressed(sfMouseLeft)) {
-        sfSound_play(minesweeper->sounds->mining_sound->sound);
-    }
-}
-
 void get_event(minesweeper_t *minesweeper, int nb_events, ...)
 {
     sfEvent event;

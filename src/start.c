@@ -20,6 +20,16 @@ void init_start(minesweeper_t *minesweeper)
     minesweeper->start->start_minesweeper = false;
 }
 
+void draw_start(minesweeper_t *minesweeper)
+{
+    sfRenderWindow_drawText(__renderWindow__,
+    minesweeper->start->minesweeper_name, NULL);
+    sfRenderWindow_drawText(__renderWindow__,
+    minesweeper->start->start, NULL);
+    sfRenderWindow_drawText(__renderWindow__,
+    minesweeper->start->leave, NULL);
+}
+
 void destroy_start(minesweeper_t *minesweeper)
 {
     mySfText_destroy(minesweeper->start->minesweeper_name);

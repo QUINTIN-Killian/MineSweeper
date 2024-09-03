@@ -22,11 +22,6 @@ static void destroy(minesweeper_t *minesweeper)
     destroy_musics(minesweeper);
 }
 
-void debug(void)
-{
-    mini_printf("\e[33mDEBUG\n\e[0m");
-}
-
 static int help(void)
 {
     mini_printf("Welcome in MineSweeper !\n\n");
@@ -37,7 +32,6 @@ static int help(void)
     mini_printf("adjacent bombs.\n");
     mini_printf("\t- Press MOUSE LEFT to dig a rock\n");
     mini_printf("\t- Press MOUSE RIGHT to flag a rock\n");
-    mini_printf("\t- Press H to show help\n");
     mini_printf("\t- Press SPACE BAR to turn off/on the musics\n");
     mini_printf("\t- Press UP/DOWN to manage the musics volume\n");
     mini_printf("\n(minesweeper created by Killian QUINTIN)\n");

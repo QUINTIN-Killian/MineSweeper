@@ -48,7 +48,7 @@ static void mine(minesweeper_t *minesweeper, int x, int y)
     sfSound_play(minesweeper->sounds->breaking_sound->sound);
     if (minesweeper->game->grid[y][x].type == BOMB) {
         sfSound_play(minesweeper->sounds->explosion_sound->sound);
-        reveal_all_grid(minesweeper);
+        reveal_grid(minesweeper);
     } else {
         reveal_boxes(minesweeper, x, y);
         if (victory(minesweeper))

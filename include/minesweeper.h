@@ -110,7 +110,6 @@ void start(minesweeper_t *minesweeper);
 void draw_start(minesweeper_t *minesweeper);
 void get_event(minesweeper_t *minesweeper, int nb_events, ...);
 void close_window_event(minesweeper_t *minesweeper, sfEvent *event);
-void debug(void);
 void init_sounds(minesweeper_t *minesweeper);
 void destroy_sounds(minesweeper_t *minesweeper);
 void init_musics(minesweeper_t *minesweeper);
@@ -130,6 +129,6 @@ void destroy_grid(minesweeper_t *minesweeper);
 void set_grid(minesweeper_t *minesweeper);
 void dig_event(minesweeper_t *minesweeper, sfEvent *event);
 void reveal_boxes(minesweeper_t *minesweeper, int x, int y);
-void reveal_all_grid(minesweeper_t *minesweeper);
+void reveal_grid(minesweeper_t *minesweeper);
 
 #endif

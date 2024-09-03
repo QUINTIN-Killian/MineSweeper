@@ -1,6 +1,6 @@
 #include "../include/minesweeper.h"
 
-void init_credits(minesweeper_t *minesweeper)
+static void init_credits(minesweeper_t *minesweeper)
 {
     minesweeper->credits = malloc(sizeof(credits_t));
     minesweeper->credits->credits_text = mySfText_create(__mainFont__,
@@ -10,7 +10,7 @@ void init_credits(minesweeper_t *minesweeper)
     {__windowSize__.x / 2, __windowSize__.y / 2});
 }
 
-void destroy_credits(minesweeper_t *minesweeper)
+static void destroy_credits(minesweeper_t *minesweeper)
 {
     mySfText_destroy(minesweeper->credits->credits_text);
     free(minesweeper->credits);
