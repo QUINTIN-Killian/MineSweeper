@@ -37,6 +37,22 @@ void set_grid(minesweeper_t *minesweeper)
     }
 }
 
+void reveal_all_grid(minesweeper_t *minesweeper)
+{
+    for (int i = 0; i < minesweeper->height; i++) {
+        for (int j = 0; j < minesweeper->width; j++) {
+            if (minesweeper->game->grid[i][j].state != REVEALED) {
+                minesweeper->game->grid[i][j].state = REVEALED;
+                sfRectangleShape_setFillColor(minesweeper->game->
+                grid[i][j].rectangle, sfLightGrey);
+            }
+            if (minesweeper->game->grid[i][j].type == BOMB)
+                sfRectangleShape_setFillColor(minesweeper->game->
+                grid[i][j].rectangle, sfRed);
+        }
+    }
+}
+
 void draw_grid(minesweeper_t *minesweeper)
 {
     for (int i = 0; i < minesweeper->height; i++)

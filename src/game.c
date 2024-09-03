@@ -31,30 +31,44 @@ static void draw_timer(minesweeper_t *minesweeper)
     free(tmp);
 }
 
+static void mine(minesweeper_t *minesweeper, int x, int y)
+{
+    sfSound_play(minesweeper->sounds->breaking_sound->sound);
+    if (minesweeper->game->grid[y][x].type == BOMB) {
+        sfSound_play(minesweeper->sounds->explosion_sound->sound);
+        reveal_all_grid(minesweeper);
+    } else
+        reveal_boxes(minesweeper, x, y);
+}
+
+static void flag(minesweeper_t *minesweeper, int x, int y)
+{
+    sfSound_play(minesweeper->sounds->flag_sound->sound);
+    minesweeper->game->grid[y][x].state = FLAGED;
+}
+
+static void unflag(minesweeper_t *minesweeper, int x, int y)
+{
+    sfSound_play(minesweeper->sounds->flag_sound->sound);
+    minesweeper->game->grid[y][x].state = HIDDEN;
+}
+
 void game_boxEvent(minesweeper_t *minesweeper, sfEvent *event)
 {
     for (int i = 0; i < minesweeper->height; i++) {
         for (int j = 0; j < minesweeper->width; j++) {
             if (mySfButtonRectangle_isLeftClick(&__windowInfos__,
-            minesweeper->game->grid[i][j].rock, event)) {
-                sfSound_play(minesweeper->sounds->breaking_sound->sound);
-                reveal_boxes(minesweeper, j, i);
-                return;
-            }
+            minesweeper->game->grid[i][j].rectangle, event) &&
+            minesweeper->game->grid[i][j].state == HIDDEN)
+                return mine(minesweeper, j, i);
             if (mySfButtonRectangle_isRightClick(&__windowInfos__,
-            minesweeper->game->grid[i][j].rock, event) &&
-            minesweeper->game->grid[i][j].state == FLAGED) {
-                sfSound_play(minesweeper->sounds->flag_sound->sound);
-                minesweeper->game->grid[i][j].state = HIDDEN;
-                return;
-            }
+            minesweeper->game->grid[i][j].rectangle, event) &&
+            minesweeper->game->grid[i][j].state == FLAGED)
+                return unflag(minesweeper, j, i);
             if (mySfButtonRectangle_isRightClick(&__windowInfos__,
-            minesweeper->game->grid[i][j].rock, event) &&
-            minesweeper->game->grid[i][j].state == HIDDEN) {
-                sfSound_play(minesweeper->sounds->flag_sound->sound);
-                minesweeper->game->grid[i][j].state = FLAGED;
-                return;
-            }
+            minesweeper->game->grid[i][j].rectangle, event) &&
+            minesweeper->game->grid[i][j].state == HIDDEN)
+                return flag(minesweeper, j, i);
         }
     }
 }

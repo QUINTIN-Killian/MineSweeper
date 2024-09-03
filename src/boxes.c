@@ -35,11 +35,11 @@ box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type)
     if (type == BOMB)
         box->mine = mySfSprite_create("images/Mine.png", sfFalse);
     box->flag = mySfSprite_create("images/Flag.png", sfFalse);
-    box->rock = sfRectangleShape_create();
-    sfRectangleShape_setOutlineColor(box->rock, sfBlack);
-    sfRectangleShape_setOutlineThickness(box->rock, 25.0);
-    sfRectangleShape_setFillColor(box->rock, sfGrey);
-    sfRectangleShape_setSize(box->rock, minesweeper->game->default_box_size);
+    box->rectangle = sfRectangleShape_create();
+    sfRectangleShape_setOutlineColor(box->rectangle, sfBlack);
+    sfRectangleShape_setOutlineThickness(box->rectangle, 25.0);
+    sfRectangleShape_setFillColor(box->rectangle, sfGrey);
+    sfRectangleShape_setSize(box->rectangle, minesweeper->game->default_box_size);
     if (type >= NUM1 && type <= NUM8) {
         value = convert_int_to_str(type);
         box->textValue = mySfText_create(__mainFont__, value,
@@ -55,8 +55,8 @@ box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type)
 
 void set_box(box_t *box, sfVector2f position, sfSize size)
 {
-    sfRectangleShape_setScale(box->rock, (sfVector2f){size / 30, size / 30});
-    sfRectangleShape_setPosition(box->rock,
+    sfRectangleShape_setScale(box->rectangle, (sfVector2f){size / 30, size / 30});
+    sfRectangleShape_setPosition(box->rectangle,
     (sfVector2f){position.x, position.y});
     sfSprite_setScale(box->flag->sprite,
     (sfVector2f){size / 30, size / 30});
@@ -72,12 +72,13 @@ void set_box(box_t *box, sfVector2f position, sfSize size)
 
 void draw_box(minesweeper_t *minesweeper, box_t *box)
 {
-    sfRenderWindow_drawRectangleShape(__renderWindow__, box->rock, NULL);
+    sfRenderWindow_drawRectangleShape(__renderWindow__, box->rectangle, NULL);
     if (box->state == REVEALED) {
         if (box->textValue != NULL)
             sfRenderWindow_drawText(__renderWindow__, box->textValue, NULL);
         if (box->mine != NULL)
-            sfRenderWindow_drawSprite(__renderWindow__, box->mine->sprite, NULL);
+            sfRenderWindow_drawSprite(__renderWindow__, box->mine->sprite,
+            NULL);
         return;
     }
     if (box->state == FLAGED) {
@@ -102,7 +103,7 @@ static void reveal_around_boxes(minesweeper_t *minesweeper, int x, int y)
             if (minesweeper->game->grid[i][j].state != REVEALED) {
                 minesweeper->game->grid[i][j].state = REVEALED;
                 sfRectangleShape_setFillColor(minesweeper->game->
-                grid[i][j].rock, sfLightGrey);
+                grid[i][j].rectangle, sfLightGrey);
             }
         }
     }
@@ -111,7 +112,7 @@ static void reveal_around_boxes(minesweeper_t *minesweeper, int x, int y)
 void reveal_boxes(minesweeper_t *minesweeper, int x, int y)
 {
     minesweeper->game->grid[y][x].state = REVEALED;
-    sfRectangleShape_setFillColor(minesweeper->game->grid[y][x].rock,
+    sfRectangleShape_setFillColor(minesweeper->game->grid[y][x].rectangle,
     sfLightGrey);
     for (int i = y - 1; i <= y + 1; i++) {
         for (int j = x - 1; j <= x + 1; j++) {
@@ -133,6 +134,6 @@ void destroy_box(box_t *box)
         mySfText_destroy(box->textValue);
     if (box->mine != NULL)
         mySfSprite_destroy(box->mine);
-    sfRectangleShape_destroy(box->rock);
+    sfRectangleShape_destroy(box->rectangle);
     mySfSprite_destroy(box->flag);
 }

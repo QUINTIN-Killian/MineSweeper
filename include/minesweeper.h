@@ -27,6 +27,7 @@ typedef struct sounds_s {
     soundObj *mining_sound;
     soundObj *breaking_sound;
     soundObj *flag_sound;
+    soundObj *explosion_sound;
 } sounds_t;
 
 typedef struct musics_s {
@@ -65,7 +66,7 @@ typedef struct box_s {
     spriteObj *flag;
     spriteObj *mine;
     sfText *textValue;
-    sfRectangleShape *rock;
+    sfRectangleShape *rectangle;
 } box_t;
 
 typedef struct start_s {
@@ -129,5 +130,6 @@ void destroy_grid(minesweeper_t *minesweeper);
 void set_grid(minesweeper_t *minesweeper);
 void dig_event(minesweeper_t *minesweeper, sfEvent *event);
 void reveal_boxes(minesweeper_t *minesweeper, int x, int y);
+void reveal_all_grid(minesweeper_t *minesweeper);
 
 #endif
