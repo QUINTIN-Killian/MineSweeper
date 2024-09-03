@@ -53,8 +53,10 @@ box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type)
 void set_box(box_t *box, sfVector2f position, sfSize size)
 {
     sfRectangleShape_setScale(box->rock, (sfVector2f){size / 30, size / 30});
-    sfRectangleShape_setPosition(box->rock, (sfVector2f){position.x, position.y});
-    sfSprite_setScale(box->flagSprite->sprite, (sfVector2f){size / 30, size / 30});
+    sfRectangleShape_setPosition(box->rock,
+    (sfVector2f){position.x, position.y});
+    sfSprite_setScale(box->flagSprite->sprite,
+    (sfVector2f){size / 30, size / 30});
     sfSprite_setPosition(box->flagSprite->sprite, position);
     if (box->textValue != NULL) {
         sfText_setPosition(box->textValue, position);
@@ -70,15 +72,15 @@ void draw_box(minesweeper_t *minesweeper, box_t *box)
         return;
     }
     if (box->state == FLAGED) {
-        sfRenderWindow_drawSprite(__renderWindow__, box->flagSprite->sprite, NULL);
+        sfRenderWindow_drawSprite(__renderWindow__, box->flagSprite->sprite,
+        NULL);
         return;
     }
 }
 
 static bool is_in_range_grid(int width, int height, int x, int y)
 {
-    return y >= 0 && y < height && x >= 0 && x < width;
-
+    return (y >= 0 && y < height && x >= 0 && x < width);
 }
 
 static void reveal_around_boxes(minesweeper_t *minesweeper, int x, int y)
@@ -90,7 +92,8 @@ static void reveal_around_boxes(minesweeper_t *minesweeper, int x, int y)
                 continue;
             if (minesweeper->game->grid[i][j].state != REVEALED) {
                 minesweeper->game->grid[i][j].state = REVEALED;
-                sfRectangleShape_setFillColor(minesweeper->game->grid[i][j].rock, sfLightGrey);
+                sfRectangleShape_setFillColor(minesweeper->game->
+                grid[i][j].rock, sfLightGrey);
             }
         }
     }
@@ -99,7 +102,8 @@ static void reveal_around_boxes(minesweeper_t *minesweeper, int x, int y)
 void reveal_boxes(minesweeper_t *minesweeper, int x, int y)
 {
     minesweeper->game->grid[y][x].state = REVEALED;
-    sfRectangleShape_setFillColor(minesweeper->game->grid[y][x].rock, sfLightGrey);
+    sfRectangleShape_setFillColor(minesweeper->game->grid[y][x].rock,
+    sfLightGrey);
     for (int i = y - 1; i <= y + 1; i++) {
         for (int j = x - 1; j <= x + 1; j++) {
             if (!is_in_range_grid(minesweeper->width,

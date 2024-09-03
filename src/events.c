@@ -50,7 +50,8 @@ void get_event(minesweeper_t *minesweeper, int nb_events, ...)
     while (sfRenderWindow_pollEvent(__renderWindow__, &event)) {
         va_copy(args_cpy, args);
         for (int i = 0; i < nb_events; i++) {
-            event_func = va_arg(args_cpy, void (*)(minesweeper_t *, sfEvent *));
+            event_func = va_arg(args_cpy,
+            void (*)(minesweeper_t *, sfEvent *));
             if (event_func)
                 event_func(minesweeper, &event);
         }

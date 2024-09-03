@@ -27,8 +27,8 @@ void credits(minesweeper_t *minesweeper)
         sfRenderWindow_drawText(__renderWindow__,
         minesweeper->credits->credits_text, NULL);
         sfRenderWindow_display(__renderWindow__);
-        sfText_setColor(minesweeper->credits->credits_text,(sfColor){255, 255, 255,
-        sfText_getColor(minesweeper->credits->credits_text).a + 1});
+        sfText_setColor(minesweeper->credits->credits_text,(sfColor){255, 255,
+        255, sfText_getColor(minesweeper->credits->credits_text).a + 1});
     }
     while (sfRenderWindow_isOpen(__renderWindow__) &&
     sfText_getColor(minesweeper->credits->credits_text).a > 0) {
@@ -38,9 +38,8 @@ void credits(minesweeper_t *minesweeper)
         sfRenderWindow_drawText(__renderWindow__,
         minesweeper->credits->credits_text, NULL);
         sfRenderWindow_display(__renderWindow__);
-        sfText_setColor(minesweeper->credits->credits_text,(sfColor){255, 255, 255,
-        sfText_getColor(minesweeper->credits->credits_text).a - 1});
+        sfText_setColor(minesweeper->credits->credits_text,(sfColor){255, 255,
+        255, sfText_getColor(minesweeper->credits->credits_text).a - 1});
     }
     destroy_credits(minesweeper);
 }
-

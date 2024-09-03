@@ -40,7 +40,7 @@ void game_boxEvent(minesweeper_t *minesweeper, sfEvent *event)
                 sfSound_play(minesweeper->sounds->breaking_sound->sound);
                 reveal_boxes(minesweeper, j, i);
                 return;
-            } 
+            }
             if (mySfButtonRectangle_isRightClick(&__windowInfos__,
             minesweeper->game->grid[i][j].rock, event) &&
             minesweeper->game->grid[i][j].state == FLAGED) {

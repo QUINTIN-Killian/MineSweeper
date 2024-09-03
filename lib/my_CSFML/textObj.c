@@ -25,7 +25,8 @@ void mySfText_setOrigin(sfText *obj, originPos pos)
 
     switch (pos) {
         case CENTER:
-            sfText_setOrigin(obj, (sfVector2f){bounds.width / 2.0, bounds.height / 2.0});
+            sfText_setOrigin(obj,
+            (sfVector2f){bounds.width / 2.0, bounds.height / 2.0});
             break;
         case TOP_LEFT:
             sfText_setOrigin(obj, (sfVector2f){0.0, 0.0});
@@ -43,13 +44,15 @@ void mySfText_setOrigin(sfText *obj, originPos pos)
             sfText_setOrigin(obj, (sfVector2f){bounds.width / 2.0, 0.0});
             break;
         case CENTER_BOTTOM:
-            sfText_setOrigin(obj, (sfVector2f){bounds.width / 2.0, bounds.height});
+            sfText_setOrigin(obj,
+            (sfVector2f){bounds.width / 2.0, bounds.height});
             break;
         case CENTER_LEFT:
             sfText_setOrigin(obj, (sfVector2f){0.0, bounds.height / 2.0});
             break;
         case CENTER_RIGHT:
-            sfText_setOrigin(obj, (sfVector2f){bounds.width, bounds.height / 2.0});
+            sfText_setOrigin(obj,
+            (sfVector2f){bounds.width, bounds.height / 2.0});
             break;
         default:
             break;

@@ -38,7 +38,8 @@ void start_startEvent(minesweeper_t *minesweeper, sfEvent *event)
         sfText_setFillColor(minesweeper->start->start, sfLightGrey);
         sfText_setCharacterSize(minesweeper->start->start, 50);
     }
-    if (mySfButtonText_isLeftClick(&__windowInfos__, minesweeper->start->start, event)) {
+    if (mySfButtonText_isLeftClick(&__windowInfos__, minesweeper->start->start,
+    event)) {
         sfText_setFillColor(minesweeper->start->start, sfDarkGrey);
         sfText_setCharacterSize(minesweeper->start->start, 45);
         sfSound_play(minesweeper->sounds->breaking_sound->sound);
@@ -56,7 +57,8 @@ void start_leaveEvent(minesweeper_t *minesweeper, sfEvent *event)
         sfText_setFillColor(minesweeper->start->leave, sfLightGrey);
         sfText_setCharacterSize(minesweeper->start->leave, 50);
     }
-    if (mySfButtonText_isLeftClick(&__windowInfos__, minesweeper->start->leave, event)) {
+    if (mySfButtonText_isLeftClick(&__windowInfos__, minesweeper->start->leave,
+    event)) {
         sfText_setFillColor(minesweeper->start->leave, sfDarkGrey);
         sfText_setCharacterSize(minesweeper->start->leave, 45);
         sfSound_play(minesweeper->sounds->breaking_sound->sound);

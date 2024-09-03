@@ -37,5 +37,6 @@ void set_map_values(minesweeper_t *minesweeper)
     for (int y = 0; y < minesweeper->height; y++)
         for (int x = 0; x < minesweeper->width; x++)
             if (minesweeper->map[y][x] != 9)
-                minesweeper->map[y][x] = get_nb_bombs_around(minesweeper, x, y);
+                minesweeper->map[y][x] = get_nb_bombs_around(minesweeper,
+                x, y);
 }

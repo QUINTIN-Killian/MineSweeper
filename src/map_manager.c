@@ -3,7 +3,6 @@
 void create_map(minesweeper_t *minesweeper)
 {
     minesweeper->map = malloc(sizeof(int *) * (minesweeper->height + 1));
-
     for (int i = 0; i < minesweeper->height; i++) {
         minesweeper->map[i] = malloc(sizeof(int) * (minesweeper->width + 1));
         minesweeper->map[i][minesweeper->width] = -1;

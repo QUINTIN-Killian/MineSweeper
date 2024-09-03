@@ -1,6 +1,6 @@
 #ifndef MY_CSFML_H_
     #define MY_CSFML_H_
-    #define SFNULL ((void*)-1)
+    #define SFNULL ((void *)-1)
     #include <stdlib.h>
     #include <stdio.h>
     #include <unistd.h>
