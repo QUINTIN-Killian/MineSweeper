@@ -33,24 +33,22 @@ static void draw_timer(minesweeper_t *minesweeper)
 
 void game_boxEvent(minesweeper_t *minesweeper, sfEvent *event)
 {
-    renderWindowObj obj = {__renderWindow__, __videoMode__};
-
     for (int i = 0; i < minesweeper->height; i++) {
         for (int j = 0; j < minesweeper->width; j++) {
-            if (mySfButtonRectangle_isLeftClick(&obj,
+            if (mySfButtonRectangle_isLeftClick(&__windowInfos__,
             minesweeper->game->grid[i][j].rock, event)) {
                 sfSound_play(minesweeper->sounds->breaking_sound->sound);
                 reveal_boxes(minesweeper, j, i);
                 return;
             } 
-            if (mySfButtonRectangle_isRightClick(&obj,
+            if (mySfButtonRectangle_isRightClick(&__windowInfos__,
             minesweeper->game->grid[i][j].rock, event) &&
             minesweeper->game->grid[i][j].state == FLAGED) {
                 sfSound_play(minesweeper->sounds->flag_sound->sound);
                 minesweeper->game->grid[i][j].state = HIDDEN;
                 return;
             }
-            if (mySfButtonRectangle_isRightClick(&obj,
+            if (mySfButtonRectangle_isRightClick(&__windowInfos__,
             minesweeper->game->grid[i][j].rock, event) &&
             minesweeper->game->grid[i][j].state == HIDDEN) {
                 sfSound_play(minesweeper->sounds->flag_sound->sound);

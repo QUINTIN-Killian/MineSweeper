@@ -1,15 +1,15 @@
 #include "my_CSFML.h"
 
-sfBool mySfButtonRectangle_isNormal(renderWindowObj *render_window,
+sfBool mySfButtonRectangle_isNormal(renderWindowObj *window_infos,
     sfRectangleShape *rectangle)
 {
     sfVector2i mousePos =
-    sfMouse_getPositionRenderWindow(render_window->render_window);
+    sfMouse_getPositionRenderWindow(window_infos->render_window);
     sfVector2u windowSize =
-    sfRenderWindow_getSize(render_window->render_window);
+    sfRenderWindow_getSize(window_infos->render_window);
     sfFloatRect bounds = sfRectangleShape_getGlobalBounds(rectangle);
-    float scaleX = (float)windowSize.x / render_window->infos.width;
-    float scaleY = (float)windowSize.y / render_window->infos.height;
+    float scaleX = (float)windowSize.x / window_infos->mode.width;
+    float scaleY = (float)windowSize.y / window_infos->mode.height;
 
     bounds.left *= scaleX;
     bounds.top *= scaleY;
@@ -21,16 +21,16 @@ sfBool mySfButtonRectangle_isNormal(renderWindowObj *render_window,
     return sfFalse;
 }
 
-sfBool mySfButtonRectangle_isHoover(renderWindowObj *render_window,
+sfBool mySfButtonRectangle_isHoover(renderWindowObj *window_infos,
     sfRectangleShape *rectangle)
 {
     sfVector2i mousePos =
-    sfMouse_getPositionRenderWindow(render_window->render_window);
+    sfMouse_getPositionRenderWindow(window_infos->render_window);
     sfVector2u windowSize =
-    sfRenderWindow_getSize(render_window->render_window);
+    sfRenderWindow_getSize(window_infos->render_window);
     sfFloatRect bounds = sfRectangleShape_getGlobalBounds(rectangle);
-    float scaleX = (float)windowSize.x / render_window->infos.width;
-    float scaleY = (float)windowSize.y / render_window->infos.height;
+    float scaleX = (float)windowSize.x / window_infos->mode.width;
+    float scaleY = (float)windowSize.y / window_infos->mode.height;
 
     bounds.left *= scaleX;
     bounds.top *= scaleY;
@@ -42,7 +42,7 @@ sfBool mySfButtonRectangle_isHoover(renderWindowObj *render_window,
     return sfFalse;
 }
 
-sfBool mySfButtonRectangle_isLeftClick(renderWindowObj *render_window,
+sfBool mySfButtonRectangle_isLeftClick(renderWindowObj *window_infos,
     sfRectangleShape *rectangle, sfEvent *event)
 {
     sfVector2i mousePos;
@@ -54,11 +54,11 @@ sfBool mySfButtonRectangle_isLeftClick(renderWindowObj *render_window,
     if (!(event->type == sfEvtMouseButtonPressed &&
     sfMouse_isButtonPressed(sfMouseLeft)))
         return sfFalse;
-    mousePos = sfMouse_getPositionRenderWindow(render_window->render_window);
-    windowSize = sfRenderWindow_getSize(render_window->render_window);
+    mousePos = sfMouse_getPositionRenderWindow(window_infos->render_window);
+    windowSize = sfRenderWindow_getSize(window_infos->render_window);
     bounds = sfRectangleShape_getGlobalBounds(rectangle);
-    scaleX = (float)windowSize.x / render_window->infos.width;
-    scaleY = (float)windowSize.y / render_window->infos.height;
+    scaleX = (float)windowSize.x / window_infos->mode.width;
+    scaleY = (float)windowSize.y / window_infos->mode.height;
     bounds.left *= scaleX;
     bounds.top *= scaleY;
     bounds.width *= scaleX;
@@ -69,7 +69,7 @@ sfBool mySfButtonRectangle_isLeftClick(renderWindowObj *render_window,
     return sfFalse;
 }
 
-sfBool mySfButtonRectangle_isRightClick(renderWindowObj *render_window,
+sfBool mySfButtonRectangle_isRightClick(renderWindowObj *window_infos,
     sfRectangleShape *rectangle, sfEvent *event)
 {
     sfVector2i mousePos;
@@ -81,11 +81,11 @@ sfBool mySfButtonRectangle_isRightClick(renderWindowObj *render_window,
     if (!(event->type == sfEvtMouseButtonPressed &&
     sfMouse_isButtonPressed(sfMouseRight)))
         return sfFalse;
-    mousePos = sfMouse_getPositionRenderWindow(render_window->render_window);
-    windowSize = sfRenderWindow_getSize(render_window->render_window);
+    mousePos = sfMouse_getPositionRenderWindow(window_infos->render_window);
+    windowSize = sfRenderWindow_getSize(window_infos->render_window);
     bounds = sfRectangleShape_getGlobalBounds(rectangle);
-    scaleX = (float)windowSize.x / render_window->infos.width;
-    scaleY = (float)windowSize.y / render_window->infos.height;
+    scaleX = (float)windowSize.x / window_infos->mode.width;
+    scaleY = (float)windowSize.y / window_infos->mode.height;
     bounds.left *= scaleX;
     bounds.top *= scaleY;
     bounds.width *= scaleX;

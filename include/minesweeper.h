@@ -1,8 +1,9 @@
 #ifndef MINESWEEPER_H_
     #define MINESWEEPER_H_
     #define __windowSize__ minesweeper->window->window_size
-    #define __renderWindow__ minesweeper->window->infos
+    #define __renderWindow__ minesweeper->window->render_window
     #define __videoMode__ minesweeper->window->mode
+    #define __windowInfos__ minesweeper->window->window_infos
     #define __mainFont__ minesweeper->window->main_font
     #include "my.h"
     #include "my_CSFML.h"
@@ -11,8 +12,9 @@
 
 typedef struct window_s {
     sfFont *main_font;
+    sfRenderWindow *render_window;
     sfVideoMode mode;
-    sfRenderWindow *infos;
+    renderWindowObj window_infos;
     sfVector2u window_size;
     spriteObj *background;
 } window_t;

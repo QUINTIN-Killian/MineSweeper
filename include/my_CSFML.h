@@ -40,7 +40,7 @@ typedef struct {
 
 typedef struct {
     sfRenderWindow *render_window;
-    sfVideoMode infos;
+    sfVideoMode mode;
 } renderWindowObj;
 
 spriteObj *mySfSprite_create(const char *texturepath, sfBool origin_centered);
@@ -52,18 +52,18 @@ sfText *mySfText_create(const sfFont *font, const char *string, sfColor color,
 void mySfText_destroy(sfText *obj);
 sfMusic *mySfMusic_create(const char *musicpath, sfBool loop, sfBool play);
 void mySfMusic_destroy(sfMusic *obj);
-sfBool mySfButtonText_isNormal(renderWindowObj *render_window, sfText *text);
-sfBool mySfButtonText_isHoover(renderWindowObj *render_window, sfText *text);
-sfBool mySfButtonText_isLeftClick(renderWindowObj *render_window, sfText *text,
+sfBool mySfButtonText_isNormal(renderWindowObj *window_infos, sfText *text);
+sfBool mySfButtonText_isHoover(renderWindowObj *window_infos, sfText *text);
+sfBool mySfButtonText_isLeftClick(renderWindowObj *window_infos, sfText *text,
     sfEvent *event);
 void mySfText_setOrigin(sfText *obj, originPos pos);
-sfBool mySfButtonRectangle_isNormal(renderWindowObj *render_window,
+sfBool mySfButtonRectangle_isNormal(renderWindowObj *window_infos,
     sfRectangleShape *rectangle);
-sfBool mySfButtonRectangle_isHoover(renderWindowObj *render_window,
+sfBool mySfButtonRectangle_isHoover(renderWindowObj *window_infos,
     sfRectangleShape *rectangle);
-sfBool mySfButtonRectangle_isLeftClick(renderWindowObj *render_window,
+sfBool mySfButtonRectangle_isLeftClick(renderWindowObj *window_infos,
     sfRectangleShape *rectangle, sfEvent *event);
-sfBool mySfButtonRectangle_isRightClick(renderWindowObj *render_window,
+sfBool mySfButtonRectangle_isRightClick(renderWindowObj *window_infos,
     sfRectangleShape *rectangle, sfEvent *event);
 
 #endif

@@ -30,17 +30,15 @@ void destroy_start(minesweeper_t *minesweeper)
 
 void start_startEvent(minesweeper_t *minesweeper, sfEvent *event)
 {
-    renderWindowObj obj = {__renderWindow__, __videoMode__};
-
-    if (mySfButtonText_isNormal(&obj, minesweeper->start->start)) {
+    if (mySfButtonText_isNormal(&__windowInfos__, minesweeper->start->start)) {
         sfText_setFillColor(minesweeper->start->start, sfWhite);
         sfText_setCharacterSize(minesweeper->start->start, MEDIUM);
     }
-    if (mySfButtonText_isHoover(&obj, minesweeper->start->start)) {
+    if (mySfButtonText_isHoover(&__windowInfos__, minesweeper->start->start)) {
         sfText_setFillColor(minesweeper->start->start, sfLightGrey);
         sfText_setCharacterSize(minesweeper->start->start, 50);
     }
-    if (mySfButtonText_isLeftClick(&obj, minesweeper->start->start, event)) {
+    if (mySfButtonText_isLeftClick(&__windowInfos__, minesweeper->start->start, event)) {
         sfText_setFillColor(minesweeper->start->start, sfDarkGrey);
         sfText_setCharacterSize(minesweeper->start->start, 45);
         sfSound_play(minesweeper->sounds->breaking_sound->sound);
@@ -50,17 +48,15 @@ void start_startEvent(minesweeper_t *minesweeper, sfEvent *event)
 
 void start_leaveEvent(minesweeper_t *minesweeper, sfEvent *event)
 {
-    renderWindowObj obj = {__renderWindow__, __videoMode__};
-
-    if (mySfButtonText_isNormal(&obj, minesweeper->start->leave)) {
+    if (mySfButtonText_isNormal(&__windowInfos__, minesweeper->start->leave)) {
         sfText_setFillColor(minesweeper->start->leave, sfWhite);
         sfText_setCharacterSize(minesweeper->start->leave, MEDIUM);
     }
-    if (mySfButtonText_isHoover(&obj, minesweeper->start->leave)) {
+    if (mySfButtonText_isHoover(&__windowInfos__, minesweeper->start->leave)) {
         sfText_setFillColor(minesweeper->start->leave, sfLightGrey);
         sfText_setCharacterSize(minesweeper->start->leave, 50);
     }
-    if (mySfButtonText_isLeftClick(&obj, minesweeper->start->leave, event)) {
+    if (mySfButtonText_isLeftClick(&__windowInfos__, minesweeper->start->leave, event)) {
         sfText_setFillColor(minesweeper->start->leave, sfDarkGrey);
         sfText_setCharacterSize(minesweeper->start->leave, 45);
         sfSound_play(minesweeper->sounds->breaking_sound->sound);
