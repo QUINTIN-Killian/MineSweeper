@@ -52,14 +52,6 @@ sfText *mySfText_create(const sfFont *font, const char *string, sfColor color,
 void mySfText_destroy(sfText *obj);
 sfMusic *mySfMusic_create(const char *musicpath, sfBool loop, sfBool play);
 void mySfMusic_destroy(sfMusic *obj);
-sfBool mySfButtonSprite_isNormal(renderWindowObj *render_window,
-    spriteObj *sprite);
-sfBool mySfButtonSprite_isHoover(renderWindowObj *render_window,
-    spriteObj *sprite);
-sfBool mySfButtonSprite_isLeftClick(renderWindowObj *render_window, spriteObj *sprite,
-    sfEvent *event);
-sfBool mySfButtonSprite_isRightClick(renderWindowObj *render_window,
-    spriteObj *sprite, sfEvent *event);
 sfBool mySfButtonText_isNormal(renderWindowObj *render_window, sfText *text);
 sfBool mySfButtonText_isHoover(renderWindowObj *render_window, sfText *text);
 sfBool mySfButtonText_isLeftClick(renderWindowObj *render_window, sfText *text,
