@@ -31,26 +31,45 @@ static void draw_timer(minesweeper_t *minesweeper)
     free(tmp);
 }
 
+bool victory(minesweeper_t *minesweeper)
+{
+    for (int i = 0; i < minesweeper->height; i++) {
+        for (int j = 0; j < minesweeper->width; j++) {
+            if (minesweeper->game->grid[i][j].state != REVEALED &&
+            minesweeper->game->grid[i][j].type != BOMB)
+                return false;
+        }
+    }
+    return true;
+}
+
 static void mine(minesweeper_t *minesweeper, int x, int y)
 {
     sfSound_play(minesweeper->sounds->breaking_sound->sound);
     if (minesweeper->game->grid[y][x].type == BOMB) {
         sfSound_play(minesweeper->sounds->explosion_sound->sound);
         reveal_all_grid(minesweeper);
-    } else
+    } else {
         reveal_boxes(minesweeper, x, y);
+        if (victory(minesweeper))
+            return;
+            //save best score in a file here !
+    }
 }
+
 
 static void flag(minesweeper_t *minesweeper, int x, int y)
 {
     sfSound_play(minesweeper->sounds->flag_sound->sound);
     minesweeper->game->grid[y][x].state = FLAGED;
+    minesweeper->bombs_left--;
 }
 
 static void unflag(minesweeper_t *minesweeper, int x, int y)
 {
     sfSound_play(minesweeper->sounds->flag_sound->sound);
     minesweeper->game->grid[y][x].state = HIDDEN;
+    minesweeper->bombs_left++;
 }
 
 void game_boxEvent(minesweeper_t *minesweeper, sfEvent *event)
