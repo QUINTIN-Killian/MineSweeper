@@ -60,10 +60,9 @@ typedef enum boxType_s {
 typedef struct box_s {
     boxState_t state;
     boxType_t type;
-    spriteObj *rockSprite;
     spriteObj *flagSprite;
     sfText *textValue;
-    sfRectangleShape *outline;
+    sfRectangleShape *rock;
 } box_t;
 
 typedef struct start_s {
@@ -77,6 +76,7 @@ typedef struct game_s {
     box_t **grid;
     sfText *timer;
     sfClock *clock;
+    sfVector2f default_box_size;
 } game_t;
 
 typedef struct minesweeper_s {

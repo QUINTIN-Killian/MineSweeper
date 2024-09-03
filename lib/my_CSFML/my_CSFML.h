@@ -65,5 +65,13 @@ sfBool mySfButtonText_isHoover(renderWindowObj *render_window, sfText *text);
 sfBool mySfButtonText_isLeftClick(renderWindowObj *render_window, sfText *text,
     sfEvent *event);
 void mySfText_setOrigin(sfText *obj, originPos pos);
+sfBool mySfButtonRectangle_isNormal(renderWindowObj *render_window,
+    sfRectangleShape *rectangle);
+sfBool mySfButtonRectangle_isHoover(renderWindowObj *render_window,
+    sfRectangleShape *rectangle);
+sfBool mySfButtonRectangle_isLeftClick(renderWindowObj *render_window,
+    sfRectangleShape *rectangle, sfEvent *event);
+sfBool mySfButtonRectangle_isRightClick(renderWindowObj *render_window,
+    sfRectangleShape *rectangle, sfEvent *event);
 
 #endif

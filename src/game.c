@@ -3,6 +3,7 @@
 static void init_game(minesweeper_t *minesweeper)
 {
     minesweeper->game = malloc(sizeof(game_t));
+    minesweeper->game->default_box_size = (sfVector2f){626, 626};
     minesweeper->game->grid = generate_grid(minesweeper);
     set_grid(minesweeper);
     minesweeper->game->timer = mySfText_create(__mainFont__,
@@ -36,21 +37,21 @@ void game_boxEvent(minesweeper_t *minesweeper, sfEvent *event)
 
     for (int i = 0; i < minesweeper->height; i++) {
         for (int j = 0; j < minesweeper->width; j++) {
-            if (mySfButtonSprite_isLeftClick(&obj,
-            minesweeper->game->grid[i][j].rockSprite, event)) {
+            if (mySfButtonRectangle_isLeftClick(&obj,
+            minesweeper->game->grid[i][j].rock, event)) {
                 sfSound_play(minesweeper->sounds->breaking_sound->sound);
                 reveal_boxes(minesweeper, j, i);
                 return;
             } 
-            if (mySfButtonSprite_isRightClick(&obj,
-            minesweeper->game->grid[i][j].rockSprite, event) &&
+            if (mySfButtonRectangle_isRightClick(&obj,
+            minesweeper->game->grid[i][j].rock, event) &&
             minesweeper->game->grid[i][j].state == FLAGED) {
                 sfSound_play(minesweeper->sounds->flag_sound->sound);
                 minesweeper->game->grid[i][j].state = HIDDEN;
                 return;
             }
-            if (mySfButtonSprite_isRightClick(&obj,
-            minesweeper->game->grid[i][j].rockSprite, event) &&
+            if (mySfButtonRectangle_isRightClick(&obj,
+            minesweeper->game->grid[i][j].rock, event) &&
             minesweeper->game->grid[i][j].state == HIDDEN) {
                 sfSound_play(minesweeper->sounds->flag_sound->sound);
                 minesweeper->game->grid[i][j].state = FLAGED;

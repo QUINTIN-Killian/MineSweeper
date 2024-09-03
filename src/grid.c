@@ -18,10 +18,8 @@ box_t **generate_grid(minesweeper_t *minesweeper)
 void set_grid(minesweeper_t *minesweeper)
 {
     float scale = 1.2;
-    sfFloatRect bounds =
-    sfSprite_getGlobalBounds(minesweeper->game->grid[0][0].rockSprite->sprite);
     sfVector2f box_size =
-    {bounds.width * (scale / 30.0), bounds.height * (scale / 30.0)};
+    {minesweeper->game->default_box_size.x * (scale / 30.0), minesweeper->game->default_box_size.y * (scale / 30.0)};
     sfVector2f grid_size =
     {box_size.x * minesweeper->width + 3 * (minesweeper->width - 1),
     box_size.y * minesweeper->height + 3 * (minesweeper->height - 1)};
