@@ -70,24 +70,6 @@ void set_box(box_t *box, sfVector2f position, sfSize size)
     }
 }
 
-void draw_box(minesweeper_t *minesweeper, box_t *box)
-{
-    sfRenderWindow_drawRectangleShape(__renderWindow__, box->rectangle, NULL);
-    if (box->state == REVEALED) {
-        if (box->textValue != NULL)
-            sfRenderWindow_drawText(__renderWindow__, box->textValue, NULL);
-        if (box->mine != NULL)
-            sfRenderWindow_drawSprite(__renderWindow__, box->mine->sprite,
-            NULL);
-        return;
-    }
-    if (box->state == FLAGED) {
-        sfRenderWindow_drawSprite(__renderWindow__, box->flag->sprite,
-        NULL);
-        return;
-    }
-}
-
 static bool is_in_range_grid(int width, int height, int x, int y)
 {
     return (y >= 0 && y < height && x >= 0 && x < width);

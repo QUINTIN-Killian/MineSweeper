@@ -130,5 +130,18 @@ void set_grid(minesweeper_t *minesweeper);
 void dig_event(minesweeper_t *minesweeper, sfEvent *event);
 void reveal_boxes(minesweeper_t *minesweeper, int x, int y);
 void reveal_grid(minesweeper_t *minesweeper);
+void game_boxEvent(minesweeper_t *minesweeper, sfEvent *event);
+void start_startEvent(minesweeper_t *minesweeper, sfEvent *event);
+void start_leaveEvent(minesweeper_t *minesweeper, sfEvent *event);
+void mine(minesweeper_t *minesweeper, int x, int y);
+void flag(minesweeper_t *minesweeper, int x, int y);
+void unflag(minesweeper_t *minesweeper, int x, int y);
+void init_start(minesweeper_t *minesweeper);
+void destroy_start(minesweeper_t *minesweeper);
+void init_game(minesweeper_t *minesweeper);
+void destroy_game(minesweeper_t *minesweeper);
+void draw_timer(minesweeper_t *minesweeper);
+void init_credits(minesweeper_t *minesweeper);
+void destroy_credits(minesweeper_t *minesweeper);
 
 #endif

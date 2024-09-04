@@ -53,13 +53,6 @@ void reveal_grid(minesweeper_t *minesweeper)
     }
 }
 
-void draw_grid(minesweeper_t *minesweeper)
-{
-    for (int i = 0; i < minesweeper->height; i++)
-        for (int j = 0; j < minesweeper->width; j++)
-            draw_box(minesweeper, &minesweeper->game->grid[i][j]);
-}
-
 void destroy_grid(minesweeper_t *minesweeper)
 {
     for (int i = 0; i < minesweeper->height; i++) {

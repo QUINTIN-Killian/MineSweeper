@@ -17,28 +17,6 @@ void init_window(minesweeper_t *minesweeper)
     __windowInfos__ = (renderWindowObj){__renderWindow__, __videoMode__};
 }
 
-void draw_background(minesweeper_t *minesweeper)
-{
-    sfRenderWindow_drawSprite(__renderWindow__,
-    minesweeper->window->background->sprite, NULL);
-}
-
-void dig_event(minesweeper_t *minesweeper, sfEvent *event)
-{
-    if (event->type == sfEvtMouseButtonPressed &&
-    sfMouse_isButtonPressed(sfMouseLeft)) {
-        sfSound_play(minesweeper->sounds->mining_sound->sound);
-    }
-}
-
-void close_window_event(minesweeper_t *minesweeper, sfEvent *event)
-{
-    if (event->type == sfEvtClosed ||
-    sfKeyboard_isKeyPressed(sfKeyEscape)) {
-        sfRenderWindow_close(__renderWindow__);
-    }
-}
-
 void destroy_window(minesweeper_t *minesweeper)
 {
     sfFont_destroy(__mainFont__);
