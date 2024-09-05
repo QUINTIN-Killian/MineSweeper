@@ -52,11 +52,6 @@ box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type,
     return box;
 }
 
-static bool is_in_range_grid(int width, int height, int x, int y)
-{
-    return (y >= 0 && y < height && x >= 0 && x < width);
-}
-
 void set_box(minesweeper_t *minesweeper, box_t *box)
 {
     char *value;

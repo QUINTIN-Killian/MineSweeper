@@ -46,3 +46,8 @@ void destroy_grid(minesweeper_t *minesweeper)
     }
     free(minesweeper->game->grid);
 }
+
+bool is_in_range_grid(int width, int height, int x, int y)
+{
+    return (y >= 0 && y < height && x >= 0 && x < width);
+}

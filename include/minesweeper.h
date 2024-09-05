@@ -78,6 +78,7 @@ typedef struct start_s {
 } start_t;
 
 typedef struct game_s {
+    bool first_play;
     box_t **grid;
     sfText *timer;
     sfClock *clock;
@@ -144,5 +145,6 @@ void draw_timer(minesweeper_t *minesweeper);
 void init_credits(minesweeper_t *minesweeper);
 void destroy_credits(minesweeper_t *minesweeper);
 void set_box(minesweeper_t *minesweeper, box_t *box);
+bool is_in_range_grid(int width, int height, int x, int y);
 
 #endif
