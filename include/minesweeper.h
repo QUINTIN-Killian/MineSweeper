@@ -9,6 +9,7 @@
     #include "my_CSFML.h"
     #include <stdbool.h>
     #include <time.h>
+    #define BOX_SCALE 0.04f
 
 typedef struct window_s {
     sfFont *main_font;
@@ -119,16 +120,15 @@ void manage_musics_event(minesweeper_t *minesweeper, sfEvent *event);
 void credits(minesweeper_t *minesweeper);
 void game(minesweeper_t *minesweeper);
 void draw(minesweeper_t *minesweeper, int nb_draw, ...);
-box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type);
-void set_box(box_t *box, sfVector2f position, sfSize size);
+box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type,
+    sfVector2f pos);
 void draw_box(minesweeper_t *minesweeper, box_t *box);
 void destroy_box(box_t *box);
 box_t **generate_grid(minesweeper_t *minesweeper);
 void draw_grid(minesweeper_t *minesweeper);
 void destroy_grid(minesweeper_t *minesweeper);
-void set_grid(minesweeper_t *minesweeper);
 void dig_event(minesweeper_t *minesweeper, sfEvent *event);
-void reveal_boxes(minesweeper_t *minesweeper, int x, int y);
+void reveal_box(minesweeper_t *minesweeper, int x, int y);
 void reveal_grid(minesweeper_t *minesweeper);
 void game_boxEvent(minesweeper_t *minesweeper, sfEvent *event);
 void start_startEvent(minesweeper_t *minesweeper, sfEvent *event);
@@ -143,5 +143,6 @@ void destroy_game(minesweeper_t *minesweeper);
 void draw_timer(minesweeper_t *minesweeper);
 void init_credits(minesweeper_t *minesweeper);
 void destroy_credits(minesweeper_t *minesweeper);
+void set_box(minesweeper_t *minesweeper, box_t *box);
 
 #endif

@@ -5,7 +5,6 @@ void init_game(minesweeper_t *minesweeper)
     minesweeper->game = malloc(sizeof(game_t));
     minesweeper->game->default_box_size = (sfVector2f){626, 626};
     minesweeper->game->grid = generate_grid(minesweeper);
-    set_grid(minesweeper);
     minesweeper->game->timer = mySfText_create(__mainFont__,
     NULL, sfLightGrey, SMALL);
     sfText_setPosition(minesweeper->game->timer, (sfVector2f)
@@ -39,13 +38,12 @@ void mine(minesweeper_t *minesweeper, int x, int y)
         sfSound_play(minesweeper->sounds->explosion_sound->sound);
         reveal_grid(minesweeper);
     } else {
-        reveal_boxes(minesweeper, x, y);
+        reveal_box(minesweeper, x, y);
         if (victory(minesweeper))
             return;
             //save best score in a file here !
     }
 }
-
 
 void flag(minesweeper_t *minesweeper, int x, int y)
 {
