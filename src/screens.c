@@ -48,10 +48,15 @@ void game(minesweeper_t *minesweeper)
     init_game(minesweeper);
     while (sfRenderWindow_isOpen(__renderWindow__)) {
         sfRenderWindow_clear(__renderWindow__, sfGrey);
-        draw(minesweeper, 3, &draw_background, &draw_grid, &draw_timer);
-        get_event(minesweeper, 6, &close_window_event, &dig_event,
-        &mute_musics_event, &manage_musics_event, &game_boxEvent,
-        &pause_event);
+        draw(minesweeper, 4, &draw_background, &draw_grid, &draw_timer,
+        &draw_pause);
+        if (minesweeper->game->clock->pause)
+            get_event(minesweeper, 5, &close_window_event, &dig_event,
+            &mute_musics_event, &manage_musics_event, &pause_event);
+        else
+            get_event(minesweeper, 6, &close_window_event, &dig_event,
+            &mute_musics_event, &manage_musics_event, &game_boxEvent,
+            &pause_event);
         sfRenderWindow_display(__renderWindow__);
     }
     destroy_game(minesweeper);

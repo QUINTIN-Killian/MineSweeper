@@ -11,6 +11,7 @@ void init_game(minesweeper_t *minesweeper)
     {__windowSize__.x / 100, __windowSize__.y / 100});
     minesweeper->game->clock = mySfClock_create();
     minesweeper->game->first_play = true;
+    init_pause(minesweeper);
 }
 
 void destroy_game(minesweeper_t *minesweeper)
@@ -18,4 +19,5 @@ void destroy_game(minesweeper_t *minesweeper)
     destroy_grid(minesweeper);
     mySfClock_destroy(minesweeper->game->clock);
     mySfText_destroy(minesweeper->game->timer);
+    destroy_pause(minesweeper);
 }

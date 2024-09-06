@@ -85,6 +85,14 @@ typedef struct game_s {
     sfVector2f default_box_size;
 } game_t;
 
+typedef struct pause_s {
+    sfRectangleShape *background;
+    sfText *pause;
+    sfText *resume;
+    sfText *restart;
+    sfText *leave;
+} pause_t;
+
 typedef struct minesweeper_s {
     int **map;
     int width;
@@ -97,6 +105,7 @@ typedef struct minesweeper_s {
     credits_t *credits;
     start_t *start;
     game_t *game;
+    pause_t *pause;
 } minesweeper_t;
 
 int randint(int a, int b);
@@ -147,5 +156,8 @@ void destroy_credits(minesweeper_t *minesweeper);
 void set_box(minesweeper_t *minesweeper, box_t *box);
 bool is_in_range_grid(int width, int height, int x, int y);
 void pause_event(minesweeper_t *minesweeper, sfEvent *event);
+void init_pause(minesweeper_t *minesweeper);
+void destroy_pause(minesweeper_t *minesweeper);
+void draw_pause(minesweeper_t *minesweeper);
 
 #endif

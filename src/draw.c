@@ -1,5 +1,13 @@
 #include "../include/minesweeper.h"
 
+void draw_pause(minesweeper_t *minesweeper)
+{
+    if (minesweeper->game->clock->pause) {
+        sfRenderWindow_drawRectangleShape(__renderWindow__,
+        minesweeper->pause->background, NULL);
+    }
+}
+
 void draw_background(minesweeper_t *minesweeper)
 {
     sfRenderWindow_drawSprite(__renderWindow__,
