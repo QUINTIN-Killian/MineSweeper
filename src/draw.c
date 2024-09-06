@@ -18,7 +18,7 @@ void draw_start(minesweeper_t *minesweeper)
 
 void draw_timer(minesweeper_t *minesweeper)
 {
-    sfTime time = sfClock_getElapsedTime(minesweeper->game->clock);
+    sfTime time = mySfClock_getElapsedTime(minesweeper->game->clock);
     float seconds = sfTime_asSeconds(time);
     char *tmp = convert_int_to_str(seconds);
 

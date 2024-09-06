@@ -1,6 +1,7 @@
 #ifndef MY_CSFML_H_
     #define MY_CSFML_H_
     #define SFNULL ((void *)-1)
+    #include <stdbool.h>
     #include <stdlib.h>
     #include <stdio.h>
     #include <unistd.h>
@@ -43,6 +44,12 @@ typedef struct {
     sfVideoMode mode;
 } mySfRenderWindow;
 
+typedef struct {
+    sfClock *clock;
+    bool pause;
+    sfTime buffer;
+} mySfClock;
+
 mySfSprite *mySfSprite_create(const char *texturepath, sfBool origin_centered);
 void mySfSprite_destroy(mySfSprite *obj);
 mySfSound *mySfSound_create(const char *soundpath);
@@ -65,5 +72,10 @@ sfBool mySfButtonRectangle_isLeftClick(mySfRenderWindow *window_infos,
     sfRectangleShape *rectangle, sfEvent *event);
 sfBool mySfButtonRectangle_isRightClick(mySfRenderWindow *window_infos,
     sfRectangleShape *rectangle, sfEvent *event);
+mySfClock *mySfClock_create(void);
+void mySfClock_pause(mySfClock *obj);
+void mySfClock_unpause(mySfClock *obj);
+sfTime mySfClock_getElapsedTime(mySfClock *obj);
+void mySfClock_destroy(mySfClock *obj);
 
 #endif

@@ -9,13 +9,13 @@ void init_game(minesweeper_t *minesweeper)
     NULL, sfLightGrey, SMALL);
     sfText_setPosition(minesweeper->game->timer, (sfVector2f)
     {__windowSize__.x / 100, __windowSize__.y / 100});
-    minesweeper->game->clock = sfClock_create();
+    minesweeper->game->clock = mySfClock_create();
     minesweeper->game->first_play = true;
 }
 
 void destroy_game(minesweeper_t *minesweeper)
 {
     destroy_grid(minesweeper);
-    sfClock_destroy(minesweeper->game->clock);
+    mySfClock_destroy(minesweeper->game->clock);
     mySfText_destroy(minesweeper->game->timer);
 }

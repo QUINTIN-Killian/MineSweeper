@@ -81,7 +81,7 @@ typedef struct game_s {
     bool first_play;
     box_t **grid;
     sfText *timer;
-    sfClock *clock;
+    mySfClock *clock;
     sfVector2f default_box_size;
 } game_t;
 
@@ -146,5 +146,6 @@ void init_credits(minesweeper_t *minesweeper);
 void destroy_credits(minesweeper_t *minesweeper);
 void set_box(minesweeper_t *minesweeper, box_t *box);
 bool is_in_range_grid(int width, int height, int x, int y);
+void pause_event(minesweeper_t *minesweeper, sfEvent *event);
 
 #endif

@@ -1,5 +1,16 @@
 #include "../include/minesweeper.h"
 
+void pause_event(minesweeper_t *minesweeper, sfEvent *event)
+{
+    if (event->type == sfEvtKeyPressed &&
+    sfKeyboard_isKeyPressed(sfKeyEscape)) {
+        if (minesweeper->game->clock->pause)
+            mySfClock_unpause(minesweeper->game->clock);
+        else
+            mySfClock_pause(minesweeper->game->clock);
+    }
+}
+
 void dig_event(minesweeper_t *minesweeper, sfEvent *event)
 {
     if (event->type == sfEvtMouseButtonPressed &&
@@ -10,8 +21,7 @@ void dig_event(minesweeper_t *minesweeper, sfEvent *event)
 
 void close_window_event(minesweeper_t *minesweeper, sfEvent *event)
 {
-    if (event->type == sfEvtClosed ||
-    sfKeyboard_isKeyPressed(sfKeyEscape)) {
+    if (event->type == sfEvtClosed) {
         sfRenderWindow_close(__renderWindow__);
     }
 }
