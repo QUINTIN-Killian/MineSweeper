@@ -15,9 +15,9 @@ typedef struct window_s {
     sfFont *main_font;
     sfRenderWindow *render_window;
     sfVideoMode mode;
-    renderWindowObj window_infos;
+    mySfRenderWindow window_infos;
     sfVector2u window_size;
-    spriteObj *background;
+    mySfSprite *background;
 } window_t;
 
 typedef struct credits_s {
@@ -25,10 +25,10 @@ typedef struct credits_s {
 } credits_t;
 
 typedef struct sounds_s {
-    soundObj *mining_sound;
-    soundObj *breaking_sound;
-    soundObj *flag_sound;
-    soundObj *explosion_sound;
+    mySfSound *mining_sound;
+    mySfSound *breaking_sound;
+    mySfSound *flag_sound;
+    mySfSound *explosion_sound;
 } sounds_t;
 
 typedef struct musics_s {
@@ -64,8 +64,8 @@ typedef enum boxType_s {
 typedef struct box_s {
     boxState_t state;
     boxType_t type;
-    spriteObj *flag;
-    spriteObj *mine;
+    mySfSprite *flag;
+    mySfSprite *mine;
     sfText *textValue;
     sfRectangleShape *rectangle;
 } box_t;

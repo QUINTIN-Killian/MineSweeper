@@ -19,7 +19,7 @@ sfText *mySfText_create(const sfFont *font, const char *string, sfColor color,
     return obj;
 }
 
-void mySfText_setOrigin(sfText *obj, originPos pos)
+void mySfText_setOrigin(sfText *obj, mySfOrigin pos)
 {
     sfFloatRect bounds = sfText_getLocalBounds(obj);
 

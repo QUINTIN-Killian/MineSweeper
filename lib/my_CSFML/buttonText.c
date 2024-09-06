@@ -1,6 +1,6 @@
 #include "my_CSFML.h"
 
-sfBool mySfButtonText_isNormal(renderWindowObj *window_infos, sfText *text)
+sfBool mySfButtonText_isNormal(mySfRenderWindow *window_infos, sfText *text)
 {
     sfVector2i mousePos =
     sfMouse_getPositionRenderWindow(window_infos->render_window);
@@ -20,7 +20,7 @@ sfBool mySfButtonText_isNormal(renderWindowObj *window_infos, sfText *text)
     return sfFalse;
 }
 
-sfBool mySfButtonText_isHoover(renderWindowObj *window_infos, sfText *text)
+sfBool mySfButtonText_isHoover(mySfRenderWindow *window_infos, sfText *text)
 {
     sfVector2i mousePos =
     sfMouse_getPositionRenderWindow(window_infos->render_window);
@@ -40,7 +40,7 @@ sfBool mySfButtonText_isHoover(renderWindowObj *window_infos, sfText *text)
     return sfFalse;
 }
 
-sfBool mySfButtonText_isLeftClick(renderWindowObj *window_infos, sfText *text,
+sfBool mySfButtonText_isLeftClick(mySfRenderWindow *window_infos, sfText *text,
     sfEvent *event)
 {
     sfVector2i mousePos;

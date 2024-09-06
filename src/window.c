@@ -14,7 +14,7 @@ void init_window(minesweeper_t *minesweeper)
     mySfSprite_create("backgrounds/MineSweeperBackground.png", sfTrue);
     sfSprite_setPosition(minesweeper->window->background->sprite, (sfVector2f)
     {__windowSize__.x / 2, __windowSize__.y / 2});
-    __windowInfos__ = (renderWindowObj){__renderWindow__, __videoMode__};
+    __windowInfos__ = (mySfRenderWindow){__renderWindow__, __videoMode__};
 }
 
 void destroy_window(minesweeper_t *minesweeper)

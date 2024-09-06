@@ -1,6 +1,6 @@
 #include "my_CSFML.h"
 
-sfBool mySfButtonRectangle_isNormal(renderWindowObj *window_infos,
+sfBool mySfButtonRectangle_isNormal(mySfRenderWindow *window_infos,
     sfRectangleShape *rectangle)
 {
     sfVector2i mousePos =
@@ -21,7 +21,7 @@ sfBool mySfButtonRectangle_isNormal(renderWindowObj *window_infos,
     return sfFalse;
 }
 
-sfBool mySfButtonRectangle_isHoover(renderWindowObj *window_infos,
+sfBool mySfButtonRectangle_isHoover(mySfRenderWindow *window_infos,
     sfRectangleShape *rectangle)
 {
     sfVector2i mousePos =
@@ -42,7 +42,7 @@ sfBool mySfButtonRectangle_isHoover(renderWindowObj *window_infos,
     return sfFalse;
 }
 
-sfBool mySfButtonRectangle_isLeftClick(renderWindowObj *window_infos,
+sfBool mySfButtonRectangle_isLeftClick(mySfRenderWindow *window_infos,
     sfRectangleShape *rectangle, sfEvent *event)
 {
     sfVector2i mousePos;
@@ -69,7 +69,7 @@ sfBool mySfButtonRectangle_isLeftClick(renderWindowObj *window_infos,
     return sfFalse;
 }
 
-sfBool mySfButtonRectangle_isRightClick(renderWindowObj *window_infos,
+sfBool mySfButtonRectangle_isRightClick(mySfRenderWindow *window_infos,
     sfRectangleShape *rectangle, sfEvent *event)
 {
     sfVector2i mousePos;
