@@ -32,6 +32,20 @@ void draw_start(minesweeper_t *minesweeper)
     minesweeper->start->leave, NULL);
 }
 
+void draw_game(minesweeper_t *minesweeper)
+{
+    char *bombs_left = convert_int_to_str(minesweeper->bombs_left);
+    char *str = concat_str(2, ": ", bombs_left);
+
+    sfRenderWindow_drawSprite(__renderWindow__,
+    minesweeper->game->bomb->sprite, NULL);
+    sfText_setString(minesweeper->game->bombs_left, str);
+    sfRenderWindow_drawText(__renderWindow__, minesweeper->game->bombs_left,
+    NULL);
+    free(bombs_left);
+    free(str);
+}
+
 void draw_timer(minesweeper_t *minesweeper)
 {
     sfTime time = mySfClock_getElapsedTime(minesweeper->game->clock);

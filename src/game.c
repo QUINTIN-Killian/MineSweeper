@@ -6,16 +6,28 @@ void init_game(minesweeper_t *minesweeper)
     minesweeper->game->default_box_size = (sfVector2f){626, 626};
     minesweeper->game->grid = generate_grid(minesweeper);
     minesweeper->game->timer = mySfText_create(__mainFont__,
-    NULL, sfLightGrey, SMALL);
+    NULL, sfWhite, SMALL);
     sfText_setPosition(minesweeper->game->timer, (sfVector2f)
     {__windowSize__.x / 100, __windowSize__.y / 100});
     minesweeper->game->clock = mySfClock_create();
     minesweeper->game->first_play = true;
+    minesweeper->game->bomb = mySfSprite_create("images/Mine.png", sfFalse);
+    sfSprite_setPosition(minesweeper->game->bomb->sprite,
+    (sfVector2f){__windowSize__.x / 1.15, 0});
+    sfSprite_setScale(minesweeper->game->bomb->sprite,
+    (sfVector2f){BOX_SCALE * 4, BOX_SCALE * 4});
+    minesweeper->game->bombs_left = mySfText_create(__mainFont__, ": 000",
+    sfWhite, SMALL);
+    mySfText_setOrigin(minesweeper->game->bombs_left, TOP_RIGHT);
+    sfText_setPosition(minesweeper->game->bombs_left, (sfVector2f)
+    {__windowSize__.x - __windowSize__.x / 100, __windowSize__.y / 100});
     init_pause(minesweeper);
 }
 
 void destroy_game(minesweeper_t *minesweeper)
 {
+    mySfSprite_destroy(minesweeper->game->bomb);
+    mySfText_destroy(minesweeper->game->bombs_left);
     destroy_grid(minesweeper);
     mySfClock_destroy(minesweeper->game->clock);
     mySfText_destroy(minesweeper->game->timer);
