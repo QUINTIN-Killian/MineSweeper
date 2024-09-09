@@ -159,5 +159,8 @@ void pause_event(minesweeper_t *minesweeper, sfEvent *event);
 void init_pause(minesweeper_t *minesweeper);
 void destroy_pause(minesweeper_t *minesweeper);
 void draw_pause(minesweeper_t *minesweeper);
+void pause_continueEvent(minesweeper_t *minesweeper, sfEvent *event);
+void pause_restartEvent(minesweeper_t *minesweeper, sfEvent *event);
+void pause_leaveEvent(minesweeper_t *minesweeper, sfEvent *event);
 
 #endif

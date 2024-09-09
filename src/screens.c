@@ -51,8 +51,9 @@ void game(minesweeper_t *minesweeper)
         draw(minesweeper, 4, &draw_background, &draw_grid, &draw_timer,
         &draw_pause);
         if (minesweeper->game->clock->pause)
-            get_event(minesweeper, 5, &close_window_event, &dig_event,
-            &mute_musics_event, &manage_musics_event, &pause_event);
+            get_event(minesweeper, 8, &close_window_event, &dig_event,
+            &mute_musics_event, &manage_musics_event, &pause_event,
+            &pause_continueEvent, &pause_restartEvent, &pause_leaveEvent);
         else
             get_event(minesweeper, 6, &close_window_event, &dig_event,
             &mute_musics_event, &manage_musics_event, &game_boxEvent,
