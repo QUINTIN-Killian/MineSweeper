@@ -1,17 +1,5 @@
 #include "../include/minesweeper.h"
 
-bool victory(minesweeper_t *minesweeper)
-{
-    for (int i = 0; i < minesweeper->height; i++) {
-        for (int j = 0; j < minesweeper->width; j++) {
-            if (minesweeper->game->grid[i][j].state != REVEALED &&
-            minesweeper->game->grid[i][j].type != BOMB)
-                return false;
-        }
-    }
-    return true;
-}
-
 void switch_boxes(minesweeper_t *minesweeper, int x, int y, boxType_t type)
 {
     boxType_t box_clicked_type = minesweeper->map[y][x];
@@ -65,9 +53,11 @@ void mine(minesweeper_t *minesweeper, int x, int y)
         reveal_grid(minesweeper);
     } else {
         reveal_box(minesweeper, x, y);
-        if (victory(minesweeper))
+        if (minesweeper->total_box == minesweeper->total_bombs) {
+            mini_printf("VICTORY !\n");
             return;
             //save best score in a file here !
+        }
     }
 }
 

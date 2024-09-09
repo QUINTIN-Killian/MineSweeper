@@ -57,6 +57,7 @@ void set_box(minesweeper_t *minesweeper, box_t *box)
     char *value;
     sfVector2f pos = sfRectangleShape_getPosition(box->rectangle);
 
+    minesweeper->total_box--;
     box->state = REVEALED;
     sfRectangleShape_setFillColor(box->rectangle, sfLightGrey);
     if (box->type == BOMB) {

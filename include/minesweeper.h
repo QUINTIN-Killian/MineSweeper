@@ -99,6 +99,7 @@ typedef struct minesweeper_s {
     int **map;
     int width;
     int height;
+    int total_box;
     int total_bombs;
     int bombs_left;
     window_t *window;

@@ -4,6 +4,7 @@ static void init(minesweeper_t *minesweeper)
 {
     minesweeper->width = 26; //default : 19, ici : 26
     minesweeper->height = 19; //default : 26, ici : 19
+    minesweeper->total_box = minesweeper->width * minesweeper->height;
     minesweeper->total_bombs = 99;
     minesweeper->bombs_left = minesweeper->total_bombs;
     create_map(minesweeper);
