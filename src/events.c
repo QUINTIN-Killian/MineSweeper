@@ -67,7 +67,7 @@ void pause_restartEvent(minesweeper_t *minesweeper, sfEvent *event)
     (sfVector2f){__windowSize__.x / 2, size.y / 1.5});
 }
 
-void pause_leaveEvent(minesweeper_t *minesweeper, sfEvent *event)
+void pause_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event)
 {
     sfVector2f size;
 
@@ -75,23 +75,23 @@ void pause_leaveEvent(minesweeper_t *minesweeper, sfEvent *event)
         return;
     size = (sfVector2f){__windowSize__.x / 2, __windowSize__.y / 1.1};
     if (mySfButtonText_isNormal(&__windowInfos__,
-    minesweeper->pause->leave)) {
-        sfText_setFillColor(minesweeper->pause->leave, sfWhite);
-        sfText_setCharacterSize(minesweeper->pause->leave, MEDIUM);
+    minesweeper->pause->main_menu)) {
+        sfText_setFillColor(minesweeper->pause->main_menu, sfWhite);
+        sfText_setCharacterSize(minesweeper->pause->main_menu, MEDIUM);
     }
     if (mySfButtonText_isHoover(&__windowInfos__,
-    minesweeper->pause->leave)) {
-        sfText_setFillColor(minesweeper->pause->leave, sfLightGrey);
-        sfText_setCharacterSize(minesweeper->pause->leave, 50);
+    minesweeper->pause->main_menu)) {
+        sfText_setFillColor(minesweeper->pause->main_menu, sfLightGrey);
+        sfText_setCharacterSize(minesweeper->pause->main_menu, 50);
     }
     if (mySfButtonText_isLeftClick(&__windowInfos__,
-    minesweeper->pause->leave, event)) {
-        sfText_setFillColor(minesweeper->pause->leave, sfDarkGrey);
-        sfText_setCharacterSize(minesweeper->pause->leave, 45);
+    minesweeper->pause->main_menu, event)) {
+        sfText_setFillColor(minesweeper->pause->main_menu, sfDarkGrey);
+        sfText_setCharacterSize(minesweeper->pause->main_menu, 45);
         mySfClock_unpause(minesweeper->game->clock);
     }
-    mySfText_setOrigin(minesweeper->pause->leave, CENTER);
-    sfText_setPosition(minesweeper->pause->leave,
+    mySfText_setOrigin(minesweeper->pause->main_menu, CENTER);
+    sfText_setPosition(minesweeper->pause->main_menu,
     (sfVector2f){__windowSize__.x / 2, size.y / 1.2});
 }
 

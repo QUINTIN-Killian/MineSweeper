@@ -14,9 +14,9 @@ static void init_pause_text(minesweeper_t *minesweeper, sfVector2f size)
     sfWhite, MEDIUM);
     sfText_setPosition(minesweeper->pause->restart,
     (sfVector2f){__windowSize__.x / 2, size.y / 1.5});
-    minesweeper->pause->leave = mySfText_create(__mainFont__, "LEAVE",
+    minesweeper->pause->main_menu = mySfText_create(__mainFont__, "MAIN MENU",
     sfWhite, MEDIUM);
-    sfText_setPosition(minesweeper->pause->leave,
+    sfText_setPosition(minesweeper->pause->main_menu,
     (sfVector2f){__windowSize__.x / 2, size.y / 1.2});
 }
 
@@ -44,7 +44,7 @@ void destroy_pause(minesweeper_t *minesweeper)
     mySfText_destroy(minesweeper->pause->pause);
     mySfText_destroy(minesweeper->pause->resume);
     mySfText_destroy(minesweeper->pause->restart);
-    mySfText_destroy(minesweeper->pause->leave);
+    mySfText_destroy(minesweeper->pause->main_menu);
     sfRectangleShape_destroy(minesweeper->pause->background);
     free(minesweeper->pause);
 }

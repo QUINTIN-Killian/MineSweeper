@@ -11,7 +11,7 @@ void draw_pause(minesweeper_t *minesweeper)
         NULL);
         sfRenderWindow_drawText(__renderWindow__, minesweeper->pause->restart,
         NULL);
-        sfRenderWindow_drawText(__renderWindow__, minesweeper->pause->leave,
+        sfRenderWindow_drawText(__renderWindow__, minesweeper->pause->main_menu,
         NULL);
     }
 }

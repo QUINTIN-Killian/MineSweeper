@@ -53,7 +53,7 @@ void game(minesweeper_t *minesweeper)
         if (minesweeper->game->clock->pause)
             get_event(minesweeper, 8, &close_window_event, &dig_event,
             &mute_musics_event, &manage_musics_event, &pause_event,
-            &pause_continueEvent, &pause_restartEvent, &pause_leaveEvent);
+            &pause_continueEvent, &pause_restartEvent, &pause_mainMenuEvent);
         else
             get_event(minesweeper, 6, &close_window_event, &dig_event,
             &mute_musics_event, &manage_musics_event, &game_boxEvent,

@@ -92,7 +92,7 @@ typedef struct pause_s {
     sfText *pause;
     sfText *resume;
     sfText *restart;
-    sfText *leave;
+    sfText *main_menu;
 } pause_t;
 
 typedef struct minesweeper_s {
@@ -164,7 +164,7 @@ void destroy_pause(minesweeper_t *minesweeper);
 void draw_pause(minesweeper_t *minesweeper);
 void pause_continueEvent(minesweeper_t *minesweeper, sfEvent *event);
 void pause_restartEvent(minesweeper_t *minesweeper, sfEvent *event);
-void pause_leaveEvent(minesweeper_t *minesweeper, sfEvent *event);
+void pause_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event);
 void draw_game(minesweeper_t *minesweeper);
 
 #endif
