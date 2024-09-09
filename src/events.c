@@ -30,8 +30,6 @@ void pause_continueEvent(minesweeper_t *minesweeper, sfEvent *event)
     }
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->resume, event)) {
-        sfText_setFillColor(minesweeper->pause->resume, sfDarkGrey);
-        sfText_setCharacterSize(minesweeper->pause->resume, 45);
         mySfClock_unpause(minesweeper->game->clock);
     }
     mySfText_setOrigin(minesweeper->pause->resume, CENTER);
@@ -58,8 +56,6 @@ void pause_restartEvent(minesweeper_t *minesweeper, sfEvent *event)
     }
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->restart, event)) {
-        sfText_setFillColor(minesweeper->pause->restart, sfDarkGrey);
-        sfText_setCharacterSize(minesweeper->pause->restart, 45);
         mySfClock_unpause(minesweeper->game->clock);
     }
     mySfText_setOrigin(minesweeper->pause->restart, CENTER);
@@ -86,8 +82,6 @@ void pause_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event)
     }
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->main_menu, event)) {
-        sfText_setFillColor(minesweeper->pause->main_menu, sfDarkGrey);
-        sfText_setCharacterSize(minesweeper->pause->main_menu, 45);
         mySfClock_unpause(minesweeper->game->clock);
     }
     mySfText_setOrigin(minesweeper->pause->main_menu, CENTER);
@@ -122,9 +116,6 @@ void start_startEvent(minesweeper_t *minesweeper, sfEvent *event)
     }
     if (mySfButtonText_isLeftClick(&__windowInfos__, minesweeper->start->start,
     event)) {
-        sfText_setFillColor(minesweeper->start->start, sfDarkGrey);
-        sfText_setCharacterSize(minesweeper->start->start, 45);
-        sfSound_play(minesweeper->sounds->breaking_sound->sound);
         minesweeper->start->start_minesweeper = true;
     }
 }
@@ -141,9 +132,6 @@ void start_leaveEvent(minesweeper_t *minesweeper, sfEvent *event)
     }
     if (mySfButtonText_isLeftClick(&__windowInfos__, minesweeper->start->leave,
     event)) {
-        sfText_setFillColor(minesweeper->start->leave, sfDarkGrey);
-        sfText_setCharacterSize(minesweeper->start->leave, 45);
-        sfSound_play(minesweeper->sounds->breaking_sound->sound);
         sfRenderWindow_close(__renderWindow__);
     }
 }
