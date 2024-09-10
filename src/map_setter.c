@@ -49,4 +49,5 @@ void reset_map(minesweeper_t *minesweeper)
     place_bombs(minesweeper);
     set_map_values(minesweeper);
     print_map(minesweeper);
+    mini_printf("\n");
 }

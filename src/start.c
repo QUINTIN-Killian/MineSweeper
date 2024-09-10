@@ -2,7 +2,8 @@
 
 void init_start(minesweeper_t *minesweeper)
 {
-    minesweeper->screen = START;
+    if (minesweeper->start != NULL)
+        return;
     minesweeper->start = malloc(sizeof(start_t));
     minesweeper->start->minesweeper_name = mySfText_create(__mainFont__,
     "MineSweeper", sfWhite, VERY_BIG);
@@ -22,8 +23,11 @@ void init_start(minesweeper_t *minesweeper)
 
 void destroy_start(minesweeper_t *minesweeper)
 {
+    if (minesweeper->start == NULL)
+        return;
     mySfText_destroy(minesweeper->start->minesweeper_name);
     mySfText_destroy(minesweeper->start->start);
     mySfText_destroy(minesweeper->start->leave);
     free(minesweeper->start);
+    minesweeper->start = NULL;
 }

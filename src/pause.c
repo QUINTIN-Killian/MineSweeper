@@ -24,6 +24,8 @@ void init_pause(minesweeper_t *minesweeper)
 {
     sfVector2f size;
 
+    if (minesweeper->pause != NULL)
+        return;
     minesweeper->pause = malloc(sizeof(pause_t));
     minesweeper->pause->background = sfRectangleShape_create();
     sfRectangleShape_setFillColor(minesweeper->pause->background,
@@ -41,10 +43,13 @@ void init_pause(minesweeper_t *minesweeper)
 
 void destroy_pause(minesweeper_t *minesweeper)
 {
+    if (minesweeper->pause == NULL)
+        return;
     mySfText_destroy(minesweeper->pause->pause);
     mySfText_destroy(minesweeper->pause->resume);
     mySfText_destroy(minesweeper->pause->restart);
     mySfText_destroy(minesweeper->pause->main_menu);
     sfRectangleShape_destroy(minesweeper->pause->background);
     free(minesweeper->pause);
+    minesweeper->pause = NULL;
 }

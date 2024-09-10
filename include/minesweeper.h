@@ -22,6 +22,7 @@ typedef struct window_s {
 
 typedef struct credits_s {
     sfText *credits_text;
+    bool show;
 } credits_t;
 
 typedef struct sounds_s {
@@ -107,6 +108,7 @@ typedef struct minesweeper_s {
     int width;
     int height;
     int total_box;
+    int box_left;
     int total_bombs;
     int bombs_left;
     window_t *window;
@@ -127,7 +129,6 @@ void set_map_values(minesweeper_t *minesweeper);
 void init_window(minesweeper_t *minesweeper);
 void draw_background(minesweeper_t *minesweeper);
 void destroy_window(minesweeper_t *minesweeper);
-void start(minesweeper_t *minesweeper);
 void draw_start(minesweeper_t *minesweeper);
 void get_event(minesweeper_t *minesweeper, int nb_events, ...);
 void close_window_event(minesweeper_t *minesweeper, sfEvent *event);
@@ -137,14 +138,12 @@ void init_musics(minesweeper_t *minesweeper);
 void destroy_musics(minesweeper_t *minesweeper);
 void mute_musics_event(minesweeper_t *minesweeper, sfEvent *event);
 void manage_musics_event(minesweeper_t *minesweeper, sfEvent *event);
-void credits(minesweeper_t *minesweeper);
-void game(minesweeper_t *minesweeper);
 void draw(minesweeper_t *minesweeper, int nb_draw, ...);
 box_t init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type,
     sfVector2f pos);
 void draw_box(minesweeper_t *minesweeper, box_t *box);
 void destroy_box(box_t *box);
-box_t **generate_grid(minesweeper_t *minesweeper);
+box_t **create_grid(minesweeper_t *minesweeper);
 void draw_grid(minesweeper_t *minesweeper);
 void destroy_grid(minesweeper_t *minesweeper);
 void dig_event(minesweeper_t *minesweeper, sfEvent *event);
@@ -174,5 +173,12 @@ void pause_restartEvent(minesweeper_t *minesweeper, sfEvent *event);
 void pause_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event);
 void draw_game(minesweeper_t *minesweeper);
 void reset_map(minesweeper_t *minesweeper);
+void screen_manager(minesweeper_t *minesweeper);
+void credits_screen(minesweeper_t *minesweeper);
+void start_screen(minesweeper_t *minesweeper);
+void game_screen(minesweeper_t *minesweeper);
+void pause_screen(minesweeper_t *minesweeper);
+void reset_grid(minesweeper_t *minesweeper);
+void reset_game(minesweeper_t *minesweeper);
 
 #endif

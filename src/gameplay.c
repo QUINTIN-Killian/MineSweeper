@@ -53,7 +53,8 @@ void mine(minesweeper_t *minesweeper, int x, int y)
         reveal_grid(minesweeper);
     } else {
         reveal_box(minesweeper, x, y);
-        if (minesweeper->total_box == minesweeper->total_bombs) {
+        if (minesweeper->box_left == minesweeper->total_bombs &&
+        minesweeper->bombs_left == 0) {
             mini_printf("VICTORY !\n");
             return;
             //save best score in a file here !

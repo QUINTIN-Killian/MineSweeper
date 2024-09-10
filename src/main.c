@@ -2,16 +2,21 @@
 
 static void init(minesweeper_t *minesweeper)
 {
-    minesweeper->screen = BLANK;
+    minesweeper->screen = START; //remettre CREDITS
     minesweeper->width = 26; //default : 19, ici : 26
     minesweeper->height = 19; //default : 26, ici : 19
     minesweeper->total_box = minesweeper->width * minesweeper->height;
+    minesweeper->box_left = minesweeper->total_box;
     minesweeper->total_bombs = 99;
     minesweeper->bombs_left = minesweeper->total_bombs;
     create_map(minesweeper);
     init_window(minesweeper);
     init_sounds(minesweeper);
     init_musics(minesweeper);
+    minesweeper->credits = NULL;
+    minesweeper->start = NULL;
+    minesweeper->game = NULL;
+    minesweeper->pause = NULL;
 }
 
 static void destroy(minesweeper_t *minesweeper)
@@ -20,6 +25,9 @@ static void destroy(minesweeper_t *minesweeper)
     destroy_window(minesweeper);
     destroy_map(minesweeper);
     destroy_musics(minesweeper);
+    destroy_start(minesweeper);
+    destroy_game(minesweeper);
+    destroy_pause(minesweeper);
 }
 
 static int help(void)
@@ -46,8 +54,7 @@ int main(int ac, char **av)
         return help();
     srand(time(NULL));
     init(&minesweeper);
-    //credits(&minesweeper);
-    start(&minesweeper);
+    screen_manager(&minesweeper);
     destroy(&minesweeper);
     return 0;
 }

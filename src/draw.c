@@ -2,18 +2,16 @@
 
 void draw_pause(minesweeper_t *minesweeper)
 {
-    if (minesweeper->game->clock->pause) {
-        sfRenderWindow_drawRectangleShape(__renderWindow__,
-        minesweeper->pause->background, NULL);
-        sfRenderWindow_drawText(__renderWindow__, minesweeper->pause->pause,
-        NULL);
-        sfRenderWindow_drawText(__renderWindow__, minesweeper->pause->resume,
-        NULL);
-        sfRenderWindow_drawText(__renderWindow__, minesweeper->pause->restart,
-        NULL);
-        sfRenderWindow_drawText(__renderWindow__, minesweeper->pause->main_menu,
-        NULL);
-    }
+    sfRenderWindow_drawRectangleShape(__renderWindow__,
+    minesweeper->pause->background, NULL);
+    sfRenderWindow_drawText(__renderWindow__, minesweeper->pause->pause,
+    NULL);
+    sfRenderWindow_drawText(__renderWindow__, minesweeper->pause->resume,
+    NULL);
+    sfRenderWindow_drawText(__renderWindow__, minesweeper->pause->restart,
+    NULL);
+    sfRenderWindow_drawText(__renderWindow__, minesweeper->pause->main_menu,
+    NULL);
 }
 
 void draw_background(minesweeper_t *minesweeper)

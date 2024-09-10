@@ -1,69 +1,68 @@
 #include "../include/minesweeper.h"
 
-void credits(minesweeper_t *minesweeper)
+void (*screens_tab[])(minesweeper_t *) = {
+    credits_screen,
+    start_screen,
+    game_screen,
+    pause_screen
+};
+
+void credits_screen(minesweeper_t *minesweeper)
 {
+    sfColor color;
+
     init_credits(minesweeper);
-    while (sfRenderWindow_isOpen(__renderWindow__) &&
-    sfText_getColor(minesweeper->credits->credits_text).a < 255) {
-        sfRenderWindow_clear(__renderWindow__, sfBlack);
-        get_event(minesweeper, 3, &close_window_event,
-        &mute_musics_event, &manage_musics_event);
-        sfRenderWindow_drawText(__renderWindow__,
-        minesweeper->credits->credits_text, NULL);
-        sfRenderWindow_display(__renderWindow__);
-        sfText_setColor(minesweeper->credits->credits_text,(sfColor){255, 255,
-        255, sfText_getColor(minesweeper->credits->credits_text).a + 1});
+    get_event(minesweeper, 3, &close_window_event, &mute_musics_event,
+    &manage_musics_event);
+    sfRenderWindow_drawText(__renderWindow__,
+    minesweeper->credits->credits_text, NULL);
+    color = sfText_getColor(minesweeper->credits->credits_text);
+    if (minesweeper->credits->show)
+        color.a += 1;
+    else
+        color.a -= 1;
+    sfText_setColor(minesweeper->credits->credits_text, color);
+    if (color.a == 255)
+        minesweeper->credits->show = false;
+    if (color.a == 0) {
+        minesweeper->screen = START;
+        destroy_credits(minesweeper);
     }
-    while (sfRenderWindow_isOpen(__renderWindow__) &&
-    sfText_getColor(minesweeper->credits->credits_text).a > 0) {
-        sfRenderWindow_clear(__renderWindow__, sfBlack);
-        get_event(minesweeper, 3, &close_window_event,
-        &mute_musics_event, &manage_musics_event);
-        sfRenderWindow_drawText(__renderWindow__,
-        minesweeper->credits->credits_text, NULL);
-        sfRenderWindow_display(__renderWindow__);
-        sfText_setColor(minesweeper->credits->credits_text,(sfColor){255, 255,
-        255, sfText_getColor(minesweeper->credits->credits_text).a - 1});
-    }
-    destroy_credits(minesweeper);
 }
 
-void start(minesweeper_t *minesweeper)
+void start_screen(minesweeper_t *minesweeper)
 {
     init_start(minesweeper);
-    while (sfRenderWindow_isOpen(__renderWindow__) &&
-    minesweeper->screen == START) {
-        sfRenderWindow_clear(__renderWindow__, sfGrey);
-        draw(minesweeper, 2, &draw_background, &draw_start);
-        get_event(minesweeper, 6, &close_window_event, &dig_event,
-        &mute_musics_event, &manage_musics_event, &start_startEvent,
-        &start_leaveEvent);
-        sfRenderWindow_display(__renderWindow__);
-    }
-    destroy_start(minesweeper);
-    if (minesweeper->screen == GAME)
-        game(minesweeper);
+    draw(minesweeper, 2, &draw_background, &draw_start);
+    get_event(minesweeper, 6, &close_window_event, &dig_event,
+    &mute_musics_event, &manage_musics_event, &start_startEvent,
+    &start_leaveEvent);
 }
 
-void game(minesweeper_t *minesweeper)
+void game_screen(minesweeper_t *minesweeper)
 {
     init_game(minesweeper);
-    while (sfRenderWindow_isOpen(__renderWindow__) &&
-    minesweeper->screen == GAME) {
-        sfRenderWindow_clear(__renderWindow__, sfGrey);
-        draw(minesweeper, 5, &draw_background, &draw_grid, &draw_timer,
-        &draw_game, &draw_pause);
-        if (minesweeper->game->clock->pause)
-            get_event(minesweeper, 8, &close_window_event, &dig_event,
-            &mute_musics_event, &manage_musics_event, &pause_event,
-            &pause_continueEvent, &pause_restartEvent, &pause_mainMenuEvent);
-        else
-            get_event(minesweeper, 6, &close_window_event, &dig_event,
-            &mute_musics_event, &manage_musics_event, &game_boxEvent,
-            &pause_event);
+    draw(minesweeper, 4, &draw_background, &draw_grid, &draw_timer,
+    &draw_game);
+    get_event(minesweeper, 6, &close_window_event, &dig_event,
+    &mute_musics_event, &manage_musics_event, &game_boxEvent, &pause_event);
+}
+
+void pause_screen(minesweeper_t *minesweeper)
+{
+    init_pause(minesweeper);
+    draw(minesweeper, 5, &draw_background, &draw_grid, &draw_timer, &draw_game,
+    &draw_pause);
+    get_event(minesweeper, 8, &close_window_event, &dig_event,
+    &mute_musics_event, &manage_musics_event, &pause_event,
+    &pause_continueEvent, &pause_restartEvent, &pause_mainMenuEvent);
+}
+
+void screen_manager(minesweeper_t *minesweeper)
+{
+    while (sfRenderWindow_isOpen(__renderWindow__)) {
+        sfRenderWindow_clear(__renderWindow__, sfBlack);
+        screens_tab[minesweeper->screen](minesweeper);
         sfRenderWindow_display(__renderWindow__);
     }
-    destroy_game(minesweeper);
-    if (minesweeper->screen == START)
-        start(minesweeper);
 }
