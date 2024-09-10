@@ -2,6 +2,7 @@
 
 void init_start(minesweeper_t *minesweeper)
 {
+    minesweeper->screen = START;
     minesweeper->start = malloc(sizeof(start_t));
     minesweeper->start->minesweeper_name = mySfText_create(__mainFont__,
     "MineSweeper", sfWhite, VERY_BIG);
@@ -17,7 +18,6 @@ void init_start(minesweeper_t *minesweeper)
     mySfText_setOrigin(minesweeper->start->leave, CENTER_LEFT);
     sfText_setPosition(minesweeper->start->leave, (sfVector2f)
     {__windowSize__.x / 20, __windowSize__.y / 1.5});
-    minesweeper->start->start_minesweeper = false;
 }
 
 void destroy_start(minesweeper_t *minesweeper)

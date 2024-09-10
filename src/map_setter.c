@@ -40,3 +40,13 @@ void set_map_values(minesweeper_t *minesweeper)
                 minesweeper->map[y][x] = get_nb_bombs_around(minesweeper,
                 x, y);
 }
+
+void reset_map(minesweeper_t *minesweeper)
+{
+    for (int y = 0; y < minesweeper->height; y++)
+        for (int x = 0; x < minesweeper->width; x++)
+            minesweeper->map[y][x] = 0;
+    place_bombs(minesweeper);
+    set_map_values(minesweeper);
+    print_map(minesweeper);
+}

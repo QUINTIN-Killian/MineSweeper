@@ -83,6 +83,7 @@ void pause_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event)
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->main_menu, event)) {
         mySfClock_unpause(minesweeper->game->clock);
+        minesweeper->screen = START;
     }
     mySfText_setOrigin(minesweeper->pause->main_menu, CENTER);
     sfText_setPosition(minesweeper->pause->main_menu,
@@ -116,7 +117,8 @@ void start_startEvent(minesweeper_t *minesweeper, sfEvent *event)
     }
     if (mySfButtonText_isLeftClick(&__windowInfos__, minesweeper->start->start,
     event)) {
-        minesweeper->start->start_minesweeper = true;
+        minesweeper->screen = GAME;
+        reset_map(minesweeper);
     }
 }
 

@@ -74,7 +74,6 @@ typedef struct start_s {
     sfText *minesweeper_name;
     sfText *start;
     sfText *leave;
-    bool start_minesweeper;
 } start_t;
 
 typedef struct game_s {
@@ -95,7 +94,15 @@ typedef struct pause_s {
     sfText *main_menu;
 } pause_t;
 
+typedef enum {
+    CREDITS,
+    START,
+    GAME,
+    PAUSE
+} displayScreen_t;
+
 typedef struct minesweeper_s {
+    displayScreen_t screen;
     int **map;
     int width;
     int height;
@@ -166,5 +173,6 @@ void pause_continueEvent(minesweeper_t *minesweeper, sfEvent *event);
 void pause_restartEvent(minesweeper_t *minesweeper, sfEvent *event);
 void pause_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event);
 void draw_game(minesweeper_t *minesweeper);
+void reset_map(minesweeper_t *minesweeper);
 
 #endif

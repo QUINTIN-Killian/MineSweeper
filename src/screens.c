@@ -32,7 +32,7 @@ void start(minesweeper_t *minesweeper)
 {
     init_start(minesweeper);
     while (sfRenderWindow_isOpen(__renderWindow__) &&
-    !minesweeper->start->start_minesweeper) {
+    minesweeper->screen == START) {
         sfRenderWindow_clear(__renderWindow__, sfGrey);
         draw(minesweeper, 2, &draw_background, &draw_start);
         get_event(minesweeper, 6, &close_window_event, &dig_event,
@@ -41,12 +41,15 @@ void start(minesweeper_t *minesweeper)
         sfRenderWindow_display(__renderWindow__);
     }
     destroy_start(minesweeper);
+    if (minesweeper->screen == GAME)
+        game(minesweeper);
 }
 
 void game(minesweeper_t *minesweeper)
 {
     init_game(minesweeper);
-    while (sfRenderWindow_isOpen(__renderWindow__)) {
+    while (sfRenderWindow_isOpen(__renderWindow__) &&
+    minesweeper->screen == GAME) {
         sfRenderWindow_clear(__renderWindow__, sfGrey);
         draw(minesweeper, 5, &draw_background, &draw_grid, &draw_timer,
         &draw_game, &draw_pause);
@@ -61,4 +64,6 @@ void game(minesweeper_t *minesweeper)
         sfRenderWindow_display(__renderWindow__);
     }
     destroy_game(minesweeper);
+    if (minesweeper->screen == START)
+        start(minesweeper);
 }
