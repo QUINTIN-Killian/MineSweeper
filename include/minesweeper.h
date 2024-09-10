@@ -133,7 +133,7 @@ void manage_musics_event(minesweeper_t *minesweeper, sfEvent *event);
 void credits(minesweeper_t *minesweeper);
 void game(minesweeper_t *minesweeper);
 void draw(minesweeper_t *minesweeper, int nb_draw, ...);
-box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type,
+box_t init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type,
     sfVector2f pos);
 void draw_box(minesweeper_t *minesweeper, box_t *box);
 void destroy_box(box_t *box);

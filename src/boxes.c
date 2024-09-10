@@ -24,28 +24,28 @@ static sfColor getColorNb(boxType_t type)
     }
 }
 
-box_t *init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type,
+box_t init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type,
     sfVector2f pos)
 {
-    box_t *box = malloc(sizeof(box_t));
+    box_t box;
     sfVector2u flag_size;
 
-    box->state = state;
-    box->type = type;
-    box->mine = NULL;
-    box->textValue = NULL;
-    box->rectangle = sfRectangleShape_create();
-    sfRectangleShape_setScale(box->rectangle, (sfVector2f){BOX_SCALE,
+    box.state = state;
+    box.type = type;
+    box.mine = NULL;
+    box.textValue = NULL;
+    box.rectangle = sfRectangleShape_create();
+    sfRectangleShape_setScale(box.rectangle, (sfVector2f){BOX_SCALE,
     BOX_SCALE});
-    sfRectangleShape_setPosition(box->rectangle, pos);
-    sfRectangleShape_setOutlineColor(box->rectangle, sfBlack);
-    sfRectangleShape_setOutlineThickness(box->rectangle, 25.0);
-    sfRectangleShape_setFillColor(box->rectangle, sfGrey);
-    sfRectangleShape_setSize(box->rectangle, minesweeper->game->default_box_size);
-    box->flag = mySfSprite_create("images/Flag.png", sfFalse);
-    flag_size = sfTexture_getSize(box->flag->texture);
-    sfSprite_setScale(box->flag->sprite, (sfVector2f){BOX_SCALE, BOX_SCALE});
-    sfSprite_setPosition(box->flag->sprite,(sfVector2f){pos.x +
+    sfRectangleShape_setPosition(box.rectangle, pos);
+    sfRectangleShape_setOutlineColor(box.rectangle, sfBlack);
+    sfRectangleShape_setOutlineThickness(box.rectangle, 25.0);
+    sfRectangleShape_setFillColor(box.rectangle, sfGrey);
+    sfRectangleShape_setSize(box.rectangle, minesweeper->game->default_box_size);
+    box.flag = mySfSprite_create("images/Flag.png", sfFalse);
+    flag_size = sfTexture_getSize(box.flag->texture);
+    sfSprite_setScale(box.flag->sprite, (sfVector2f){BOX_SCALE, BOX_SCALE});
+    sfSprite_setPosition(box.flag->sprite,(sfVector2f){pos.x +
     (minesweeper->game->default_box_size.x * BOX_SCALE - flag_size.x *
     BOX_SCALE) / 2.0, pos.y + (minesweeper->game->default_box_size.y *
     BOX_SCALE - flag_size.y * BOX_SCALE) / 2.0});
