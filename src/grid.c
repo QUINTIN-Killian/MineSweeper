@@ -39,6 +39,7 @@ void reset_grid(minesweeper_t *minesweeper)
             grid_size.x / 2.0;
             pos.y = __windowSize__.y / 2.0 + (box_size.y + 3.0) * i -
             grid_size.y / 2.0 + box_size.y;
+            destroy_box(&minesweeper->game->grid[i][j]);
             minesweeper->game->grid[i][j] = init_box(minesweeper, HIDDEN,
             minesweeper->map[i][j], pos);
         }
