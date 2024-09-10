@@ -42,4 +42,5 @@ sfTime mySfClock_getElapsedTime(mySfClock *obj)
 void mySfClock_destroy(mySfClock *obj)
 {
     sfClock_destroy(obj->clock);
+    free(obj);
 }

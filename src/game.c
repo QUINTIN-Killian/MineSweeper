@@ -32,4 +32,5 @@ void destroy_game(minesweeper_t *minesweeper)
     mySfClock_destroy(minesweeper->game->clock);
     mySfText_destroy(minesweeper->game->timer);
     destroy_pause(minesweeper);
+    free(minesweeper->game);
 }
