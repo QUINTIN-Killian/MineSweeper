@@ -62,9 +62,13 @@ void pause_restartEvent(minesweeper_t *minesweeper, sfEvent *event)
     }
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->restart, event)) {
-        sfText_setFillColor(minesweeper->pause->resume, sfWhite);
-        sfText_setCharacterSize(minesweeper->pause->resume, MEDIUM);
+        sfText_setFillColor(minesweeper->pause->restart, sfWhite);
+        sfText_setCharacterSize(minesweeper->pause->restart, MEDIUM);
         mySfClock_unpause(minesweeper->game->clock);
+        minesweeper->bombs_left = minesweeper->total_bombs;
+        minesweeper->box_left = minesweeper->total_box;
+        reset_map(minesweeper);
+        reset_game(minesweeper);
         minesweeper->screen = GAME;
     }
     mySfText_setOrigin(minesweeper->pause->restart, CENTER);
@@ -91,8 +95,8 @@ void pause_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event)
     }
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->main_menu, event)) {
-        sfText_setFillColor(minesweeper->pause->resume, sfWhite);
-        sfText_setCharacterSize(minesweeper->pause->resume, MEDIUM);
+        sfText_setFillColor(minesweeper->pause->main_menu, sfWhite);
+        sfText_setCharacterSize(minesweeper->pause->main_menu, MEDIUM);
         mySfClock_unpause(minesweeper->game->clock);
         minesweeper->screen = START;
     }
