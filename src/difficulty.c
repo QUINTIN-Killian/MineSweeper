@@ -51,10 +51,10 @@ void change_difficulty(minesweeper_t *minesweeper)
     minesweeper->difficulty++;
     if (minesweeper->difficulty > EXPERT)
         minesweeper->difficulty = EASY;
-    set_difficulty(minesweeper);
-    destroy_map(minesweeper);
-    create_map(minesweeper);
     str = concat_str(2, "Difficulty: ", get_difficulty(minesweeper));
     sfText_setString(minesweeper->start->change_difficulty, str);
+    mySfText_setOrigin(minesweeper->start->change_difficulty, BOTTOM_RIGHT);
+    sfText_setPosition(minesweeper->start->change_difficulty, (sfVector2f)
+    {__windowSize__.x, __windowSize__.y});
     free(str);
 }
