@@ -28,6 +28,8 @@ void draw_start(minesweeper_t *minesweeper)
     minesweeper->start->start, NULL);
     sfRenderWindow_drawText(__renderWindow__,
     minesweeper->start->leave, NULL);
+    sfRenderWindow_drawText(__renderWindow__,
+    minesweeper->start->change_difficulty, NULL);
 }
 
 void draw_game(minesweeper_t *minesweeper)

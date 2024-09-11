@@ -34,9 +34,9 @@ void start_screen(minesweeper_t *minesweeper)
 {
     init_start(minesweeper);
     draw(minesweeper, 2, &draw_background, &draw_start);
-    get_event(minesweeper, 6, &close_window_event, &dig_event,
+    get_event(minesweeper, 7, &close_window_event, &dig_event,
     &mute_musics_event, &manage_musics_event, &start_startEvent,
-    &start_leaveEvent);
+    &start_leaveEvent, &start_changeDifficultyEvent);
 }
 
 void game_screen(minesweeper_t *minesweeper)

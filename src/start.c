@@ -19,6 +19,11 @@ void init_start(minesweeper_t *minesweeper)
     mySfText_setOrigin(minesweeper->start->leave, CENTER_LEFT);
     sfText_setPosition(minesweeper->start->leave, (sfVector2f)
     {__windowSize__.x / 20, __windowSize__.y / 1.5});
+    minesweeper->start->change_difficulty = mySfText_create(__mainFont__,
+    "Difficulty: Normal", sfWhite, H9);
+    mySfText_setOrigin(minesweeper->start->change_difficulty, BOTTOM_RIGHT);
+    sfText_setPosition(minesweeper->start->change_difficulty, (sfVector2f)
+    {__windowSize__.x, __windowSize__.y});
 }
 
 void destroy_start(minesweeper_t *minesweeper)
@@ -28,6 +33,7 @@ void destroy_start(minesweeper_t *minesweeper)
     mySfText_destroy(minesweeper->start->minesweeper_name);
     mySfText_destroy(minesweeper->start->start);
     mySfText_destroy(minesweeper->start->leave);
+    mySfText_destroy(minesweeper->start->change_difficulty);
     free(minesweeper->start);
     minesweeper->start = NULL;
 }

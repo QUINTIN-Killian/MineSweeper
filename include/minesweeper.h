@@ -71,10 +71,18 @@ typedef struct box_s {
     sfRectangleShape *rectangle;
 } box_t;
 
+typedef enum {
+    EASY,
+    NORMAL,
+    HARD,
+    EXPERT
+} difficulty_t;
+
 typedef struct start_s {
     sfText *minesweeper_name;
     sfText *start;
     sfText *leave;
+    sfText *change_difficulty;
 } start_t;
 
 typedef struct game_s {
@@ -103,6 +111,7 @@ typedef enum {
 } displayScreen_t;
 
 typedef struct minesweeper_s {
+    difficulty_t difficulty;
     displayScreen_t screen;
     int **map;
     int width;
@@ -180,5 +189,8 @@ void game_screen(minesweeper_t *minesweeper);
 void pause_screen(minesweeper_t *minesweeper);
 void reset_grid(minesweeper_t *minesweeper);
 void reset_game(minesweeper_t *minesweeper);
+void change_difficulty(minesweeper_t *minesweeper);
+void set_difficulty(minesweeper_t *minesweeper);
+void start_changeDifficultyEvent(minesweeper_t *minesweeper, sfEvent *event);
 
 #endif

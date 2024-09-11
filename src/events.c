@@ -160,6 +160,22 @@ void start_leaveEvent(minesweeper_t *minesweeper, sfEvent *event)
     }
 }
 
+void start_changeDifficultyEvent(minesweeper_t *minesweeper, sfEvent *event)
+{
+    if (mySfButtonText_isNormal(&__windowInfos__,
+    minesweeper->start->change_difficulty))
+        sfText_setFillColor(minesweeper->start->change_difficulty, sfWhite);
+    if (mySfButtonText_isHoover(&__windowInfos__,
+    minesweeper->start->change_difficulty))
+        sfText_setFillColor(minesweeper->start->change_difficulty,
+        sfLightGrey);
+    if (mySfButtonText_isLeftClick(&__windowInfos__,
+    minesweeper->start->change_difficulty, event)) {
+        sfText_setFillColor(minesweeper->start->change_difficulty, sfDarkGrey);
+        change_difficulty(minesweeper);
+    }
+}
+
 void manage_musics_event(minesweeper_t *minesweeper, sfEvent *event)
 {
     if (event->type == sfEvtKeyPressed && sfKeyboard_isKeyPressed(sfKeyUp)) {
