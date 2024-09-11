@@ -41,7 +41,7 @@ void set_map_values(minesweeper_t *minesweeper)
                 x, y);
 }
 
-void reset_map(minesweeper_t *minesweeper)
+void set_map(minesweeper_t *minesweeper)
 {
     for (int y = 0; y < minesweeper->height; y++)
         for (int x = 0; x < minesweeper->width; x++)

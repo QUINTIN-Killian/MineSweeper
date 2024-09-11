@@ -67,8 +67,8 @@ void pause_restartEvent(minesweeper_t *minesweeper, sfEvent *event)
         mySfClock_unpause(minesweeper->game->clock);
         minesweeper->bombs_left = minesweeper->total_bombs;
         minesweeper->box_left = minesweeper->total_box;
-        reset_map(minesweeper);
-        reset_game(minesweeper);
+        set_map(minesweeper);
+        set_game(minesweeper);
         minesweeper->screen = GAME;
     }
     mySfText_setOrigin(minesweeper->pause->restart, CENTER);
@@ -99,6 +99,7 @@ void pause_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event)
         sfText_setCharacterSize(minesweeper->pause->main_menu, H7);
         mySfClock_unpause(minesweeper->game->clock);
         minesweeper->screen = START;
+        destroy_map(minesweeper);
     }
     mySfText_setOrigin(minesweeper->pause->main_menu, CENTER);
     sfText_setPosition(minesweeper->pause->main_menu,
@@ -135,10 +136,9 @@ void start_startEvent(minesweeper_t *minesweeper, sfEvent *event)
         sfText_setFillColor(minesweeper->start->start, sfWhite);
         sfText_setCharacterSize(minesweeper->start->start, H7);
         minesweeper->screen = GAME;
-        minesweeper->bombs_left = minesweeper->total_bombs;
-        minesweeper->box_left = minesweeper->total_box;
-        reset_map(minesweeper);
-        reset_game(minesweeper);
+        set_difficulty(minesweeper);
+        create_map(minesweeper);
+        set_map(minesweeper);
     }
 }
 

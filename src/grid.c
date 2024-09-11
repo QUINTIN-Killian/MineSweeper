@@ -24,7 +24,7 @@ box_t **create_grid(minesweeper_t *minesweeper)
     return grid;
 }
 
-void reset_grid(minesweeper_t *minesweeper)
+void set_grid(minesweeper_t *minesweeper)
 {
     sfVector2f box_size = {minesweeper->game->default_box_size.x * BOX_SCALE,
     minesweeper->game->default_box_size.y * BOX_SCALE};

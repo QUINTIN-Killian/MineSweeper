@@ -1,10 +1,10 @@
 #include "../include/minesweeper.h"
 
-void reset_game(minesweeper_t *minesweeper)
+void set_game(minesweeper_t *minesweeper)
 {
     if (minesweeper->game == NULL)
         return;
-    reset_grid(minesweeper);
+    set_grid(minesweeper);
     mySfClock_destroy(minesweeper->game->clock);
     minesweeper->game->clock = mySfClock_create();
     minesweeper->game->first_play = true;

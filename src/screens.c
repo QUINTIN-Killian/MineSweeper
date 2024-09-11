@@ -37,6 +37,8 @@ void start_screen(minesweeper_t *minesweeper)
     get_event(minesweeper, 7, &close_window_event, &dig_event,
     &mute_musics_event, &manage_musics_event, &start_startEvent,
     &start_leaveEvent, &start_changeDifficultyEvent);
+    if (minesweeper->screen != START)
+        destroy_start(minesweeper);
 }
 
 void game_screen(minesweeper_t *minesweeper)
@@ -56,6 +58,8 @@ void pause_screen(minesweeper_t *minesweeper)
     get_event(minesweeper, 8, &close_window_event, &dig_event,
     &mute_musics_event, &manage_musics_event, &pause_event,
     &pause_continueEvent, &pause_restartEvent, &pause_mainMenuEvent);
+    if (minesweeper->screen == START)
+        destroy_game(minesweeper);
 }
 
 void screen_manager(minesweeper_t *minesweeper)
