@@ -8,7 +8,7 @@ void reset_game(minesweeper_t *minesweeper)
     mySfClock_destroy(minesweeper->game->clock);
     minesweeper->game->clock = mySfClock_create();
     minesweeper->game->first_play = true;
-    sfText_setString(minesweeper->game->bombs_left, ": 000");
+    sfText_setString(minesweeper->game->bombs_left, ": 00");
 }
 
 void init_game(minesweeper_t *minesweeper)
@@ -29,7 +29,7 @@ void init_game(minesweeper_t *minesweeper)
     (sfVector2f){__windowSize__.x / 1.15, 0});
     sfSprite_setScale(minesweeper->game->bomb->sprite,
     (sfVector2f){BOX_SCALE * 4, BOX_SCALE * 4});
-    minesweeper->game->bombs_left = mySfText_create(__mainFont__, ": 000",
+    minesweeper->game->bombs_left = mySfText_create(__mainFont__, ": 00",
     sfWhite, SMALL);
     mySfText_setOrigin(minesweeper->game->bombs_left, TOP_RIGHT);
     sfText_setPosition(minesweeper->game->bombs_left, (sfVector2f)
