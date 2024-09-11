@@ -63,6 +63,7 @@ sfBool mySfButtonText_isNormal(mySfRenderWindow *window_infos, sfText *text);
 sfBool mySfButtonText_isHoover(mySfRenderWindow *window_infos, sfText *text);
 sfBool mySfButtonText_isLeftClick(mySfRenderWindow *window_infos, sfText *text,
     sfEvent *event);
+void mySfButtonText_setStyle(sfText *text, sfColor color, sfSize size);
 void mySfText_setOrigin(sfText *obj, mySfOrigin pos);
 sfBool mySfButtonRectangle_isNormal(mySfRenderWindow *window_infos,
     sfRectangleShape *rectangle);

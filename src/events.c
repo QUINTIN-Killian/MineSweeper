@@ -22,19 +22,14 @@ void pause_continueEvent(minesweeper_t *minesweeper, sfEvent *event)
         return;
     size = (sfVector2f){__windowSize__.x / 2, __windowSize__.y / 1.1};
     if (mySfButtonText_isNormal(&__windowInfos__,
-    minesweeper->pause->resume)) {
-        sfText_setFillColor(minesweeper->pause->resume, sfWhite);
-        sfText_setCharacterSize(minesweeper->pause->resume, H7);
-    }
+    minesweeper->pause->resume))
+        mySfButtonText_setStyle(minesweeper->pause->resume, sfWhite, H7);
     if (mySfButtonText_isHoover(&__windowInfos__,
-    minesweeper->pause->resume)) {
-        sfText_setFillColor(minesweeper->pause->resume, sfLightGrey);
-        sfText_setCharacterSize(minesweeper->pause->resume, H5);
-    }
+    minesweeper->pause->resume))
+        mySfButtonText_setStyle(minesweeper->pause->resume, sfLightGrey, H5);
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->resume, event)) {
-        sfText_setFillColor(minesweeper->pause->resume, sfWhite);
-        sfText_setCharacterSize(minesweeper->pause->resume, H7);
+        mySfButtonText_setStyle(minesweeper->pause->resume, sfWhite, H7);
         mySfClock_unpause(minesweeper->game->clock);
         minesweeper->screen = GAME;
     }
@@ -51,19 +46,14 @@ void pause_restartEvent(minesweeper_t *minesweeper, sfEvent *event)
         return;
     size = (sfVector2f){__windowSize__.x / 2, __windowSize__.y / 1.1};
     if (mySfButtonText_isNormal(&__windowInfos__,
-    minesweeper->pause->restart)) {
-        sfText_setFillColor(minesweeper->pause->restart, sfWhite);
-        sfText_setCharacterSize(minesweeper->pause->restart, H7);
-    }
+    minesweeper->pause->restart))
+        mySfButtonText_setStyle(minesweeper->pause->restart, sfWhite, H7);
     if (mySfButtonText_isHoover(&__windowInfos__,
-    minesweeper->pause->restart)) {
-        sfText_setFillColor(minesweeper->pause->restart, sfLightGrey);
-        sfText_setCharacterSize(minesweeper->pause->restart, H5);
-    }
+    minesweeper->pause->restart))
+        mySfButtonText_setStyle(minesweeper->pause->restart, sfLightGrey, H5);
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->restart, event)) {
-        sfText_setFillColor(minesweeper->pause->restart, sfWhite);
-        sfText_setCharacterSize(minesweeper->pause->restart, H7);
+        mySfButtonText_setStyle(minesweeper->pause->restart, sfWhite, H7);
         mySfClock_unpause(minesweeper->game->clock);
         minesweeper->bombs_left = minesweeper->total_bombs;
         minesweeper->box_left = minesweeper->total_box;
@@ -84,19 +74,15 @@ void pause_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event)
         return;
     size = (sfVector2f){__windowSize__.x / 2, __windowSize__.y / 1.1};
     if (mySfButtonText_isNormal(&__windowInfos__,
-    minesweeper->pause->main_menu)) {
-        sfText_setFillColor(minesweeper->pause->main_menu, sfWhite);
-        sfText_setCharacterSize(minesweeper->pause->main_menu, H7);
-    }
+    minesweeper->pause->main_menu))
+        mySfButtonText_setStyle(minesweeper->pause->main_menu, sfWhite, H7);
     if (mySfButtonText_isHoover(&__windowInfos__,
-    minesweeper->pause->main_menu)) {
-        sfText_setFillColor(minesweeper->pause->main_menu, sfLightGrey);
-        sfText_setCharacterSize(minesweeper->pause->main_menu, H5);
-    }
+    minesweeper->pause->main_menu))
+        mySfButtonText_setStyle(minesweeper->pause->main_menu,
+        sfLightGrey, H5);
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->main_menu, event)) {
-        sfText_setFillColor(minesweeper->pause->main_menu, sfWhite);
-        sfText_setCharacterSize(minesweeper->pause->main_menu, H7);
+        mySfButtonText_setStyle(minesweeper->pause->main_menu, sfWhite, H7);
         mySfClock_unpause(minesweeper->game->clock);
         minesweeper->screen = START;
         destroy_map(minesweeper);
@@ -123,18 +109,13 @@ void close_window_event(minesweeper_t *minesweeper, sfEvent *event)
 
 void start_startEvent(minesweeper_t *minesweeper, sfEvent *event)
 {
-    if (mySfButtonText_isNormal(&__windowInfos__, minesweeper->start->start)) {
-        sfText_setFillColor(minesweeper->start->start, sfWhite);
-        sfText_setCharacterSize(minesweeper->start->start, H7);
-    }
-    if (mySfButtonText_isHoover(&__windowInfos__, minesweeper->start->start)) {
-        sfText_setFillColor(minesweeper->start->start, sfLightGrey);
-        sfText_setCharacterSize(minesweeper->start->start, H5);
-    }
+    if (mySfButtonText_isNormal(&__windowInfos__, minesweeper->start->start))
+        mySfButtonText_setStyle(minesweeper->start->start, sfWhite, H7);
+    if (mySfButtonText_isHoover(&__windowInfos__, minesweeper->start->start))
+        mySfButtonText_setStyle(minesweeper->start->start, sfLightGrey, H5);
     if (mySfButtonText_isLeftClick(&__windowInfos__, minesweeper->start->start,
     event)) {
-        sfText_setFillColor(minesweeper->start->start, sfWhite);
-        sfText_setCharacterSize(minesweeper->start->start, H7);
+        mySfButtonText_setStyle(minesweeper->start->start, sfWhite, H7);
         minesweeper->screen = GAME;
         set_difficulty(minesweeper);
         create_map(minesweeper);
@@ -144,18 +125,13 @@ void start_startEvent(minesweeper_t *minesweeper, sfEvent *event)
 
 void start_leaveEvent(minesweeper_t *minesweeper, sfEvent *event)
 {
-    if (mySfButtonText_isNormal(&__windowInfos__, minesweeper->start->leave)) {
-        sfText_setFillColor(minesweeper->start->leave, sfWhite);
-        sfText_setCharacterSize(minesweeper->start->leave, H7);
-    }
-    if (mySfButtonText_isHoover(&__windowInfos__, minesweeper->start->leave)) {
-        sfText_setFillColor(minesweeper->start->leave, sfLightGrey);
-        sfText_setCharacterSize(minesweeper->start->leave, H5);
-    }
+    if (mySfButtonText_isNormal(&__windowInfos__, minesweeper->start->leave))
+        mySfButtonText_setStyle(minesweeper->start->leave, sfWhite, H7);
+    if (mySfButtonText_isHoover(&__windowInfos__, minesweeper->start->leave))
+        mySfButtonText_setStyle(minesweeper->start->leave, sfLightGrey, H5);
     if (mySfButtonText_isLeftClick(&__windowInfos__, minesweeper->start->leave,
     event)) {
-        sfText_setFillColor(minesweeper->start->leave, sfWhite);
-        sfText_setCharacterSize(minesweeper->start->leave, H7);
+        mySfButtonText_setStyle(minesweeper->start->leave, sfWhite, H7);
         sfRenderWindow_close(__renderWindow__);
     }
 }

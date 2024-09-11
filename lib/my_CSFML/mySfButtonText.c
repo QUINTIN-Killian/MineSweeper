@@ -66,3 +66,9 @@ sfBool mySfButtonText_isLeftClick(mySfRenderWindow *window_infos, sfText *text,
         return sfTrue;
     return sfFalse;
 }
+
+void mySfButtonText_setStyle(sfText *text, sfColor color, sfSize size)
+{
+    sfText_setFillColor(text, color);
+    sfText_setCharacterSize(text, size);
+}
