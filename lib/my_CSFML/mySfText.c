@@ -9,7 +9,7 @@ sfText *mySfText_create(const sfFont *font, const char *string, sfColor color,
     sfText_setFont(obj, font);
     sfText_setString(obj, string);
     sfText_setFillColor(obj, color);
-    if (size != NONE) {
+    if (size != INVISIBLE) {
         sfText_setOutlineColor(obj, sfBlack);
         sfText_setOutlineThickness(obj, size / 10);
         sfText_setCharacterSize(obj, size);

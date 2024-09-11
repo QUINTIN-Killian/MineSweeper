@@ -70,10 +70,10 @@ void set_box(minesweeper_t *minesweeper, box_t *box)
     if (box->type >= NUM1 && box->type <= NUM8) {
         value = convert_int_to_str(box->type);
         box->textValue = mySfText_create(__mainFont__, value,
-        getColorNb(box->type), 15.0);
+        getColorNb(box->type), H9);
         free(value);
         mySfText_setOrigin(box->textValue, TOP_LEFT);
-        sfText_setOrigin(box->textValue, (sfVector2f){-3.0, -3.0});
+        sfText_setOrigin(box->textValue, (sfVector2f){-5.0, 0});
         sfText_setPosition(box->textValue, pos);
         return;
     }

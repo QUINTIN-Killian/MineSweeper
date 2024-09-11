@@ -3,19 +3,19 @@
 static void init_pause_text(minesweeper_t *minesweeper, sfVector2f size)
 {
     minesweeper->pause->pause = mySfText_create(__mainFont__, "PAUSE",
-    sfWhite, VERY_BIG);
+    sfWhite, H4);
     sfText_setPosition(minesweeper->pause->pause,
     (sfVector2f){__windowSize__.x / 2, size.y / 4});
     minesweeper->pause->resume = mySfText_create(__mainFont__, "RESUME",
-    sfWhite, MEDIUM);
+    sfWhite, H7);
     sfText_setPosition(minesweeper->pause->resume,
     (sfVector2f){__windowSize__.x / 2, size.y / 2});
     minesweeper->pause->restart = mySfText_create(__mainFont__, "RESTART",
-    sfWhite, MEDIUM);
+    sfWhite, H7);
     sfText_setPosition(minesweeper->pause->restart,
     (sfVector2f){__windowSize__.x / 2, size.y / 1.5});
     minesweeper->pause->main_menu = mySfText_create(__mainFont__, "MAIN MENU",
-    sfWhite, MEDIUM);
+    sfWhite, H7);
     sfText_setPosition(minesweeper->pause->main_menu,
     (sfVector2f){__windowSize__.x / 2, size.y / 1.2});
 }
