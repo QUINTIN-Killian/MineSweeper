@@ -51,9 +51,9 @@ void pause_screen(minesweeper_t *minesweeper)
     init_pause(minesweeper);
     draw(minesweeper, 5, &draw_background, &draw_grid, &draw_timer, &draw_game,
     &draw_pause);
-    get_event(minesweeper, 8, &close_window_event, &dig_event,
-    &mute_musics_event, &manage_musics_event, &pause_event,
-    &pause_continueEvent, &pause_restartEvent, &pause_mainMenuEvent);
+    get_event(minesweeper, 7, &close_window_event, &dig_event,
+    &mute_musics_event, &manage_musics_event, &pause_continueEvent,
+    &pause_restartEvent, &pause_mainMenuEvent);
 }
 
 static void sideScreens_destroy(minesweeper_t *minesweeper)
