@@ -24,8 +24,7 @@ void pause_continueEvent(minesweeper_t *minesweeper, sfEvent *event)
     if (mySfButtonText_isNormal(&__windowInfos__,
     minesweeper->pause->resume))
         mySfButtonText_setStyle(minesweeper->pause->resume, sfWhite, H7);
-    if (mySfButtonText_isHoover(&__windowInfos__,
-    minesweeper->pause->resume))
+    if (mySfButtonText_isHoover(&__windowInfos__, minesweeper->pause->resume))
         mySfButtonText_setStyle(minesweeper->pause->resume, sfLightGrey, H5);
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->resume, event)) {
@@ -48,8 +47,7 @@ void pause_restartEvent(minesweeper_t *minesweeper, sfEvent *event)
     if (mySfButtonText_isNormal(&__windowInfos__,
     minesweeper->pause->restart))
         mySfButtonText_setStyle(minesweeper->pause->restart, sfWhite, H7);
-    if (mySfButtonText_isHoover(&__windowInfos__,
-    minesweeper->pause->restart))
+    if (mySfButtonText_isHoover(&__windowInfos__, minesweeper->pause->restart))
         mySfButtonText_setStyle(minesweeper->pause->restart, sfLightGrey, H5);
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->restart, event)) {
