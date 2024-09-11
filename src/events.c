@@ -83,7 +83,6 @@ void pause_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event)
         mySfButtonText_setStyle(minesweeper->pause->main_menu, sfWhite, H7);
         mySfClock_unpause(minesweeper->game->clock);
         minesweeper->screen = START;
-        destroy_map(minesweeper);
     }
     mySfText_setOrigin(minesweeper->pause->main_menu, CENTER);
     sfText_setPosition(minesweeper->pause->main_menu,
@@ -115,6 +114,7 @@ void start_startEvent(minesweeper_t *minesweeper, sfEvent *event)
     event)) {
         mySfButtonText_setStyle(minesweeper->start->start, sfWhite, H7);
         minesweeper->screen = GAME;
+        destroy_map(minesweeper);
         set_difficulty(minesweeper);
         create_map(minesweeper);
         set_map(minesweeper);

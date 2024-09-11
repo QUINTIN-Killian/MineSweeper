@@ -4,6 +4,8 @@ static void init(minesweeper_t *minesweeper)
 {
     minesweeper->screen = START; //remettre CREDITS
     minesweeper->difficulty = NORMAL;
+    set_difficulty(minesweeper);
+    create_map(minesweeper);
     init_window(minesweeper);
     init_sounds(minesweeper);
     init_musics(minesweeper);
@@ -15,6 +17,7 @@ static void init(minesweeper_t *minesweeper)
 
 static void destroy(minesweeper_t *minesweeper)
 {
+    destroy_map(minesweeper);
     destroy_sounds(minesweeper);
     destroy_window(minesweeper);
     destroy_musics(minesweeper);
