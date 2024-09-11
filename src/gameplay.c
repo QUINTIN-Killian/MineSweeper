@@ -3,18 +3,15 @@
 void switch_boxes(minesweeper_t *minesweeper, int x, int y, boxType_t type)
 {
     boxType_t box_clicked_type = minesweeper->map[y][x];
-    sfVector2i switch_coords = {0, 0};
+    sfVector2i switch_coords = {randint(0, minesweeper->width - 1),
+    randint(0, minesweeper->height - 1)};
     int src_type = (int)type;
 
-    while (minesweeper->map[switch_coords.y][switch_coords.x] != src_type) {
-        switch_coords.x++;
-        switch_coords.y = switch_coords.x / minesweeper->width;
-        switch_coords.x = switch_coords.x % minesweeper->width;
-        if (switch_coords.x >= minesweeper->width && switch_coords.y >=
-        minesweeper->width) {
-            switch_coords = (sfVector2i){0, 0};
-            src_type++;
-        }
+    while (minesweeper->map[switch_coords.y][switch_coords.x] != src_type ||
+    (switch_coords.x >= x - 1 && switch_coords.x <= x + 1 &&
+    switch_coords.y >= y - 1 && switch_coords.y <= y + 1)) {
+        switch_coords = (sfVector2i){randint(0, minesweeper->width - 1),
+        randint(0, minesweeper->height - 1)};
     }
     minesweeper->map[y][x] =
     minesweeper->map[switch_coords.y][switch_coords.x];
