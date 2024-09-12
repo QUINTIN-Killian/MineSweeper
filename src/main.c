@@ -13,6 +13,7 @@ static void init(minesweeper_t *minesweeper)
     minesweeper->start = NULL;
     minesweeper->game = NULL;
     minesweeper->pause = NULL;
+    minesweeper->end = NULL;
 }
 
 static void destroy(minesweeper_t *minesweeper)

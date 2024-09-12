@@ -107,8 +107,17 @@ typedef enum {
     CREDITS,
     START,
     GAME,
-    PAUSE
+    PAUSE,
+    VICTORY,
+    DEFEAT
 } displayScreen_t;
+
+typedef struct end_s {
+    sfRectangleShape *background;
+    sfText *state;
+    sfText *restart;
+    sfText *main_menu;
+} end_t;
 
 typedef struct minesweeper_s {
     difficulty_t difficulty;
@@ -127,6 +136,7 @@ typedef struct minesweeper_s {
     start_t *start;
     game_t *game;
     pause_t *pause;
+    end_t *end;
 } minesweeper_t;
 
 int randint(int a, int b);
@@ -192,5 +202,7 @@ void set_game(minesweeper_t *minesweeper);
 void change_difficulty(minesweeper_t *minesweeper);
 void set_difficulty(minesweeper_t *minesweeper);
 void start_changeDifficultyEvent(minesweeper_t *minesweeper, sfEvent *event);
+void init_end(minesweeper_t *minesweeper);
+void destroy_end(minesweeper_t *minesweeper);
 
 #endif
