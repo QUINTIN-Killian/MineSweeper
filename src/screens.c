@@ -4,7 +4,8 @@ void (*screens_tab[])(minesweeper_t *) = {
     credits_screen,
     start_screen,
     game_screen,
-    pause_screen
+    pause_screen,
+    end_screen
 };
 
 void credits_screen(minesweeper_t *minesweeper)
@@ -56,14 +57,27 @@ void pause_screen(minesweeper_t *minesweeper)
     &pause_restartEvent, &pause_mainMenuEvent);
 }
 
+void end_screen(minesweeper_t *minesweeper)
+{
+    init_end(minesweeper);
+    draw(minesweeper, 5, &draw_background, &draw_grid, &draw_timer, &draw_game,
+    &draw_end);
+    get_event(minesweeper, 6, &close_window_event, &dig_event,
+    &mute_musics_event, &manage_musics_event, &end_restartEvent,
+    &end_mainMenuEvent);
+}
+
 static void sideScreens_destroy(minesweeper_t *minesweeper)
 {
     if (minesweeper->screen != CREDITS)
         destroy_credits(minesweeper);
     if (minesweeper->screen != START)
         destroy_start(minesweeper);
-    if (minesweeper->screen != GAME && minesweeper->screen != PAUSE)
+    if (minesweeper->screen != GAME && minesweeper->screen != PAUSE &&
+    minesweeper->screen != END)
         destroy_game(minesweeper);
+    if (minesweeper->screen != END)
+        destroy_end(minesweeper);
 }
 
 void screen_manager(minesweeper_t *minesweeper)

@@ -2,7 +2,7 @@
 
 static void init_end_text(minesweeper_t *minesweeper, sfVector2f size)
 {
-    if (minesweeper->screen == VICTORY)
+    if (minesweeper->victory)
         minesweeper->end->state = mySfText_create(__mainFont__, "VICTORY",
         sfWhite, H4);
     else
@@ -26,6 +26,7 @@ void init_end(minesweeper_t *minesweeper)
 
     if (minesweeper->end != NULL)
         return;
+    mySfClock_pause(minesweeper->game->clock);
     minesweeper->end = malloc(sizeof(end_t));
     minesweeper->end->background = sfRectangleShape_create();
     sfRectangleShape_setFillColor(minesweeper->end->background,
@@ -38,6 +39,7 @@ void init_end(minesweeper_t *minesweeper)
     (sfVector2f){size.x / 2, size.y / 2});
     sfRectangleShape_setPosition(minesweeper->end->background,
     (sfVector2f){__windowSize__.x / 2, __windowSize__.y / 2});
+    init_end_text(minesweeper, size);
 }
 
 void destroy_end(minesweeper_t *minesweeper)

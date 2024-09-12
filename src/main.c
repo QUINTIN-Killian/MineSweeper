@@ -2,6 +2,7 @@
 
 static void init(minesweeper_t *minesweeper)
 {
+    minesweeper->victory = false;
     minesweeper->screen = START; //remettre CREDITS
     minesweeper->difficulty = NORMAL;
     set_difficulty(minesweeper);
@@ -25,6 +26,7 @@ static void destroy(minesweeper_t *minesweeper)
     destroy_start(minesweeper);
     destroy_game(minesweeper);
     destroy_pause(minesweeper);
+    destroy_end(minesweeper);
 }
 
 static int help(void)

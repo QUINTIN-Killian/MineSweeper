@@ -36,12 +36,6 @@ typedef struct musics_s {
     sfMusic *main_music;
 } musics_t;
 
-typedef enum digState_s {
-    DEFAULT,
-    DIG,
-    END
-} digState_t;
-
 typedef enum boxState_s {
     HIDDEN,
     REVEALED,
@@ -108,8 +102,7 @@ typedef enum {
     START,
     GAME,
     PAUSE,
-    VICTORY,
-    DEFEAT
+    END
 } displayScreen_t;
 
 typedef struct end_s {
@@ -120,6 +113,7 @@ typedef struct end_s {
 } end_t;
 
 typedef struct minesweeper_s {
+    bool victory;
     difficulty_t difficulty;
     displayScreen_t screen;
     int **map;
@@ -204,5 +198,9 @@ void set_difficulty(minesweeper_t *minesweeper);
 void start_changeDifficultyEvent(minesweeper_t *minesweeper, sfEvent *event);
 void init_end(minesweeper_t *minesweeper);
 void destroy_end(minesweeper_t *minesweeper);
+void draw_end(minesweeper_t *minesweeper);
+void end_restartEvent(minesweeper_t *minesweeper, sfEvent *event);
+void end_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event);
+void end_screen(minesweeper_t *minesweeper);
 
 #endif

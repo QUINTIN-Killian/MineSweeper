@@ -48,13 +48,13 @@ void mine(minesweeper_t *minesweeper, int x, int y)
     if (minesweeper->game->grid[y][x].type == BOMB) {
         sfSound_play(minesweeper->sounds->explosion_sound->sound);
         reveal_grid(minesweeper);
-        mySfClock_pause(minesweeper->game->clock);
+        minesweeper->screen = END;
     } else {
         reveal_box(minesweeper, x, y);
         if (minesweeper->box_left == minesweeper->total_bombs &&
         minesweeper->bombs_left == 0) {
-            mini_printf("VICTORY !\n");
-            return;
+            minesweeper->victory = true;
+            minesweeper->screen = END;
             //save best score in a file here !
         }
     }

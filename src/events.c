@@ -14,6 +14,57 @@ void pause_event(minesweeper_t *minesweeper, sfEvent *event)
     }
 }
 
+void end_restartEvent(minesweeper_t *minesweeper, sfEvent *event)
+{
+    sfVector2f size;
+
+    if (!minesweeper->game->clock->pause)
+        return;
+    size = (sfVector2f){__windowSize__.x / 2, __windowSize__.y / 1.1};
+    if (mySfButtonText_isNormal(&__windowInfos__,
+    minesweeper->end->restart))
+        mySfButtonText_setStyle(minesweeper->end->restart, sfWhite, H7);
+    if (mySfButtonText_isHoover(&__windowInfos__, minesweeper->end->restart))
+        mySfButtonText_setStyle(minesweeper->end->restart, sfLightGrey, H5);
+    if (mySfButtonText_isLeftClick(&__windowInfos__,
+    minesweeper->end->restart, event)) {
+        mySfButtonText_setStyle(minesweeper->end->restart, sfWhite, H7);
+        minesweeper->bombs_left = minesweeper->total_bombs;
+        minesweeper->box_left = minesweeper->total_box;
+        set_map(minesweeper);
+        set_game(minesweeper);
+        minesweeper->victory = false;
+        minesweeper->screen = GAME;
+    }
+    mySfText_setOrigin(minesweeper->end->restart, CENTER);
+    sfText_setPosition(minesweeper->end->restart,
+    (sfVector2f){__windowSize__.x / 2, size.y / 2});
+}
+
+void end_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event)
+{
+    sfVector2f size;
+
+    if (!minesweeper->game->clock->pause)
+        return;
+    size = (sfVector2f){__windowSize__.x / 2, __windowSize__.y / 1.1};
+    if (mySfButtonText_isNormal(&__windowInfos__,
+    minesweeper->end->main_menu))
+        mySfButtonText_setStyle(minesweeper->end->main_menu, sfWhite, H7);
+    if (mySfButtonText_isHoover(&__windowInfos__,
+    minesweeper->end->main_menu))
+        mySfButtonText_setStyle(minesweeper->end->main_menu,
+        sfLightGrey, H5);
+    if (mySfButtonText_isLeftClick(&__windowInfos__,
+    minesweeper->end->main_menu, event)) {
+        mySfButtonText_setStyle(minesweeper->end->main_menu, sfWhite, H7);
+        minesweeper->screen = START;
+    }
+    mySfText_setOrigin(minesweeper->end->main_menu, CENTER);
+    sfText_setPosition(minesweeper->end->main_menu,
+    (sfVector2f){__windowSize__.x / 2, size.y / 1.5});
+}
+
 void pause_continueEvent(minesweeper_t *minesweeper, sfEvent *event)
 {
     sfVector2f size;
@@ -52,7 +103,6 @@ void pause_restartEvent(minesweeper_t *minesweeper, sfEvent *event)
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->restart, event)) {
         mySfButtonText_setStyle(minesweeper->pause->restart, sfWhite, H7);
-        mySfClock_unpause(minesweeper->game->clock);
         minesweeper->bombs_left = minesweeper->total_bombs;
         minesweeper->box_left = minesweeper->total_box;
         set_map(minesweeper);
@@ -81,7 +131,6 @@ void pause_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event)
     if (mySfButtonText_isLeftClick(&__windowInfos__,
     minesweeper->pause->main_menu, event)) {
         mySfButtonText_setStyle(minesweeper->pause->main_menu, sfWhite, H7);
-        mySfClock_unpause(minesweeper->game->clock);
         minesweeper->screen = START;
     }
     mySfText_setOrigin(minesweeper->pause->main_menu, CENTER);
