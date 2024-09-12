@@ -48,6 +48,4 @@ void set_map(minesweeper_t *minesweeper)
             minesweeper->map[y][x] = 0;
     place_bombs(minesweeper);
     set_map_values(minesweeper);
-    print_map(minesweeper);
-    mini_printf("\n");
 }

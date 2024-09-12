@@ -73,7 +73,5 @@ void set_victory(minesweeper_t *minesweeper)
     minesweeper->bombs_left == 0) {
         minesweeper->victory = true;
         minesweeper->screen = END;
-        mini_printf("VICTORY !\n");
-        //save best score in a file here !
     }
 }
