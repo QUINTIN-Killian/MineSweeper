@@ -22,6 +22,7 @@ static void destroy(minesweeper_t *minesweeper)
     destroy_sounds(minesweeper);
     destroy_window(minesweeper);
     destroy_musics(minesweeper);
+    destroy_credits(minesweeper);
     destroy_start(minesweeper);
     destroy_game(minesweeper);
     destroy_pause(minesweeper);
