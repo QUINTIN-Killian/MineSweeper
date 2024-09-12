@@ -40,7 +40,7 @@ box_t init_box(minesweeper_t *minesweeper, boxState_t state, boxType_t type,
     sfRectangleShape_setPosition(box.rectangle, pos);
     sfRectangleShape_setOutlineColor(box.rectangle, sfBlack);
     sfRectangleShape_setOutlineThickness(box.rectangle, 25.0);
-    sfRectangleShape_setFillColor(box.rectangle, sfGrey);
+    sfRectangleShape_setFillColor(box.rectangle, sfLightGrey);
     sfRectangleShape_setSize(box.rectangle, minesweeper->game->default_box_size);
     box.flag = mySfSprite_create("images/Flag.png", sfFalse);
     flag_size = sfTexture_getSize(box.flag->texture);
@@ -59,7 +59,7 @@ void set_box(minesweeper_t *minesweeper, box_t *box)
 
     minesweeper->box_left--;
     box->state = REVEALED;
-    sfRectangleShape_setFillColor(box->rectangle, sfLightGrey);
+    sfRectangleShape_setFillColor(box->rectangle, sfGrey);
     if (box->type == BOMB) {
         box->mine = mySfSprite_create("images/Mine.png", sfFalse);
         sfSprite_setScale(box->mine->sprite,
