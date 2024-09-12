@@ -14,6 +14,18 @@ void draw_pause(minesweeper_t *minesweeper)
     NULL);
 }
 
+void draw_end(minesweeper_t *minesweeper)
+{
+    sfRenderWindow_drawRectangleShape(__renderWindow__,
+    minesweeper->end->background, NULL);
+    sfRenderWindow_drawText(__renderWindow__, minesweeper->end->state,
+    NULL);
+    sfRenderWindow_drawText(__renderWindow__, minesweeper->end->restart,
+    NULL);
+    sfRenderWindow_drawText(__renderWindow__, minesweeper->end->main_menu,
+    NULL);
+}
+
 void draw_background(minesweeper_t *minesweeper)
 {
     sfRenderWindow_drawSprite(__renderWindow__,
