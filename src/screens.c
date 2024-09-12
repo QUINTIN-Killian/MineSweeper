@@ -45,6 +45,7 @@ void game_screen(minesweeper_t *minesweeper)
     &draw_game);
     get_event(minesweeper, 6, &close_window_event, &dig_event,
     &mute_musics_event, &manage_musics_event, &game_boxEvent, &pause_event);
+    set_victory(minesweeper);
 }
 
 void pause_screen(minesweeper_t *minesweeper)

@@ -49,15 +49,8 @@ void mine(minesweeper_t *minesweeper, int x, int y)
         sfSound_play(minesweeper->sounds->explosion_sound->sound);
         reveal_grid(minesweeper);
         minesweeper->screen = END;
-    } else {
+    } else
         reveal_box(minesweeper, x, y);
-        if (minesweeper->box_left == minesweeper->total_bombs &&
-        minesweeper->bombs_left == 0) {
-            minesweeper->victory = true;
-            minesweeper->screen = END;
-            //save best score in a file here !
-        }
-    }
 }
 
 void flag(minesweeper_t *minesweeper, int x, int y)
@@ -72,4 +65,15 @@ void unflag(minesweeper_t *minesweeper, int x, int y)
     sfSound_play(minesweeper->sounds->flag_sound->sound);
     minesweeper->game->grid[y][x].state = HIDDEN;
     minesweeper->bombs_left++;
+}
+
+void set_victory(minesweeper_t *minesweeper)
+{
+    if (minesweeper->box_left == minesweeper->total_bombs &&
+    minesweeper->bombs_left == 0) {
+        minesweeper->victory = true;
+        minesweeper->screen = END;
+        mini_printf("VICTORY !\n");
+        //save best score in a file here !
+    }
 }

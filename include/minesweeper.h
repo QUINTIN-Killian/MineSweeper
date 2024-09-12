@@ -202,5 +202,6 @@ void draw_end(minesweeper_t *minesweeper);
 void end_restartEvent(minesweeper_t *minesweeper, sfEvent *event);
 void end_mainMenuEvent(minesweeper_t *minesweeper, sfEvent *event);
 void end_screen(minesweeper_t *minesweeper);
+void set_victory(minesweeper_t *minesweeper);
 
 #endif
