@@ -2,7 +2,6 @@
 
 static void init(minesweeper_t *minesweeper)
 {
-    minesweeper->victory = false;
     minesweeper->screen = START; //remettre CREDITS
     minesweeper->difficulty = NORMAL;
     set_difficulty(minesweeper);

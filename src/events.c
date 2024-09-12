@@ -33,7 +33,6 @@ void end_restartEvent(minesweeper_t *minesweeper, sfEvent *event)
         minesweeper->box_left = minesweeper->total_box;
         set_map(minesweeper);
         set_game(minesweeper);
-        minesweeper->victory = false;
         minesweeper->screen = GAME;
     }
     mySfText_setOrigin(minesweeper->end->restart, CENTER);
@@ -163,6 +162,7 @@ void start_startEvent(minesweeper_t *minesweeper, sfEvent *event)
     event)) {
         mySfButtonText_setStyle(minesweeper->start->start, sfWhite, H7);
         minesweeper->screen = GAME;
+        minesweeper->victory = false;
         destroy_map(minesweeper);
         set_difficulty(minesweeper);
         create_map(minesweeper);

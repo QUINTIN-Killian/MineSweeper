@@ -2,6 +2,8 @@
 
 void init_start(minesweeper_t *minesweeper)
 {
+    char *str;
+
     if (minesweeper->start != NULL)
         return;
     minesweeper->start = malloc(sizeof(start_t));
@@ -19,8 +21,10 @@ void init_start(minesweeper_t *minesweeper)
     mySfText_setOrigin(minesweeper->start->leave, CENTER_LEFT);
     sfText_setPosition(minesweeper->start->leave, (sfVector2f)
     {__windowSize__.x / 20, __windowSize__.y / 1.5});
+    str = concat_str(2, "Difficulty: ", get_difficulty(minesweeper));
     minesweeper->start->change_difficulty = mySfText_create(__mainFont__,
-    "Difficulty: Normal", sfWhite, H9);
+    str, sfWhite, H9);
+    free(str);
     mySfText_setOrigin(minesweeper->start->change_difficulty, BOTTOM_RIGHT);
     sfText_setPosition(minesweeper->start->change_difficulty, (sfVector2f)
     {__windowSize__.x, __windowSize__.y});

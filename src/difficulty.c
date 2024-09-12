@@ -28,7 +28,7 @@ void set_difficulty(minesweeper_t *minesweeper)
     }
 }
 
-static char *get_difficulty(minesweeper_t *minesweeper)
+char *get_difficulty(minesweeper_t *minesweeper)
 {
     switch (minesweeper->difficulty) {
     case EASY:
