@@ -4,7 +4,7 @@ void init_musics(minesweeper_t *minesweeper)
 {
     minesweeper->musics = malloc(sizeof(musics_t));
     minesweeper->musics->main_music =
-    mySfMusic_create("musics/main_music_theme.wav", sfTrue, sfFalse /*remettre sfTrue !!!*/);
+    mySfMusic_create("musics/main_music_theme.wav", sfTrue, sfTrue);
 }
 
 void destroy_musics(minesweeper_t *minesweeper)

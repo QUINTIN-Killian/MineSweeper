@@ -2,7 +2,7 @@
 
 static void init(minesweeper_t *minesweeper)
 {
-    minesweeper->screen = START; //remettre CREDITS
+    minesweeper->screen = CREDITS;
     minesweeper->difficulty = NORMAL;
     set_difficulty(minesweeper);
     create_map(minesweeper);
