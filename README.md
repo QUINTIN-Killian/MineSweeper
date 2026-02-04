@@ -12,6 +12,10 @@ The minesweeper game consists of flaging mines in a mines field without making t
 
 ## 🚀 Getting started
 
+### Dependencies
+
+* CSFML 2.6.0
+
 ### Installing
 
 **Clone the repository:**
